@@ -49,11 +49,13 @@ Before running the Node commands, please follow these steps:
    - Generate a file named `modified_files.txt` that lists all the modified files.
 
 3. **Set Environment Variables:**  
-   Configure your environment by running the following commands:
+   Configure your environment by running the following commands as they do not show effect when used with run inspect command as specified later:
 
    ```bash
    export OPENAPI_SPEC_PATH=modified_files.txt
    export API_BASE_URL=https://api.magicapi.dev/api/v1/
+   export API_HEADERS="x-magicapi-key:your-api-key,Accept:application/json"
+  ```
 
 ### Building
 
@@ -89,7 +91,7 @@ The server can be configured through environment variables or command line argum
 npm run inspect -- \
   --api-base-url https://api.example.com \
   --openapi-spec https://api.example.com/openapi.json \
-  --headers "Authorization:Bearer token123,X-API-Key:your-api-key" \
+  --headers "Authorization:Bearer token123,X-API-Key:your-api-key" \ 
   --name "my-mcp-server" \
   --version "1.0.0"
 ```
