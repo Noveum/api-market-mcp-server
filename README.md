@@ -36,6 +36,25 @@ You do not need to clone this repository to use this MCP server. You can simply 
 
 This project includes several development tools to make your workflow easier:
 
+### Usage Instructions
+
+Before running the Node commands, please follow these steps:
+
+1. **Prepare Your Directory:**  
+   Create a folder and place all your OpenAPI JSON files inside it.
+
+2. **Run `modify_api.py`:**  
+   Execute the `modify_api.py` script with the directory set to the folder containing the JSON files. This will:
+   - Create a new folder named `modified_json_files` inside the folder with the JSON files.
+   - Generate a file named `modified_files.txt` that lists all the modified files.
+
+3. **Set Environment Variables:**  
+   Configure your environment by running the following commands:
+
+   ```bash
+   export OPENAPI_SPEC_PATH=modified_files.txt
+   export API_BASE_URL=https://api.magicapi.dev/api/v1/
+
 ### Building
 
 - `npm run build` - Builds the TypeScript source
