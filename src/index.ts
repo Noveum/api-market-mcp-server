@@ -12,7 +12,8 @@ import {
   CallToolRequestSchema, // Changed from ExecuteToolRequestSchema
   Tool,
 } from "@modelcontextprotocol/sdk/types.js";
-
+import * as fs from 'fs';
+import * as readline from 'readline';
 interface OpenAPIMCPServerConfig {
   name: string;
   version: string;
@@ -92,7 +93,7 @@ class OpenAPIMCPServer {
   private config: OpenAPIMCPServerConfig;
 
   private tools: Map<string, Tool> = new Map();
-
+  
   constructor(config: OpenAPIMCPServerConfig) {
     this.config = config;
     this.server = new Server({
@@ -103,23 +104,42 @@ class OpenAPIMCPServer {
     this.initializeHandlers();
   }
 
-  private async loadOpenAPISpec(): Promise<OpenAPIV3.Document> {
-    if (typeof this.config.openApiSpec === "string") {
-      if (this.config.openApiSpec.startsWith("http")) {
+  private async loadOpenAPISpec(file_path): Promise<OpenAPIV3.Document> {  //mark
+    if (typeof file_path === "string") {
+      if (file_path.startsWith("http")) {
         // Load from URL
-        const response = await axios.get(this.config.openApiSpec);
+        const response = await axios.get(file_path);
         return response.data as OpenAPIV3.Document;
       } else {
         // Load from local file
-        const content = await readFile(this.config.openApiSpec, "utf-8");
+        const content = await readFile(file_path, "utf-8");
         return JSON.parse(content) as OpenAPIV3.Document;
       }
     }
-    return this.config.openApiSpec as OpenAPIV3.Document;
+    return file_path as OpenAPIV3.Document;
   }
 
+  private async listOfFilePaths(): Promise<string[]>{
+    const lines = [];
+    const fileStream = fs.createReadStream(this.config.openApiSpec);
+
+    const rl = readline.createInterface({
+        input: fileStream,
+        crlfDelay: Infinity
+    });
+
+    for await (const line of rl) {
+        lines.push(line);
+    }
+
+    return lines; // Return the array of lines    
+  }
   private async parseOpenAPISpec(): Promise<void> {
-    const spec = await this.loadOpenAPISpec();
+    const paths = await this.listOfFilePaths()
+    for (const path of paths){
+
+    
+    const spec = await this.loadOpenAPISpec(path);
 
     // Convert each OpenAPI path to an MCP tool
     for (const [path, pathItem] of Object.entries(spec.paths)) {
@@ -172,6 +192,7 @@ class OpenAPIMCPServer {
       }
     }
   }
+}
 
   private initializeHandlers(): void {
     // Handle tool listing
