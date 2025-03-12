@@ -64,7 +64,7 @@ function loadConfig(): OpenAPIMCPServerConfig {
 
   // Combine CLI args and env vars, with CLI taking precedence
   const apiBaseUrl = argv["api-base-url"] || process.env.API_BASE_URL;
-  const openApiSpec = argv["openapi-spec"] || process.env.OPENAPI_SPEC_PATH;
+  const openApiSpec = argv["openapi-spec"] || process.env.OPENAPI_SPEC_PATH || 'modified_files.txt';
 
   if (!apiBaseUrl) {
     throw new Error(

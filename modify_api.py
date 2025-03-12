@@ -34,17 +34,17 @@ def process_files(directory: str):
         modified_data = modify_paths(data, prefix)
 
         # Save modified data to modified_json_files directory
-        output_file = os.path.abspath(os.path.join(modified_dir, f"modified_{file_name}"))
+        output_file = os.path.relpath(os.path.join(modified_dir, f"modified_{file_name}"))
         with open(output_file, 'w') as file:
             json.dump(modified_data, file, indent=4)
 
         modified_files.append(output_file)
 
     # Write all modified file names to a text file in the current directory
-    with open('modified_files.txt', 'w') as file:
+    with open('./modified_files.txt', 'w') as file:
         file.write('\n'.join(modified_files))
 
 
 if __name__ == "__main__":
-    directory = "../json_files"  # Specify your directory containing the JSON files
+    directory = "./json_files"  # Specify your directory containing the JSON files
     process_files(directory)
