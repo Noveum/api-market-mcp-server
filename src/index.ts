@@ -32,6 +32,12 @@ function parseHeaders(headerStr?: string): Record<string, string> {
   }
   return headers;
 }
+const path = require('path');
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Define __dirname for ESM compatibility
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 function loadConfig(): OpenAPIMCPServerConfig {
   const argv = yargs(hideBin(process.argv))
@@ -63,8 +69,8 @@ function loadConfig(): OpenAPIMCPServerConfig {
     .help().argv;
 
   // Combine CLI args and env vars, with CLI taking precedence
-  const apiBaseUrl = argv["api-base-url"] || process.env.API_BASE_URL;
-  const openApiSpec = argv["openapi-spec"] || process.env.OPENAPI_SPEC_PATH || '../modified_files.txt';
+  const apiBaseUrl = argv["api-base-url"] || process.env.API_BASE_URL || "https://api.example.com";
+  const openApiSpec = argv["openapi-spec"] || process.env.OPENAPI_SPEC_PATH || path.resolve(__dirname, '../modified_files.txt');
 
   if (!apiBaseUrl) {
     throw new Error(
@@ -136,10 +142,10 @@ class OpenAPIMCPServer {
   }
   private async parseOpenAPISpec(): Promise<void> {
     const paths = await this.listOfFilePaths()
-    for (const path of paths){
+    for (const cur_path of paths){
 
     
-    const spec = await this.loadOpenAPISpec(path);
+    const spec = await this.loadOpenAPISpec(path.resolve(__dirname, cur_path));
 
     // Convert each OpenAPI path to an MCP tool
     for (const [path, pathItem] of Object.entries(spec.paths)) {
