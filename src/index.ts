@@ -145,7 +145,7 @@ class OpenAPIMCPServer {
     for (const cur_path of paths){
 
     
-    const spec = await this.loadOpenAPISpec(path.resolve(__dirname,'../../' cur_path));
+    const spec = await this.loadOpenAPISpec(path.resolve(__dirname, cur_path));
 
     // Convert each OpenAPI path to an MCP tool
     for (const [path, pathItem] of Object.entries(spec.paths)) {
