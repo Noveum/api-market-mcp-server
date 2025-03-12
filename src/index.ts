@@ -164,7 +164,7 @@ class OpenAPIMCPServer {
         console.error(`Registering tool: ${toolId}`); // Debug logging
         const tool: Tool = {
           name:
-            op.operationId || op.summary || `${method.toUpperCase()} ${path}`,
+            (op.operationId || op.summary || `${method.toUpperCase()} ${path}`).replace(/\s+/g, "-"),
           description:
             op.description ||
             `Make a ${method.toUpperCase()} request to ${path}`,
