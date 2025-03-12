@@ -38,7 +38,7 @@ import { dirname } from 'path';
 
 // Define __dirname for ESM compatibility
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
+console.log(__dirname);
 function loadConfig(): OpenAPIMCPServerConfig {
   const argv = yargs(hideBin(process.argv))
     .option("api-base-url", {
@@ -145,7 +145,7 @@ class OpenAPIMCPServer {
     for (const cur_path of paths){
 
     
-    const spec = await this.loadOpenAPISpec(path.resolve(__dirname, cur_path));
+    const spec = await this.loadOpenAPISpec(path.resolve(__dirname,'../../' cur_path));
 
     // Convert each OpenAPI path to an MCP tool
     for (const [path, pathItem] of Object.entries(spec.paths)) {

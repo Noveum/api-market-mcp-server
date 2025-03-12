@@ -1,6 +1,6 @@
 {
   "name": "@shvmgpt/openapi-mcp-server",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An MCP server that exposes OpenAPI endpoints as resources",
   "license": "MIT",
   "type": "module",
@@ -14,7 +14,7 @@
   },
   "files": [
     "dist",
-    "modify_api.py",
+    "modified_files.txt",
     "modified_json_files/"
   ],
   "scripts": {

@@ -42,7 +42,7 @@ def process_files(directory: str):
 
     # Write all modified file names to a text file in the current directory
     with open('./modified_files.txt', 'w') as file:
-        modified_files = ['../' + x for x in modified_files]
+        modified_files = ['../../' + x for x in modified_files]
         file.write('\n'.join(modified_files))
 
 
