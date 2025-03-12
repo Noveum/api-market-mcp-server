@@ -69,7 +69,7 @@ function loadConfig(): OpenAPIMCPServerConfig {
     .help().argv;
 
   // Combine CLI args and env vars, with CLI taking precedence
-  const apiBaseUrl = argv["api-base-url"] || process.env.API_BASE_URL || "https://api.example.com";
+  const apiBaseUrl = argv["api-base-url"] || process.env.API_BASE_URL || "https://api.magicapi.dev/api/v1/";
   const openApiSpec = argv["openapi-spec"] || process.env.OPENAPI_SPEC_PATH || path.resolve(__dirname, '../modified_files.txt');
 
   if (!apiBaseUrl) {
@@ -164,7 +164,7 @@ class OpenAPIMCPServer {
         console.error(`Registering tool: ${toolId}`); // Debug logging
         const tool: Tool = {
           name:
-            (op.operationId || op.summary || `${method.toUpperCase()} ${path}`).replace(/\s+/g, "-"),
+            (op.operationId || op.summary || `${method.toUpperCase()} ${path}`).replace(/\s+/g, "_"),
           description:
             op.description ||
             `Make a ${method.toUpperCase()} request to ${path}`,

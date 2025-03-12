@@ -29,6 +29,12 @@ if (process.env.API_HEADERS) {
   args.push(`--headers=${process.env.API_HEADERS}`);
 }
 
+// Forward command line arguments
+// Skip the first two elements which are 'node' and the script path
+const cliArgs = process.argv.slice(2);
+args.push(...cliArgs);
+
+
 // Execute the command
 import { spawn } from 'child_process';
 const inspect = spawn(args[0], args.slice(1), { stdio: 'inherit' });
