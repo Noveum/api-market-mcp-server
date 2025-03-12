@@ -21,7 +21,7 @@ def process_files(directory: str):
     modified_files = []
 
     # Create a directory for modified files if it doesn't exist
-    modified_dir = os.path.join(directory, 'modified_json_files')
+    modified_dir = os.path.join('./', 'modified_json_files')
     os.makedirs(modified_dir, exist_ok=True)
 
     for file_name in files:
