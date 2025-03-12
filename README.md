@@ -52,7 +52,7 @@ Before running the Node commands, please follow these steps:
    Configure your environment by running the following commands as they do not show effect when used with run inspect command as specified later:
 
    ```bash
-   export OPENAPI_SPEC_PATH=modified_files.txt
+   export OPENAPI_SPEC_PATH=modified_files.txt #optional
    export API_BASE_URL=https://api.magicapi.dev/api/v1/
    export API_HEADERS="x-magicapi-key:your-api-key,Accept:application/json"
   ```
