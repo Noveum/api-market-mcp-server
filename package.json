@@ -1,19 +1,21 @@
 {
-  "name": "@ivotoby/openapi-mcp-server",
-  "version": "1.0.0",
+  "name": "@shvmgpt/openapi-mcp-server",
+  "version": "1.0.1",
   "description": "An MCP server that exposes OpenAPI endpoints as resources",
   "license": "MIT",
   "type": "module",
   "main": "./dist/bundle.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com:ivo-toby/contentful-mcp.git"
+    "url": "git+https://github.com/Noveum/api-market-mcp-server.git"
   },
   "bin": {
     "mcp-server-contentful": "./bin/mcp-server.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "modify_api.py",
+    "modified_json_files/"
   ],
   "scripts": {
     "build": "node build.js && chmod +x bin/mcp-server.js",
