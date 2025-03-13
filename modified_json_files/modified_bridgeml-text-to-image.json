@@ -1,0 +1,130 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Image Processing API",
+    "version": "1.2.15",
+    "description": "API for image processing, including toonification and background removal using AI models."
+  },
+  "servers": [
+    {
+      "url": "http://api.magicapi.dev/api/v1/bridgeml/text-to-image"
+    }
+  ],
+  "paths": {
+    "bridgeml/text/to/image//text-to-image": {
+      "post": {
+        "summary": "text-to-image model, 4steps, fast",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "default": "Futuristic space battle, hyper realistic, 4k",
+                    "description": "The prompt for generating the image"
+                  },
+                  "height": {
+                    "type": "integer",
+                    "default": 1024,
+                    "description": "The height of the image"
+                  },
+                  "width": {
+                    "type": "integer",
+                    "default": 1024,
+                    "description": "The width of the image"
+                  },
+                  "scheduler": {
+                    "type": "string",
+                    "default": "K_EULER",
+                    "description": "The scheduler to use"
+                  },
+                  "num_outputs": {
+                    "type": "integer",
+                    "default": 1,
+                    "description": "The number of outputs"
+                  },
+                  "guidance_scale": {
+                    "type": "number",
+                    "default": 0,
+                    "description": "The guidance scale"
+                  },
+                  "negative_prompt": {
+                    "type": "string",
+                    "default": "worst quality, low quality",
+                    "description": "The negative prompt"
+                  },
+                  "num_inference_steps": {
+                    "type": "integer",
+                    "default": 4,
+                    "description": "The number of inference steps"
+                  }
+                },
+                "required": [
+                  "prompt",
+                  "height",
+                  "width"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Image generated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "image_url": {
+                      "type": "string",
+                      "description": "The URL of the generated image"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "security": {},
+  "tags": []
+}

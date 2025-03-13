@@ -1,0 +1,141 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Image Processing API",
+    "version": "1.2.9",
+    "description": "API for image processing, including toonification and background removal using AI models."
+  },
+  "servers": [
+    {
+      "url": "http://api.magicapi.dev/api/v1/bridgeml/mistralai"
+    }
+  ],
+  "paths": {
+    "bridgeml/mistralai//bridgeml/mistralai7b": {
+      "post": {
+        "summary": "BridgeML API",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "messages": {
+                    "type": "array",
+                    "description": "List of messages",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "role": {
+                          "type": "string",
+                          "description": "Role of the message sender",
+                          "enum": [
+                            "user",
+                            "assistant"
+                          ]
+                        },
+                        "content": {
+                          "type": "string",
+                          "description": "Content of the message"
+                        }
+                      }
+                    },
+                    "example": [
+                      {
+                        "role": "user",
+                        "content": "hello"
+                      },
+                      {
+                        "role": "assistant",
+                        "content": "Use voice of customer from an Amazon review to write an ad for a webcam."
+                      }
+                    ]
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": "Temperature for text generation",
+                    "example": 1
+                  },
+                  "max_tokens": {
+                    "type": "number",
+                    "description": "Maximum number of tokens to generate",
+                    "example": 256
+                  },
+                  "top_p": {
+                    "type": "number",
+                    "description": "Top P sampling value",
+                    "example": 1
+                  },
+                  "frequency_penalty": {
+                    "type": "number",
+                    "description": "Frequency penalty value",
+                    "example": 0
+                  },
+                  "stream": {
+                    "type": "boolean",
+                    "description": "Flag indicating if response should be streamed",
+                    "example": false
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "request_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Description of the error."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "security": {},
+  "tags": []
+}

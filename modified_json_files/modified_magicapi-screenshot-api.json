@@ -1,0 +1,149 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Screenshot API Updated",
+    "version": "1.0.4"
+  },
+  "servers": [
+    {
+      "url": "http://api.magicapi.dev/api/v1/magicapi/screenshot-api"
+    }
+  ],
+  "paths": {
+    "magicapi/screenshot/api//api/screenshot": {
+      "get": {
+        "summary": "Capture a screenshot of a webpage",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "resX",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1280
+          },
+          {
+            "in": "query",
+            "name": "resY",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 900
+          },
+          {
+            "in": "query",
+            "name": "outFormat",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "jpg"
+          },
+          {
+            "in": "query",
+            "name": "waitTime",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 100
+          },
+          {
+            "in": "query",
+            "name": "isFullPage",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": false
+          },
+          {
+            "in": "query",
+            "name": "dismissModals",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": false
+          },
+          {
+            "in": "query",
+            "name": "url",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://api.market/"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful screenshot capture",
+            "content": {
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "example": "<base64_encoded_image>"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid parameters provided"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error occurred"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "securitySchemes": {}
+  },
+  "security": {},
+  "tags": []
+}

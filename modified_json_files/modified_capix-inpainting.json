@@ -1,0 +1,158 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "RemoveBg and Inpainting API",
+    "version": "0.1.5"
+  },
+  "servers": [
+    {
+      "url": "http://api.magicapi.dev/api/v1/capix/inpainting"
+    }
+  ],
+  "paths": {
+    "capix/inpainting//inpainting": {
+      "post": {
+        "tags": [
+          "Inpainting"
+        ],
+        "summary": "Inpainting",
+        "operationId": "Inpainting",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/Body_Inpainting"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValueError"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            },
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerError"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "Body_Inpainting": {
+        "properties": {
+          "image_url": {
+            "type": "string",
+            "title": "Image Url",
+            "default": "https://telegra.ph/file/1dbd57f8abf95e6ae2911.png"
+          },
+          "mask_url": {
+            "type": "string",
+            "title": "Mask Url",
+            "default": "https://telegra.ph/file/2402e4a3dd551cc0bca33.png"
+          }
+        },
+        "type": "object",
+        "title": "Body_Inpainting"
+      },
+      "Body_RemoveBg": {
+        "properties": {
+          "image_url": {
+            "type": "string",
+            "title": "Image Url",
+            "default": "https://telegra.ph/file/46a973ad6ff03f32b40a0.png"
+          }
+        },
+        "type": "object",
+        "title": "Body_RemoveBg"
+      },
+      "ServerError": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "default": "Internal Server Error"
+          }
+        },
+        "type": "object",
+        "title": "ServerError"
+      },
+      "ValidationError": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "default": "Invalid request data"
+          }
+        },
+        "type": "object",
+        "title": "ValidationError"
+      },
+      "ValueError": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "ValueError"
+      }
+    }
+  },
+  "security": {},
+  "tags": []
+}

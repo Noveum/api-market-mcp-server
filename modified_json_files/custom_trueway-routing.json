@@ -1,473 +1,473 @@
 {
-    "openapi": "3.0.1",
-    "info": {
-        "title": "TrueWay Directions API V1",
-        "description": "Finding the best route between two or more locations",
-        "contact": {
-            "name": "TrueWay Team",
-            "url": "https://truewayapi.com/",
-            "email": "trueway@usa.com"
-        },
-        "version": "v1"
+  "openapi": "3.0.1",
+  "info": {
+    "title": "TrueWay Directions API V1",
+    "description": "Finding the best route between two or more locations",
+    "contact": {
+      "name": "TrueWay Team",
+      "url": "https://truewayapi.com/",
+      "email": "trueway@usa.com"
     },
-    "servers": [
-        {
-            "url": "http://api.magicapi.dev/api/v1/trueway/routing"
-        }
-    ],
-    "paths": {
-        "trueway/routing//DirectionsService/FindDrivingRoute": {
-            "get": {
-                "tags": [
-                    "DirectionsService"
-                ],
-                "summary": "Finding the best route and get multiple stops driving",
-                "description": "Finding optimal route to visit several locations.",
-                "parameters": [
-                    {
-                        "name": "stops",
-                        "in": "query",
-                        "description": "List of locations described as semicolon-delimited coordinate pairs with latitudes and longitudes. Maximum 25 pairs per request.",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "40.629041,-74.025606;40.630099,-73.993521;40.644895,-74.013818;40.627177,-73.980853"
-                    },
-                    {
-                        "name": "avoid_tolls",
-                        "in": "query",
-                        "description": "Avoid tolls",
-                        "schema": {
-                            "type": "boolean",
-                            "default": false
-                        }
-                    },
-                    {
-                        "name": "avoid_highways",
-                        "in": "query",
-                        "description": "Avoid highways",
-                        "schema": {
-                            "type": "boolean",
-                            "default": false
-                        }
-                    },
-                    {
-                        "name": "avoid_ferries",
-                        "in": "query",
-                        "description": "Avoid ferries",
-                        "schema": {
-                            "type": "boolean",
-                            "default": false
-                        }
-                    },
-                    {
-                        "name": "optimize",
-                        "in": "query",
-                        "description": "Instructs the API to reorder stops to find the optimized route. The route first stop and last stop order is not changed, their position is considered fixed.",
-                        "schema": {
-                            "type": "boolean",
-                            "default": false
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RouteResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/FaultResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/FaultResponse"
-                                }
-                            }
-                        }
-                    }
-                }
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "http://api.magicapi.dev/api/v1/trueway/routing"
+    }
+  ],
+  "paths": {
+    "trueway/routing//DirectionsService/FindDrivingRoute": {
+      "get": {
+        "tags": [
+          "DirectionsService"
+        ],
+        "summary": "Finding the best route and get multiple stops driving",
+        "description": "Finding optimal route to visit several locations.",
+        "parameters": [
+          {
+            "name": "stops",
+            "in": "query",
+            "description": "List of locations described as semicolon-delimited coordinate pairs with latitudes and longitudes. Maximum 25 pairs per request.",
+            "required": true,
+            "schema": {
+              "type": "string"
             },
-            "parameters": [
-                {
-                    "description": "API.market API Key",
-                    "in": "header",
-                    "name": "x-magicapi-key",
-                    "value": "clp7flnx6000j3pifm3pinw92",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ]
-        },
-        "trueway/routing//DirectionsService/FindDrivingPath": {
-            "get": {
-                "tags": [
-                    "DirectionsService"
-                ],
-                "summary": "Finding the best route beten an origin and destination",
-                "description": "Finding optimal route from a origin to a destination, passing through multiple waypoints(optional).",
-                "parameters": [
-                    {
-                        "name": "origin",
-                        "in": "query",
-                        "description": "The location from which you wish to calculate directions.",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "40.629041,-74.025606"
-                    },
-                    {
-                        "name": "destination",
-                        "in": "query",
-                        "description": "The location to which you wish to calculate directions.",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "40.627177,-73.980853"
-                    },
-                    {
-                        "name": "waypoints",
-                        "in": "query",
-                        "description": "An array of intermediate locations to include along the route between the origin and destination points as pass through locations. Maximum: 23 per request.",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "avoid_tolls",
-                        "in": "query",
-                        "description": "Avoid tolls",
-                        "schema": {
-                            "type": "boolean",
-                            "default": false
-                        }
-                    },
-                    {
-                        "name": "avoid_highways",
-                        "in": "query",
-                        "description": "Avoid highways",
-                        "schema": {
-                            "type": "boolean",
-                            "default": false
-                        }
-                    },
-                    {
-                        "name": "avoid_ferries",
-                        "in": "query",
-                        "description": "Avoid ferries",
-                        "schema": {
-                            "type": "boolean",
-                            "default": false
-                        }
-                    },
-                    {
-                        "name": "start_time",
-                        "in": "query",
-                        "description": "Time when travel is expected to start. You can specify the time as an integer in seconds since midnight, January 1, 1970 UTC or you can use 'now' to specify the current time.",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/RouteResponse"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/FaultResponse"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Server Error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/FaultResponse"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "parameters": [
-                {
-                    "description": "API.market API Key",
-                    "in": "header",
-                    "name": "x-magicapi-key",
-                    "value": "clp7flnx6000j3pifm3pinw92",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ]
-        }
-    },
-    "components": {
-        "schemas": {
-            "FaultResponse": {
-                "required": [
-                    "error"
-                ],
-                "type": "object",
-                "properties": {
-                    "error": {
-                        "type": "string"
-                    },
-                    "message": {
-                        "type": "string",
-                        "nullable": true
-                    }
-                },
-                "additionalProperties": false
-            },
-            "GeoPoint": {
-                "type": "object",
-                "properties": {
-                    "lat": {
-                        "type": "number",
-                        "description": "Latitude",
-                        "format": "double"
-                    },
-                    "lng": {
-                        "type": "number",
-                        "description": "Longitude",
-                        "format": "double"
-                    }
-                },
-                "additionalProperties": false
-            },
-            "GeoPolyline": {
-                "type": "object",
-                "properties": {
-                    "coordinates": {
-                        "type": "array",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "double"
-                            }
-                        },
-                        "description": "Coordinates",
-                        "nullable": true
-                    }
-                },
-                "additionalProperties": false
-            },
-            "GeoRect": {
-                "type": "object",
-                "properties": {
-                    "south": {
-                        "type": "number",
-                        "description": "South",
-                        "format": "double"
-                    },
-                    "west": {
-                        "type": "number",
-                        "description": "West",
-                        "format": "double"
-                    },
-                    "north": {
-                        "type": "number",
-                        "description": "North",
-                        "format": "double"
-                    },
-                    "east": {
-                        "type": "number",
-                        "description": "East",
-                        "format": "double"
-                    }
-                },
-                "additionalProperties": false
-            },
-            "Leg": {
-                "type": "object",
-                "properties": {
-                    "distance": {
-                        "type": "integer",
-                        "description": "The length of leg (meters).",
-                        "format": "int32"
-                    },
-                    "duration": {
-                        "type": "integer",
-                        "description": "The time of leg (seconds).",
-                        "format": "int32"
-                    },
-                    "start_point_index": {
-                        "type": "integer",
-                        "description": "The index of point (within geometry.coordinates array) at which the leg starts.",
-                        "format": "int32",
-                        "nullable": true
-                    },
-                    "start_point": {
-                        "$ref": "#/components/schemas/GeoPoint"
-                    },
-                    "end_point_index": {
-                        "type": "integer",
-                        "description": "The index of point (within geometry.coordinates array) at which the leg ends.",
-                        "format": "int32",
-                        "nullable": true
-                    },
-                    "end_point": {
-                        "$ref": "#/components/schemas/GeoPoint"
-                    },
-                    "bounds": {
-                        "$ref": "#/components/schemas/GeoRect"
-                    },
-                    "geometry": {
-                        "$ref": "#/components/schemas/GeoPolyline"
-                    },
-                    "steps": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Step"
-                        },
-                        "description": "An array which contains information about a step of the leg.",
-                        "nullable": true
-                    }
-                },
-                "additionalProperties": false
-            },
-            "Route": {
-                "type": "object",
-                "properties": {
-                    "distance": {
-                        "type": "integer",
-                        "description": "The length of route (meters).",
-                        "format": "int32"
-                    },
-                    "duration": {
-                        "type": "integer",
-                        "description": "The time of route (seconds).",
-                        "format": "int32"
-                    },
-                    "bounds": {
-                        "$ref": "#/components/schemas/GeoRect"
-                    },
-                    "geometry": {
-                        "$ref": "#/components/schemas/GeoPolyline"
-                    },
-                    "legs": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Leg"
-                        },
-                        "description": "An array which contains information about a leg of the route, between two locations within the route. A route with no intermediate waypoints will contain exactly one leg within the legs array. Each leg consists of a series of steps. For FindDrivingRoute only.",
-                        "nullable": true
-                    },
-                    "stops_order": {
-                        "type": "array",
-                        "items": {
-                            "type": "integer",
-                            "format": "int32"
-                        },
-                        "description": "The optimal order of stops. For FindDrivingRoute only with optimize=true.",
-                        "nullable": true
-                    },
-                    "steps": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Step"
-                        },
-                        "description": "An array which contains information about a step. For FindDrivingPath only.",
-                        "nullable": true
-                    }
-                },
-                "additionalProperties": false
-            },
-            "RouteResponse": {
-                "required": [
-                    "route"
-                ],
-                "type": "object",
-                "properties": {
-                    "route": {
-                        "$ref": "#/components/schemas/Route"
-                    }
-                },
-                "additionalProperties": false
-            },
-            "Step": {
-                "type": "object",
-                "properties": {
-                    "distance": {
-                        "type": "integer",
-                        "description": "The length of step (meters).",
-                        "format": "int32"
-                    },
-                    "duration": {
-                        "type": "integer",
-                        "description": "The time of step (seconds).",
-                        "format": "int32"
-                    },
-                    "start_point_index": {
-                        "type": "integer",
-                        "description": "The index of point (within geometry.coordinates array) at which the step starts.",
-                        "format": "int32",
-                        "nullable": true
-                    },
-                    "start_point": {
-                        "$ref": "#/components/schemas/GeoPoint"
-                    },
-                    "end_point_index": {
-                        "type": "integer",
-                        "description": "The index of point (within geometry.coordinates array) at which the step ends.",
-                        "format": "int32",
-                        "nullable": true
-                    },
-                    "end_point": {
-                        "$ref": "#/components/schemas/GeoPoint"
-                    },
-                    "bounds": {
-                        "$ref": "#/components/schemas/GeoRect"
-                    },
-                    "geometry": {
-                        "$ref": "#/components/schemas/GeoPolyline"
-                    },
-                    "maneuver": {
-                        "type": "string",
-                        "description": "The action to take for the step ('turn left', 'turn right', etc.).",
-                        "nullable": true
-                    }
-                },
-                "additionalProperties": false
+            "example": "40.629041,-74.025606;40.630099,-73.993521;40.644895,-74.013818;40.627177,-73.980853"
+          },
+          {
+            "name": "avoid_tolls",
+            "in": "query",
+            "description": "Avoid tolls",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
+          },
+          {
+            "name": "avoid_highways",
+            "in": "query",
+            "description": "Avoid highways",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "avoid_ferries",
+            "in": "query",
+            "description": "Avoid ferries",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "optimize",
+            "in": "query",
+            "description": "Instructs the API to reorder stops to find the optimized route. The route first stop and last stop order is not changed, their position is considered fixed.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RouteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FaultResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FaultResponse"
+                }
+              }
+            }
+          }
         }
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
     },
-    "security": {},
-    "tags": []
+    "trueway/routing//DirectionsService/FindDrivingPath": {
+      "get": {
+        "tags": [
+          "DirectionsService"
+        ],
+        "summary": "Finding the best route beten an origin and destination",
+        "description": "Finding optimal route from a origin to a destination, passing through multiple waypoints(optional).",
+        "parameters": [
+          {
+            "name": "origin",
+            "in": "query",
+            "description": "The location from which you wish to calculate directions.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "40.629041,-74.025606"
+          },
+          {
+            "name": "destination",
+            "in": "query",
+            "description": "The location to which you wish to calculate directions.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "40.627177,-73.980853"
+          },
+          {
+            "name": "waypoints",
+            "in": "query",
+            "description": "An array of intermediate locations to include along the route between the origin and destination points as pass through locations. Maximum: 23 per request.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "avoid_tolls",
+            "in": "query",
+            "description": "Avoid tolls",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "avoid_highways",
+            "in": "query",
+            "description": "Avoid highways",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "avoid_ferries",
+            "in": "query",
+            "description": "Avoid ferries",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "start_time",
+            "in": "query",
+            "description": "Time when travel is expected to start. You can specify the time as an integer in seconds since midnight, January 1, 1970 UTC or you can use 'now' to specify the current time.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RouteResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FaultResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FaultResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "FaultResponse": {
+        "required": [
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GeoPoint": {
+        "type": "object",
+        "properties": {
+          "lat": {
+            "type": "number",
+            "description": "Latitude",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "description": "Longitude",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GeoPolyline": {
+        "type": "object",
+        "properties": {
+          "coordinates": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "description": "Coordinates",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GeoRect": {
+        "type": "object",
+        "properties": {
+          "south": {
+            "type": "number",
+            "description": "South",
+            "format": "double"
+          },
+          "west": {
+            "type": "number",
+            "description": "West",
+            "format": "double"
+          },
+          "north": {
+            "type": "number",
+            "description": "North",
+            "format": "double"
+          },
+          "east": {
+            "type": "number",
+            "description": "East",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Leg": {
+        "type": "object",
+        "properties": {
+          "distance": {
+            "type": "integer",
+            "description": "The length of leg (meters).",
+            "format": "int32"
+          },
+          "duration": {
+            "type": "integer",
+            "description": "The time of leg (seconds).",
+            "format": "int32"
+          },
+          "start_point_index": {
+            "type": "integer",
+            "description": "The index of point (within geometry.coordinates array) at which the leg starts.",
+            "format": "int32",
+            "nullable": true
+          },
+          "start_point": {
+            "$ref": "#/components/schemas/GeoPoint"
+          },
+          "end_point_index": {
+            "type": "integer",
+            "description": "The index of point (within geometry.coordinates array) at which the leg ends.",
+            "format": "int32",
+            "nullable": true
+          },
+          "end_point": {
+            "$ref": "#/components/schemas/GeoPoint"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/GeoRect"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/GeoPolyline"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Step"
+            },
+            "description": "An array which contains information about a step of the leg.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Route": {
+        "type": "object",
+        "properties": {
+          "distance": {
+            "type": "integer",
+            "description": "The length of route (meters).",
+            "format": "int32"
+          },
+          "duration": {
+            "type": "integer",
+            "description": "The time of route (seconds).",
+            "format": "int32"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/GeoRect"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/GeoPolyline"
+          },
+          "legs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Leg"
+            },
+            "description": "An array which contains information about a leg of the route, between two locations within the route. A route with no intermediate waypoints will contain exactly one leg within the legs array. Each leg consists of a series of steps. For FindDrivingRoute only.",
+            "nullable": true
+          },
+          "stops_order": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "The optimal order of stops. For FindDrivingRoute only with optimize=true.",
+            "nullable": true
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Step"
+            },
+            "description": "An array which contains information about a step. For FindDrivingPath only.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RouteResponse": {
+        "required": [
+          "route"
+        ],
+        "type": "object",
+        "properties": {
+          "route": {
+            "$ref": "#/components/schemas/Route"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Step": {
+        "type": "object",
+        "properties": {
+          "distance": {
+            "type": "integer",
+            "description": "The length of step (meters).",
+            "format": "int32"
+          },
+          "duration": {
+            "type": "integer",
+            "description": "The time of step (seconds).",
+            "format": "int32"
+          },
+          "start_point_index": {
+            "type": "integer",
+            "description": "The index of point (within geometry.coordinates array) at which the step starts.",
+            "format": "int32",
+            "nullable": true
+          },
+          "start_point": {
+            "$ref": "#/components/schemas/GeoPoint"
+          },
+          "end_point_index": {
+            "type": "integer",
+            "description": "The index of point (within geometry.coordinates array) at which the step ends.",
+            "format": "int32",
+            "nullable": true
+          },
+          "end_point": {
+            "$ref": "#/components/schemas/GeoPoint"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/GeoRect"
+          },
+          "geometry": {
+            "$ref": "#/components/schemas/GeoPolyline"
+          },
+          "maneuver": {
+            "type": "string",
+            "description": "The action to take for the step ('turn left', 'turn right', etc.).",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "security": {},
+  "tags": []
 }
