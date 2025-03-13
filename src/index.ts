@@ -194,6 +194,33 @@ class OpenAPIMCPServer {
             }
           }
         }
+
+        // Add request body if present (for POST, PUT, etc.)
+        if (op.requestBody) {
+          const requestBody = op.requestBody as OpenAPIV3.RequestBodyObject;
+          const content = requestBody.content;
+          
+          // Usually we'd look for application/json content type
+          if (content && content['application/json']) {
+            const jsonSchema = content['application/json'].schema as OpenAPIV3.SchemaObject;
+            
+            // If it's a reference, we'd need to resolve it
+            // For simplicity, assuming it's an inline schema
+            if (jsonSchema.properties) {
+              // Add all properties from the request body schema
+              for (const [propName, propSchema] of Object.entries(jsonSchema.properties)) {
+                tool.inputSchema.properties[propName] = propSchema;
+              }
+              
+              // Add required properties if defined
+              if (jsonSchema.required) {
+                tool.inputSchema.required = tool.inputSchema.required || [];
+                tool.inputSchema.required.push(...jsonSchema.required);
+              }
+            }
+          }
+        }
+        
         this.tools.set(toolId, tool);
       }
     }
