@@ -21,25 +21,21 @@
           "content": {
             "application/x-www-form-urlencoded": {
               "schema": {
-                "allOf": [
-                  {
-                    "properties": {
-                      "image_url": {
-                        "type": "string",
-                        "title": "Image Url",
-                        "default": "https://telegra.ph/file/c6c8be08bfb1e27e558a1.png"
-                      },
-                      "theme": {
-                        "type": "string",
-                        "title": "Theme",
-                        "description": "Themes could be one of these: `Modern`, `Neutral`, `Monochromatic`, `Complementary`, `Cyberpunk`, `Analogous`, `Warm`, `Cool`, `Pastel`, `Black and white`, `Earthy`, `Vintage`, `Minimalist`, `Scandinavian`, `Bohemian`, `High-Contrast`, `Bright`, `Ocean-inspired`, `Rustic`, `Tropical`, `Bold`, `Jewel-toned`, `Art Deco`, `Mediterranean`, `Traditional`, `Beachy`, `Moody`, `Urban`, `Contemporary`, `Retro`, `Whimsical`, `Zen`, `Industrial`, `Biophilic`, `Farmhouse`, `Japanese Design`, `Coastal`, `Cottagecore`, `French Country`, `Maximalist`, `Art Nouveau`, `Baroque`, `Vaporwave`, `Ski Chalet`, `Sketch`, `Christmas`, `Tribal`, `Medieval`, `Chinese New Year`, `Halloween`, `Kelly Wearstler`, `Nate Berkus`, `Joanna Gaines`, `Martyn Lawrence Bullard`, `Philippe Starck`, `Emily Henderson`, `Miles Redd`, `Victoria Hagan`, `Tom Dixon`, `Timothy Corrigan`, `Axel Vervoordt`, `Kelly Hoppen`, `Ilse Crawford`, `India Mahdavi`, `David Collins`, `Thomas O'Brien`, `Jacques Garcia`, `Bunny Williams`, `Kelly Behun`, `Robert Couturier`",
-                        "default": "Modern"
-                      }
-                    },
-                    "type": "object",
-                    "title": "Body_HomeGPT"
+                "type": "object",
+                "properties": {
+                  "image_url": {
+                    "type": "string",
+                    "title": "Image Url",
+                    "default": "https://telegra.ph/file/c6c8be08bfb1e27e558a1.png"
+                  },
+                  "theme": {
+                    "type": "string",
+                    "title": "Theme",
+                    "description": "Themes could be one of these: `Modern`, `Neutral`, `Monochromatic`, `Complementary`, `Cyberpunk`, `Analogous`, `Warm`, `Cool`, `Pastel`, `Black and white`, `Earthy`, `Vintage`, `Minimalist`, `Scandinavian`, `Bohemian`, `High-Contrast`, `Bright`, `Ocean-inspired`, `Rustic`, `Tropical`, `Bold`, `Jewel-toned`, `Art Deco`, `Mediterranean`, `Traditional`, `Beachy`, `Moody`, `Urban`, `Contemporary`, `Retro`, `Whimsical`, `Zen`, `Industrial`, `Biophilic`, `Farmhouse`, `Japanese Design`, `Coastal`, `Cottagecore`, `French Country`, `Maximalist`, `Art Nouveau`, `Baroque`, `Vaporwave`, `Ski Chalet`, `Sketch`, `Christmas`, `Tribal`, `Medieval`, `Chinese New Year`, `Halloween`, `Kelly Wearstler`, `Nate Berkus`, `Joanna Gaines`, `Martyn Lawrence Bullard`, `Philippe Starck`, `Emily Henderson`, `Miles Redd`, `Victoria Hagan`, `Tom Dixon`, `Timothy Corrigan`, `Axel Vervoordt`, `Kelly Hoppen`, `Ilse Crawford`, `India Mahdavi`, `David Collins`, `Thomas O'Brien`, `Jacques Garcia`, `Bunny Williams`, `Kelly Behun`, `Robert Couturier`",
+                    "default": "Modern"
                   }
-                ],
+                },
+                "required": [],
                 "title": "Body"
               }
             }
@@ -136,31 +132,27 @@
           "content": {
             "application/x-www-form-urlencoded": {
               "schema": {
-                "allOf": [
-                  {
-                    "properties": {
-                      "image_url": {
-                        "type": "string",
-                        "title": "Image Url",
-                        "default": "https://telegra.ph/file/c6c8be08bfb1e27e558a1.png"
-                      },
-                      "room": {
-                        "type": "string",
-                        "title": "Room",
-                        "description": "Room names could be one of these: `Living Room`, `Dining Room`, `Gaming Room`, `Bedroom`, `Bathroom`, `Office`, `Kitchen`, `Guest Room`, `Laundry Room`, `Home Theater`, `Playroom`, `Music Room`, `Exercise Room`, `Library`, `Sunroom`, `Mudroom`, `Attic`, `Basement`, `Pantry`, `Wine Cellar`, `Garage`, `Outdoor Living Space`, `Pool Room`, `Study Room`, `Home Office`, `House Exterior`, `Outdoor Pool Area`, `Outdoor Patio`, `Outdoor Garden`, `Meeting Room`, `Workshop`, `Fitness Gym`, `Coffee Shop`, `Clothing Store`, `Walk-in Closet`, `Toilet`, `Restaurant`, `Coworking Space`, `Hotel Lobby`, `Hotel Room`, `Hotel Bathroom`, `Exhibition Space`, `Onsen`, `Drop Zone`",
-                        "default": "Living room"
-                      },
-                      "theme": {
-                        "type": "string",
-                        "title": "Theme",
-                        "description": "Themes could be one of these: `Modern`, `Neutral`, `Monochromatic`, `Complementary`, `Cyberpunk`, `Analogous`, `Warm`, `Cool`, `Pastel`, `Black and white`, `Earthy`, `Vintage`, `Minimalist`, `Scandinavian`, `Bohemian`, `High-Contrast`, `Bright`, `Ocean-inspired`, `Rustic`, `Tropical`, `Bold`, `Jewel-toned`, `Art Deco`, `Mediterranean`, `Traditional`, `Beachy`, `Moody`, `Urban`, `Contemporary`, `Retro`, `Whimsical`, `Zen`, `Industrial`, `Biophilic`, `Farmhouse`, `Japanese Design`, `Coastal`, `Cottagecore`, `French Country`, `Maximalist`, `Art Nouveau`, `Baroque`, `Vaporwave`, `Ski Chalet`, `Sketch`, `Christmas`, `Tribal`, `Medieval`, `Chinese New Year`, `Halloween`, `Kelly Wearstler`, `Nate Berkus`, `Joanna Gaines`, `Martyn Lawrence Bullard`, `Philippe Starck`, `Emily Henderson`, `Miles Redd`, `Victoria Hagan`, `Tom Dixon`, `Timothy Corrigan`, `Axel Vervoordt`, `Kelly Hoppen`, `Ilse Crawford`, `India Mahdavi`, `David Collins`, `Thomas O'Brien`, `Jacques Garcia`, `Bunny Williams`, `Kelly Behun`, `Robert Couturier`",
-                        "default": "Modern"
-                      }
-                    },
-                    "type": "object",
-                    "title": "Body_RoomGPT"
+                "type": "object",
+                "properties": {
+                  "image_url": {
+                    "type": "string",
+                    "title": "Image Url",
+                    "default": "https://telegra.ph/file/c6c8be08bfb1e27e558a1.png"
+                  },
+                  "room": {
+                    "type": "string",
+                    "title": "Room",
+                    "description": "Room names could be one of these: `Living Room`, `Dining Room`, `Gaming Room`, `Bedroom`, `Bathroom`, `Office`, `Kitchen`, `Guest Room`, `Laundry Room`, `Home Theater`, `Playroom`, `Music Room`, `Exercise Room`, `Library`, `Sunroom`, `Mudroom`, `Attic`, `Basement`, `Pantry`, `Wine Cellar`, `Garage`, `Outdoor Living Space`, `Pool Room`, `Study Room`, `Home Office`, `House Exterior`, `Outdoor Pool Area`, `Outdoor Patio`, `Outdoor Garden`, `Meeting Room`, `Workshop`, `Fitness Gym`, `Coffee Shop`, `Clothing Store`, `Walk-in Closet`, `Toilet`, `Restaurant`, `Coworking Space`, `Hotel Lobby`, `Hotel Room`, `Hotel Bathroom`, `Exhibition Space`, `Onsen`, `Drop Zone`",
+                    "default": "Living room"
+                  },
+                  "theme": {
+                    "type": "string",
+                    "title": "Theme",
+                    "description": "Themes could be one of these: `Modern`, `Neutral`, `Monochromatic`, `Complementary`, `Cyberpunk`, `Analogous`, `Warm`, `Cool`, `Pastel`, `Black and white`, `Earthy`, `Vintage`, `Minimalist`, `Scandinavian`, `Bohemian`, `High-Contrast`, `Bright`, `Ocean-inspired`, `Rustic`, `Tropical`, `Bold`, `Jewel-toned`, `Art Deco`, `Mediterranean`, `Traditional`, `Beachy`, `Moody`, `Urban`, `Contemporary`, `Retro`, `Whimsical`, `Zen`, `Industrial`, `Biophilic`, `Farmhouse`, `Japanese Design`, `Coastal`, `Cottagecore`, `French Country`, `Maximalist`, `Art Nouveau`, `Baroque`, `Vaporwave`, `Ski Chalet`, `Sketch`, `Christmas`, `Tribal`, `Medieval`, `Chinese New Year`, `Halloween`, `Kelly Wearstler`, `Nate Berkus`, `Joanna Gaines`, `Martyn Lawrence Bullard`, `Philippe Starck`, `Emily Henderson`, `Miles Redd`, `Victoria Hagan`, `Tom Dixon`, `Timothy Corrigan`, `Axel Vervoordt`, `Kelly Hoppen`, `Ilse Crawford`, `India Mahdavi`, `David Collins`, `Thomas O'Brien`, `Jacques Garcia`, `Bunny Williams`, `Kelly Behun`, `Robert Couturier`",
+                    "default": "Modern"
                   }
-                ],
+                },
+                "required": [],
                 "title": "Body"
               }
             }

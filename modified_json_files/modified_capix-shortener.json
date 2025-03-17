@@ -21,27 +21,22 @@
           "content": {
             "application/x-www-form-urlencoded": {
               "schema": {
-                "allOf": [
-                  {
-                    "properties": {
-                      "sentence": {
-                        "type": "string",
-                        "title": "Sentence",
-                        "default": "Struggling with wordy sentences? Want to make your writing crisp and clear? We've got you covered! Introducing Sentence Shortener, the perfect free tool to help you cut down on those extra words. No more headaches over long, complicated sentences. With our AI, you can make your writing easy to read and understand - in just a few clicks!\n\n\n\n"
-                      },
-                      "word_count": {
-                        "type": "integer",
-                        "title": "Word Count",
-                        "default": 50
-                      }
-                    },
-                    "required": [
-                      "sentence",
-                      "word_count"
-                    ],
-                    "type": "object",
-                    "title": "Body_SentenceShortener"
+                "type": "object",
+                "properties": {
+                  "sentence": {
+                    "type": "string",
+                    "title": "Sentence",
+                    "default": "Struggling with wordy sentences? Want to make your writing crisp and clear? We've got you covered! Introducing Sentence Shortener, the perfect free tool to help you cut down on those extra words. No more headaches over long, complicated sentences. With our AI, you can make your writing easy to read and understand - in just a few clicks!\n\n\n\n"
+                  },
+                  "word_count": {
+                    "type": "integer",
+                    "title": "Word Count",
+                    "default": 50
                   }
+                },
+                "required": [
+                  "sentence",
+                  "word_count"
                 ],
                 "title": "Body"
               }

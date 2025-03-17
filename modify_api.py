@@ -16,24 +16,40 @@ def modify_paths(data: dict, prefix: str) -> dict:
     return data
 
 def resolve_references(data):
-    components = data.get("components", {})
+    components = data.get("components", {}).get("schemas", {})
 
     def _resolve(item):
         if isinstance(item, dict):
             if "$ref" in item:
-                ref_path = item["$ref"].replace("#/components/", "").split("/")
-                ref_obj = components
-                for part in ref_path:
-                    ref_obj = ref_obj.get(part, {})
+                # Resolve $ref
+                ref_path = item["$ref"].replace("#/components/schemas/", "")
+                ref_obj = components.get(ref_path, {})
                 if not ref_obj:
                     raise ValueError(f"Reference {item['$ref']} not found in components.")
                 return _resolve(ref_obj)
-            else:
-                return {key: _resolve(value) for key, value in item.items()}
-        elif isinstance(item, list):
+
+            if "allOf" in item:
+                # Resolve allOf
+                combined_schema = {"type": "object", "properties": {}, "required": []}
+
+                for subschema in item["allOf"]:
+                    resolved_schema = _resolve(subschema)
+                    combined_schema["properties"].update(resolved_schema.get("properties", {}))
+                    combined_schema["required"].extend(resolved_schema.get("required", []))
+
+                combined_schema["required"] = list(set(combined_schema["required"]))
+                if "title" in item:
+                    combined_schema["title"] = item["title"]
+
+                return combined_schema
+
+            # Recursively resolve nested schemas
+            return {key: _resolve(value) for key, value in item.items()}
+
+        if isinstance(item, list):
             return [_resolve(sub_item) for sub_item in item]
-        else:
-            return item
+
+        return item
 
     return _resolve(data)
 

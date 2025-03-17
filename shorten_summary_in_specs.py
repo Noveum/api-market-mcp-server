@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.ERROR,
                     format='%(levelname)s - %(message)s')
 
 def is_valid_string(s):
-    pattern =  r'^[a-zA-Z0-9_-]+$'
+    pattern =  r'^[a-zA-Z0-9 _-]+$' #spaces will be replaced later on...
     return bool(re.match(pattern, s))
 
 
@@ -46,13 +46,23 @@ def update_summary(current_summary: str) -> str:
         "x-magicapi-key": api_key,
         "Content-Type": "application/json"
     }
+    system_prompt = system_prompt = """
+You are a technical API documentation summarizer. 
+Given an API endpoint summary, create a shorter version that:
+1. Maintains the core functionality description
+2. Is under 54 characters (including spaces)
+3. Uses only alphanumeric characters, hyphens and underscores
+4. Preserves technical meaning and clarity
 
+Bad example: 'iCanSee' for 'A fast text-to-image model that makes high-quality images in 4 steps'
+Good example: 'Create high-quality images from text in 4 steps'
+"""
     # Prepare payload with current_summary as the user message
     payload = {
         "messages": [
             {
                 "role": "system",
-                "content": "You will be given a summary by the user, without any explanations. The entire user input is the summary. You have to respond by shortening the summary even further, the resulting output should be lesser than 54 characters(including whitespaces). Your entire output will be considered as the output, so please do not use any fluff. The user inputs are functionality of some particular API, so make sure that you keep the meaning of the summary intact. The summary you provide should have the same meaning as the original one. Also, do not use any special characters."
+                "content": system_prompt
             },
             {
                 "role": "user",
@@ -74,9 +84,10 @@ def update_summary(current_summary: str) -> str:
     # Parse the API response and extract the new summary
     data = response.json()
     new_summary = data["choices"][0]["message"]["content"]
-    if (len(new_summary) >= 55 or (not is_valid_string(new_summary))) :
+    if (len(new_summary) >= 55 or (not is_valid_string(new_summary))) : #i think this messed it up ... what happened was that it kept looping and i forgot to specify that spaces are prohibited too... also logging was not there
+        print('new summary is ' , new_summary)
         return(update_summary(new_summary))
-    print('new summary is ' , new_summary)
+    
     return new_summary
 
 

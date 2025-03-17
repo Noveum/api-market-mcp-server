@@ -21,7 +21,7 @@
         "tags": [
           "DirectionsService"
         ],
-        "summary": "findapiidbyaddress",
+        "summary": "best route with multiple stops",
         "description": "Finding optimal route to visit several locations.",
         "parameters": [
           {
@@ -560,7 +560,7 @@
         "tags": [
           "DirectionsService"
         ],
-        "summary": "10",
+        "summary": "best route from start to stop",
         "description": "Finding optimal route from a origin to a destination, passing through multiple waypoints(optional).",
         "parameters": [
           {

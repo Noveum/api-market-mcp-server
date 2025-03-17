@@ -21,7 +21,7 @@
         "tags": [
           "MatrixService"
         ],
-        "summary": "atan2",
+        "summary": "distance and duration bw start and stop",
         "description": "Calculate length and driving time of the optimal routes between origin and destination points on the real road network.",
         "parameters": [
           {

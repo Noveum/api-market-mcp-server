@@ -22,24 +22,20 @@
           "content": {
             "application/x-www-form-urlencoded": {
               "schema": {
-                "allOf": [
-                  {
-                    "properties": {
-                      "image_url": {
-                        "type": "string",
-                        "title": "Image Url",
-                        "default": "https://telegra.ph/file/1dbd57f8abf95e6ae2911.png"
-                      },
-                      "mask_url": {
-                        "type": "string",
-                        "title": "Mask Url",
-                        "default": "https://telegra.ph/file/2402e4a3dd551cc0bca33.png"
-                      }
-                    },
-                    "type": "object",
-                    "title": "Body_Inpainting"
+                "type": "object",
+                "properties": {
+                  "image_url": {
+                    "type": "string",
+                    "title": "Image Url",
+                    "default": "https://telegra.ph/file/1dbd57f8abf95e6ae2911.png"
+                  },
+                  "mask_url": {
+                    "type": "string",
+                    "title": "Mask Url",
+                    "default": "https://telegra.ph/file/2402e4a3dd551cc0bca33.png"
                   }
-                ],
+                },
+                "required": [],
                 "title": "Body"
               }
             }

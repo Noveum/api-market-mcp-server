@@ -129,29 +129,24 @@
           "content": {
             "application/x-www-form-urlencoded": {
               "schema": {
-                "allOf": [
-                  {
-                    "properties": {
-                      "target_url": {
-                        "type": "string",
-                        "title": "Target Url",
-                        "description": "Require an image with a face",
-                        "default": "https://storage.ws.pho.to/s2/7aa4876bc1f50bc92fc54cb3c326181ac5bbf5ef_m.jpeg"
-                      },
-                      "swap_url": {
-                        "type": "string",
-                        "title": "Swap Url",
-                        "description": "Require an image with a face",
-                        "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
-                      }
-                    },
-                    "required": [
-                      "target_url",
-                      "swap_url"
-                    ],
-                    "type": "object",
-                    "title": "Body_ImageFaceSwap"
+                "type": "object",
+                "properties": {
+                  "target_url": {
+                    "type": "string",
+                    "title": "Target Url",
+                    "description": "Require an image with a face",
+                    "default": "https://storage.ws.pho.to/s2/7aa4876bc1f50bc92fc54cb3c326181ac5bbf5ef_m.jpeg"
+                  },
+                  "swap_url": {
+                    "type": "string",
+                    "title": "Swap Url",
+                    "description": "Require an image with a face",
+                    "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
                   }
+                },
+                "required": [
+                  "swap_url",
+                  "target_url"
                 ],
                 "title": "Body"
               }
@@ -249,30 +244,25 @@
           "content": {
             "application/x-www-form-urlencoded": {
               "schema": {
-                "allOf": [
-                  {
-                    "properties": {
-                      "target_url": {
-                        "type": "string",
-                        "pattern": "^.*\\.mp4$",
-                        "title": "Target Url",
-                        "description": "Require only .mp4 video file url",
-                        "default": "https://storage.ws.pho.to/s2/7e2131eaef5e5cbb0d2c9eef7e2f19343b5a1292.mp4"
-                      },
-                      "swap_url": {
-                        "type": "string",
-                        "title": "Swap Url",
-                        "description": "Require an image with a face",
-                        "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
-                      }
-                    },
-                    "required": [
-                      "target_url",
-                      "swap_url"
-                    ],
-                    "type": "object",
-                    "title": "Body_VideoFaceSwap"
+                "type": "object",
+                "properties": {
+                  "target_url": {
+                    "type": "string",
+                    "pattern": "^.*\\.mp4$",
+                    "title": "Target Url",
+                    "description": "Require only .mp4 video file url",
+                    "default": "https://storage.ws.pho.to/s2/7e2131eaef5e5cbb0d2c9eef7e2f19343b5a1292.mp4"
+                  },
+                  "swap_url": {
+                    "type": "string",
+                    "title": "Swap Url",
+                    "description": "Require an image with a face",
+                    "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
                   }
+                },
+                "required": [
+                  "swap_url",
+                  "target_url"
                 ],
                 "title": "Body"
               }
