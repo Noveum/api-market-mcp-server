@@ -1,6 +1,6 @@
 {
   "name": "@shvmgpt/openapi-mcp-server",
-  "version": "1.0.19",
+  "version": "1.0.21",
   "description": "An MCP server that exposes OpenAPI endpoints as resources",
   "license": "MIT",
   "type": "module",

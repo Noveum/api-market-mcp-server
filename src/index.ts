@@ -99,6 +99,7 @@ class OpenAPIMCPServer {
   private config: OpenAPIMCPServerConfig;
 
   private tools: Map<string, Tool> = new Map();
+  private headers: Map<string, string> = new Map();
   
   constructor(config: OpenAPIMCPServerConfig) {
     this.config = config;
@@ -202,6 +203,7 @@ class OpenAPIMCPServer {
           
           // Usually we'd look for application/json content type
           if (content && content['application/json']) {
+            this.headers.set(toolId, 'application/json');
             const jsonSchema = content['application/json'].schema as OpenAPIV3.SchemaObject;
             
             // If it's a reference, we'd need to resolve it
@@ -216,6 +218,21 @@ class OpenAPIMCPServer {
               if (jsonSchema.required) {
                 tool.inputSchema.required = tool.inputSchema.required || [];
                 tool.inputSchema.required.push(...jsonSchema.required);
+              }
+            }
+          }
+          else if (content && content['application/x-www-form-urlencoded']) {
+            this.headers.set(toolId, 'application/x-www-form-urlencoded');
+            const urlencodedSchema = content['application/x-www-form-urlencoded'].schema as OpenAPIV3.SchemaObject;
+          
+            if (urlencodedSchema.properties) {
+              for (const [propName, propSchema] of Object.entries(urlencodedSchema.properties)) {
+                tool.inputSchema.properties[propName] = propSchema;
+              }
+          
+              if (urlencodedSchema.required) {
+                tool.inputSchema.required = tool.inputSchema.required || [];
+                tool.inputSchema.required.push(...urlencodedSchema.required);
               }
             }
           }
@@ -294,11 +311,14 @@ class OpenAPIMCPServer {
         //console.error(`Request headers:`, this.config.headers);
 
         // Prepare request configuration
+        this.config.headers['Content-Type'] = this.headers.get(toolId)
         const config: any = {
           method: method.toLowerCase(),
           url: url,
           headers: this.config.headers,
         };
+        console.error(this.config.headers);
+        console.error('just marking')
 
         // Handle different parameter types based on HTTP method
         if (method.toLowerCase() === "get") {
@@ -327,6 +347,10 @@ class OpenAPIMCPServer {
         console.error("Final request config:", config);
 
         try {
+          console.error('lolololol');
+          console.error(config);
+          console.error(Object.keys(config));
+          console.error(Object.values(config))
           const response = await axios(config);
           console.error("Response status:", response.status);
           console.error("Response headers:", response.headers);
