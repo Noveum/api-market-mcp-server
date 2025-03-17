@@ -1,304 +1,304 @@
 {
-  "openapi": "3.1.0",
-  "info": {
-    "title": "Content Detector API",
-    "version": "0.1.1"
-  },
-  "servers": [
-    {
-      "url": "http://api.magicapi.dev/api/v1/capix/story"
-    }
-  ],
-  "paths": {
-    "capix/story//generate/story/v1/": {
-      "post": {
-        "tags": [
-          "StoryGenerator"
-        ],
-        "summary": "Story Generator",
-        "operationId": "StoryGenerator",
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Content Detector API",
+        "version": "0.1.1"
+    },
+    "servers": [
+        {
+            "url": "http://api.magicapi.dev/api/v1/capix/story"
+        }
+    ],
+    "paths": {
+        "capix/story/generate/story/v1/": {
+            "post": {
+                "tags": [
+                    "StoryGenerator"
+                ],
+                "summary": "Story Generator",
+                "operationId": "StoryGenerator",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "text": {
+                                        "type": "string",
+                                        "title": "Text",
+                                        "default": "Story Topic: A Time-Travel Adventure\n\n\nSetting: The story is set in both the present day and the Victorian era. The present-day setting is a bustling modern city known for its technological advancements. The Victorian setting is characterized by cobblestone streets, gas-lit lamps, and the early stages of industrialization.\n\n\nMain Characters:\n\n\nAlex: A curious and adventurous software engineer from the present day who inadvertently discovers a time-travel device.\nEliza: A resourceful and intelligent Victorian-era inventor who dreams of changing the future.\nPlot Details:\n\n\nDiscovery of the Time Machine: Alex discovers an old, mysterious device in their attic, left behind by a forgotten ancestor. Experimenting with it, they accidentally activate it and are transported to the Victorian era.\nMeeting Eliza: Alex meets Eliza, who is fascinated by the time machine and Alex's futuristic knowledge. Together, they explore the possibilities of time travel.\nA Threat Emerges: A sinister figure from the Victorian era learns about the time machine and wants to use it for nefarious purposes, threatening both the past and the future.\nRace Against Time: Alex and Eliza must work together to safeguard the time machine and prevent the alteration of history. They face challenges in both eras, blending elements of Victorian society with futuristic technology.\nResolution: The story concludes with a thrilling confrontation, and a decision that affects both characters' destinies.\nThemes: The story explores themes of adventure, the ethics of time travel, the impact of technology on society, and the timeless nature of human curiosity and ambition."
+                                    },
+                                    "word_count": {
+                                        "type": "integer",
+                                        "title": "Word Count",
+                                        "default": 1200
+                                    },
+                                    "mode": {
+                                        "type": "string",
+                                        "title": "Mode",
+                                        "description": "`Standard`, `Creative`, `Complex`, `Simple`",
+                                        "default": "Creative"
+                                    }
+                                },
+                                "required": [
+                                    "text",
+                                    "mode",
+                                    "word_count"
+                                ],
+                                "title": "Body"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "required": [
+                                        "message"
+                                    ],
+                                    "title": "ValueError"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message",
+                                            "default": "Invalid request data"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "title": "ValidationError"
+                                }
+                            }
+                        },
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message",
+                                            "default": "Internal Server Error"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "title": "ServerError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "Body_BookTitleGenerator": {
                 "properties": {
-                  "text": {
-                    "type": "string",
-                    "title": "Text",
-                    "default": "Story Topic: A Time-Travel Adventure\n\n\nSetting: The story is set in both the present day and the Victorian era. The present-day setting is a bustling modern city known for its technological advancements. The Victorian setting is characterized by cobblestone streets, gas-lit lamps, and the early stages of industrialization.\n\n\nMain Characters:\n\n\nAlex: A curious and adventurous software engineer from the present day who inadvertently discovers a time-travel device.\nEliza: A resourceful and intelligent Victorian-era inventor who dreams of changing the future.\nPlot Details:\n\n\nDiscovery of the Time Machine: Alex discovers an old, mysterious device in their attic, left behind by a forgotten ancestor. Experimenting with it, they accidentally activate it and are transported to the Victorian era.\nMeeting Eliza: Alex meets Eliza, who is fascinated by the time machine and Alex's futuristic knowledge. Together, they explore the possibilities of time travel.\nA Threat Emerges: A sinister figure from the Victorian era learns about the time machine and wants to use it for nefarious purposes, threatening both the past and the future.\nRace Against Time: Alex and Eliza must work together to safeguard the time machine and prevent the alteration of history. They face challenges in both eras, blending elements of Victorian society with futuristic technology.\nResolution: The story concludes with a thrilling confrontation, and a decision that affects both characters' destinies.\nThemes: The story explores themes of adventure, the ethics of time travel, the impact of technology on society, and the timeless nature of human curiosity and ambition."
-                  },
-                  "word_count": {
-                    "type": "integer",
-                    "title": "Word Count",
-                    "default": 1200
-                  },
-                  "mode": {
-                    "type": "string",
-                    "title": "Mode",
-                    "description": "`Standard`, `Creative`, `Complex`, `Simple`",
-                    "default": "Creative"
-                  }
+                    "description": {
+                        "type": "string",
+                        "title": "Description",
+                        "default": "let us dive"
+                    },
+                    "mode": {
+                        "type": "string",
+                        "title": "Mode",
+                        "description": "`Standard`, `Creative`, `Formal`, `Simple`",
+                        "default": "Formal"
+                    }
                 },
                 "required": [
-                  "mode",
-                  "word_count",
-                  "text"
+                    "description",
+                    "mode"
                 ],
-                "title": "Body"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message"
+                "type": "object",
+                "title": "Body_BookTitleGenerator"
+            },
+            "Body_ContentDetectorAI": {
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "title": "Content",
+                        "default": "ContentDetector.AI is an accurate and free AI Detector and AI Content Detector that can be used to detect any AI-generated content. It provides a probability score based on the likelihood that the text content was generated by AI tools or chatbots."
                     }
-                  },
-                  "type": "object",
-                  "required": [
+                },
+                "required": [
+                    "content"
+                ],
+                "type": "object",
+                "title": "Body_ContentDetectorAI"
+            },
+            "Body_EssayGenerator": {
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "title": "Description",
+                        "default": "Essay Topic: The Impact of Social Media on Human Communication\n\n\nKey Details and Questions:\n\n\nIntroduction: Introduce the topic by highlighting the ubiquity of social media in modern life. Pose the central question: Has social media enhanced or hindered human communication?\n\n\nHistorical Perspective:\n\n\nHow did people communicate before the advent of social media?\nWhat were the key stages in the evolution of social media platforms?\nPositive Impacts of Social Media:\n\n\nHow has social media facilitated global connectivity and understanding?\nDiscuss the role of social media in democratizing content creation and information sharing.\nNegative Impacts of Social Media:\n\n\nAnalyze the potential for misinformation and echo chambers.\nExplore the effects of social media on mental health and interpersonal relationships.\nSocial Media and Business:\n\n\nHow has social media transformed business marketing and customer engagement?\nDiscuss the rise of influencer culture and its implications.\nThe Future of Social Media:\n\n\nSpeculate on the future trends in social media.\nWhat role might emerging technologies like AI and VR play in the evolution of social media?\nConclusion:\n\n\nSummarize the main points.\nReflect on the balance between the benefits and drawbacks of social media.\nProvide a personal perspective or a call to action on how to use social media responsibly.\nThemes to Explore:\n\n\nThe role of technology in shaping human interaction.\nThe balance between virtual and real-life communication.\nEthical considerations in the age of digital media."
+                    },
+                    "word_count": {
+                        "type": "integer",
+                        "title": "Word Count",
+                        "default": 1200
+                    },
+                    "mode": {
+                        "type": "string",
+                        "title": "Mode",
+                        "description": "`Standard`, `Academic`, `Professional`, `Creative`, `Journalistic`",
+                        "default": "Standard"
+                    }
+                },
+                "required": [
+                    "description",
+                    "word_count",
+                    "mode"
+                ],
+                "type": "object",
+                "title": "Body_EssayGenerator"
+            },
+            "Body_SentenceExpander": {
+                "properties": {
+                    "sentence": {
+                        "type": "string",
+                        "title": "Sentence",
+                        "default": "Struggling with wordy sentences? Want to make your writing crisp and clear? We've got you covered! Introducing Sentence Shortener, the perfect free tool to help you cut down on those extra words. No more headaches over long, complicated sentences. With our AI, you can make your writing easy to read and understand - in just a few clicks!\n\n\n\n"
+                    },
+                    "word_count": {
+                        "type": "integer",
+                        "title": "Word Count",
+                        "default": 80
+                    }
+                },
+                "required": [
+                    "sentence",
+                    "word_count"
+                ],
+                "type": "object",
+                "title": "Body_SentenceExpander"
+            },
+            "Body_SentenceShortener": {
+                "properties": {
+                    "sentence": {
+                        "type": "string",
+                        "title": "Sentence",
+                        "default": "Struggling with wordy sentences? Want to make your writing crisp and clear? We've got you covered! Introducing Sentence Shortener, the perfect free tool to help you cut down on those extra words. No more headaches over long, complicated sentences. With our AI, you can make your writing easy to read and understand - in just a few clicks!\n\n\n\n"
+                    },
+                    "word_count": {
+                        "type": "integer",
+                        "title": "Word Count",
+                        "default": 50
+                    }
+                },
+                "required": [
+                    "sentence",
+                    "word_count"
+                ],
+                "type": "object",
+                "title": "Body_SentenceShortener"
+            },
+            "Body_StoryGenerator": {
+                "properties": {
+                    "text": {
+                        "type": "string",
+                        "title": "Text",
+                        "default": "Story Topic: A Time-Travel Adventure\n\n\nSetting: The story is set in both the present day and the Victorian era. The present-day setting is a bustling modern city known for its technological advancements. The Victorian setting is characterized by cobblestone streets, gas-lit lamps, and the early stages of industrialization.\n\n\nMain Characters:\n\n\nAlex: A curious and adventurous software engineer from the present day who inadvertently discovers a time-travel device.\nEliza: A resourceful and intelligent Victorian-era inventor who dreams of changing the future.\nPlot Details:\n\n\nDiscovery of the Time Machine: Alex discovers an old, mysterious device in their attic, left behind by a forgotten ancestor. Experimenting with it, they accidentally activate it and are transported to the Victorian era.\nMeeting Eliza: Alex meets Eliza, who is fascinated by the time machine and Alex's futuristic knowledge. Together, they explore the possibilities of time travel.\nA Threat Emerges: A sinister figure from the Victorian era learns about the time machine and wants to use it for nefarious purposes, threatening both the past and the future.\nRace Against Time: Alex and Eliza must work together to safeguard the time machine and prevent the alteration of history. They face challenges in both eras, blending elements of Victorian society with futuristic technology.\nResolution: The story concludes with a thrilling confrontation, and a decision that affects both characters' destinies.\nThemes: The story explores themes of adventure, the ethics of time travel, the impact of technology on society, and the timeless nature of human curiosity and ambition."
+                    },
+                    "word_count": {
+                        "type": "integer",
+                        "title": "Word Count",
+                        "default": 1200
+                    },
+                    "mode": {
+                        "type": "string",
+                        "title": "Mode",
+                        "description": "`Standard`, `Creative`, `Complex`, `Simple`",
+                        "default": "Creative"
+                    }
+                },
+                "required": [
+                    "text",
+                    "word_count",
+                    "mode"
+                ],
+                "type": "object",
+                "title": "Body_StoryGenerator"
+            },
+            "ServerError": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "title": "Message",
+                        "default": "Internal Server Error"
+                    }
+                },
+                "type": "object",
+                "title": "ServerError"
+            },
+            "ValidationError": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "title": "Message",
+                        "default": "Invalid request data"
+                    }
+                },
+                "type": "object",
+                "title": "ValidationError"
+            },
+            "ValueError": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "title": "Message"
+                    }
+                },
+                "type": "object",
+                "required": [
                     "message"
-                  ],
-                  "title": "ValueError"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Invalid request data"
-                    }
-                  },
-                  "type": "object",
-                  "title": "ValidationError"
-                }
-              }
-            },
-            "description": "Unprocessable Entity"
-          },
-          "500": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Internal Server Error"
-                    }
-                  },
-                  "type": "object",
-                  "title": "ServerError"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          }
+                ],
+                "title": "ValueError"
+            }
         }
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    }
-  },
-  "components": {
-    "schemas": {
-      "Body_BookTitleGenerator": {
-        "properties": {
-          "description": {
-            "type": "string",
-            "title": "Description",
-            "default": "let us dive"
-          },
-          "mode": {
-            "type": "string",
-            "title": "Mode",
-            "description": "`Standard`, `Creative`, `Formal`, `Simple`",
-            "default": "Formal"
-          }
-        },
-        "required": [
-          "description",
-          "mode"
-        ],
-        "type": "object",
-        "title": "Body_BookTitleGenerator"
-      },
-      "Body_ContentDetectorAI": {
-        "properties": {
-          "content": {
-            "type": "string",
-            "title": "Content",
-            "default": "ContentDetector.AI is an accurate and free AI Detector and AI Content Detector that can be used to detect any AI-generated content. It provides a probability score based on the likelihood that the text content was generated by AI tools or chatbots."
-          }
-        },
-        "required": [
-          "content"
-        ],
-        "type": "object",
-        "title": "Body_ContentDetectorAI"
-      },
-      "Body_EssayGenerator": {
-        "properties": {
-          "description": {
-            "type": "string",
-            "title": "Description",
-            "default": "Essay Topic: The Impact of Social Media on Human Communication\n\n\nKey Details and Questions:\n\n\nIntroduction: Introduce the topic by highlighting the ubiquity of social media in modern life. Pose the central question: Has social media enhanced or hindered human communication?\n\n\nHistorical Perspective:\n\n\nHow did people communicate before the advent of social media?\nWhat were the key stages in the evolution of social media platforms?\nPositive Impacts of Social Media:\n\n\nHow has social media facilitated global connectivity and understanding?\nDiscuss the role of social media in democratizing content creation and information sharing.\nNegative Impacts of Social Media:\n\n\nAnalyze the potential for misinformation and echo chambers.\nExplore the effects of social media on mental health and interpersonal relationships.\nSocial Media and Business:\n\n\nHow has social media transformed business marketing and customer engagement?\nDiscuss the rise of influencer culture and its implications.\nThe Future of Social Media:\n\n\nSpeculate on the future trends in social media.\nWhat role might emerging technologies like AI and VR play in the evolution of social media?\nConclusion:\n\n\nSummarize the main points.\nReflect on the balance between the benefits and drawbacks of social media.\nProvide a personal perspective or a call to action on how to use social media responsibly.\nThemes to Explore:\n\n\nThe role of technology in shaping human interaction.\nThe balance between virtual and real-life communication.\nEthical considerations in the age of digital media."
-          },
-          "word_count": {
-            "type": "integer",
-            "title": "Word Count",
-            "default": 1200
-          },
-          "mode": {
-            "type": "string",
-            "title": "Mode",
-            "description": "`Standard`, `Academic`, `Professional`, `Creative`, `Journalistic`",
-            "default": "Standard"
-          }
-        },
-        "required": [
-          "description",
-          "word_count",
-          "mode"
-        ],
-        "type": "object",
-        "title": "Body_EssayGenerator"
-      },
-      "Body_SentenceExpander": {
-        "properties": {
-          "sentence": {
-            "type": "string",
-            "title": "Sentence",
-            "default": "Struggling with wordy sentences? Want to make your writing crisp and clear? We've got you covered! Introducing Sentence Shortener, the perfect free tool to help you cut down on those extra words. No more headaches over long, complicated sentences. With our AI, you can make your writing easy to read and understand - in just a few clicks!\n\n\n\n"
-          },
-          "word_count": {
-            "type": "integer",
-            "title": "Word Count",
-            "default": 80
-          }
-        },
-        "required": [
-          "sentence",
-          "word_count"
-        ],
-        "type": "object",
-        "title": "Body_SentenceExpander"
-      },
-      "Body_SentenceShortener": {
-        "properties": {
-          "sentence": {
-            "type": "string",
-            "title": "Sentence",
-            "default": "Struggling with wordy sentences? Want to make your writing crisp and clear? We've got you covered! Introducing Sentence Shortener, the perfect free tool to help you cut down on those extra words. No more headaches over long, complicated sentences. With our AI, you can make your writing easy to read and understand - in just a few clicks!\n\n\n\n"
-          },
-          "word_count": {
-            "type": "integer",
-            "title": "Word Count",
-            "default": 50
-          }
-        },
-        "required": [
-          "sentence",
-          "word_count"
-        ],
-        "type": "object",
-        "title": "Body_SentenceShortener"
-      },
-      "Body_StoryGenerator": {
-        "properties": {
-          "text": {
-            "type": "string",
-            "title": "Text",
-            "default": "Story Topic: A Time-Travel Adventure\n\n\nSetting: The story is set in both the present day and the Victorian era. The present-day setting is a bustling modern city known for its technological advancements. The Victorian setting is characterized by cobblestone streets, gas-lit lamps, and the early stages of industrialization.\n\n\nMain Characters:\n\n\nAlex: A curious and adventurous software engineer from the present day who inadvertently discovers a time-travel device.\nEliza: A resourceful and intelligent Victorian-era inventor who dreams of changing the future.\nPlot Details:\n\n\nDiscovery of the Time Machine: Alex discovers an old, mysterious device in their attic, left behind by a forgotten ancestor. Experimenting with it, they accidentally activate it and are transported to the Victorian era.\nMeeting Eliza: Alex meets Eliza, who is fascinated by the time machine and Alex's futuristic knowledge. Together, they explore the possibilities of time travel.\nA Threat Emerges: A sinister figure from the Victorian era learns about the time machine and wants to use it for nefarious purposes, threatening both the past and the future.\nRace Against Time: Alex and Eliza must work together to safeguard the time machine and prevent the alteration of history. They face challenges in both eras, blending elements of Victorian society with futuristic technology.\nResolution: The story concludes with a thrilling confrontation, and a decision that affects both characters' destinies.\nThemes: The story explores themes of adventure, the ethics of time travel, the impact of technology on society, and the timeless nature of human curiosity and ambition."
-          },
-          "word_count": {
-            "type": "integer",
-            "title": "Word Count",
-            "default": 1200
-          },
-          "mode": {
-            "type": "string",
-            "title": "Mode",
-            "description": "`Standard`, `Creative`, `Complex`, `Simple`",
-            "default": "Creative"
-          }
-        },
-        "required": [
-          "text",
-          "word_count",
-          "mode"
-        ],
-        "type": "object",
-        "title": "Body_StoryGenerator"
-      },
-      "ServerError": {
-        "properties": {
-          "message": {
-            "type": "string",
-            "title": "Message",
-            "default": "Internal Server Error"
-          }
-        },
-        "type": "object",
-        "title": "ServerError"
-      },
-      "ValidationError": {
-        "properties": {
-          "message": {
-            "type": "string",
-            "title": "Message",
-            "default": "Invalid request data"
-          }
-        },
-        "type": "object",
-        "title": "ValidationError"
-      },
-      "ValueError": {
-        "properties": {
-          "message": {
-            "type": "string",
-            "title": "Message"
-          }
-        },
-        "type": "object",
-        "required": [
-          "message"
-        ],
-        "title": "ValueError"
-      }
-    }
-  },
-  "security": {},
-  "tags": []
+    },
+    "security": {},
+    "tags": []
 }

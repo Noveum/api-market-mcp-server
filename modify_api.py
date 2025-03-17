@@ -9,10 +9,22 @@ def get_json_files(directory: str) -> List[str]:
     pattern = re.compile(r'^([\w\-]+)\.json$')
     return [f for f in os.listdir(directory) if pattern.match(f)]
 
+def replace_hyphens_in_paths(data):
+    if 'paths' not in data:
+        return data
+
+    new_paths = {}
+    for path, details in data['paths'].items():
+        new_path = path.replace('-', '_')
+        new_paths[new_path] = details
+
+    data['paths'] = new_paths
+    return data
 
 def modify_paths(data: dict, prefix: str) -> dict:
     modified_paths = {f"{prefix}{path}": details for path, details in data['paths'].items()}
     data['paths'] = modified_paths
+    print(modified_paths.keys())
     return data
 
 def resolve_references(data):
@@ -66,10 +78,19 @@ def process_files(directory: str):
         with open(file_path, 'r') as file:
             data = json.load(file)
 
-        # Generate prefix from the filename, e.g., 'a-b-c.json' -> 'a/b/c/'
-        prefix = '/'.join(file_name.replace('.json', '').split('-')) + '/'
+        
+        # Generate prefix from the filename, e.g., 'a-b-c.json' -> 'a/b_c/'
+        file_name_no_ext = file_name.replace('.json', '')
+
+        # Replace the first hyphen with a slash
+        if '-' in file_name_no_ext:
+            file_name_no_ext = file_name_no_ext.replace('-', '/', 1)
+
+        # Replace remaining hyphens with underscores
+        prefix = file_name_no_ext.replace('-', '_')
         modified_data = modify_paths(data, prefix)
         modified_data = resolve_references(modified_data)
+        modified_data = replace_hyphens_in_paths(modified_data)
         # Save modified data to modified_json_files directory
         output_file = os.path.relpath(os.path.join(modified_dir, f"modified_{file_name}"))
         with open(output_file, 'w') as file:

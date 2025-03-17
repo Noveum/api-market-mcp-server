@@ -1,92 +1,92 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Image Processing API",
-    "version": "1.2.1",
-    "description": "API for image processing, including toonification and background removal using AI models."
-  },
-  "servers": [
-    {
-      "url": "http://api.magicapi.dev/api/v1/magicapi/dnschecker"
-    }
-  ],
-  "paths": {
-    "magicapi/dnschecker//dnschecker": {
-      "post": {
-        "summary": "DNS Checker API",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "domain": {
-                    "type": "string",
-                    "default": "google.com"
-                  }
-                },
-                "required": [
-                  "domain"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "request_id": {
-                      "type": "string",
-                      "description": "Unique identifier for the request."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Description of the error."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ]
-      },
-      "parameters": [
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Image Processing API",
+        "version": "1.2.1",
+        "description": "API for image processing, including toonification and background removal using AI models."
+    },
+    "servers": [
         {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
+            "url": "http://api.magicapi.dev/api/v1/magicapi/dnschecker"
         }
-      ]
-    }
-  },
-  "security": {},
-  "tags": []
+    ],
+    "paths": {
+        "magicapi/dnschecker/dnschecker": {
+            "post": {
+                "summary": "DNS Checker API",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "domain": {
+                                        "type": "string",
+                                        "default": "google.com"
+                                    }
+                                },
+                                "required": [
+                                    "domain"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "request_id": {
+                                            "type": "string",
+                                            "description": "Unique identifier for the request."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "description": "Description of the error."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ]
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        }
+    },
+    "security": {},
+    "tags": []
 }

@@ -1,170 +1,170 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Image Processing API",
-    "version": "1.2.2",
-    "description": "API for image processing, including toonification and background removal using AI models."
-  },
-  "servers": [
-    {
-      "url": "http://api.magicapi.dev/api/v1/magicapi/deblurer"
-    }
-  ],
-  "paths": {
-    "magicapi/deblurer//predictions/{request_id}": {
-      "get": {
-        "summary": "Get Toonified Image URL",
-        "description": "This endpoint retrieves the URL of the toonified image for a given request ID.\n",
-        "parameters": [
-          {
-            "name": "request_id",
-            "in": "path",
-            "required": true,
-            "description": "Unique identifier for the request.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "description": "Status of the prediction (e.g., \"succeeded\")."
-                    },
-                    "image_url": {
-                      "type": "string",
-                      "format": "uri",
-                      "description": "URL of the toonified image."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Description of the error."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ]
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Image Processing API",
+        "version": "1.2.2",
+        "description": "API for image processing, including toonification and background removal using AI models."
     },
-    "magicapi/deblurer//deblurer": {
-      "post": {
-        "summary": "Deblurer",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "image": {
-                    "type": "string",
-                    "default": "https://replicate.delivery/mgxm/e7a66188-34c6-483b-813f-be5c96a3952b/blurry-reds-0.jpg"
-                  },
-                  "task_type": {
-                    "type": "string",
-                    "default": "Image Debluring (REDS)"
-                  }
-                },
-                "required": [
-                  "image",
-                  "task_type"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "request_id": {
-                      "type": "string",
-                      "description": "Unique identifier for the request."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Description of the error."
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ]
-      },
-      "parameters": [
+    "servers": [
         {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
+            "url": "http://api.magicapi.dev/api/v1/magicapi/deblurer"
         }
-      ]
-    }
-  },
-  "security": {},
-  "tags": []
+    ],
+    "paths": {
+        "magicapi/deblurer/predictions/{request_id}": {
+            "get": {
+                "summary": "Get Toonified Image URL",
+                "description": "This endpoint retrieves the URL of the toonified image for a given request ID.\n",
+                "parameters": [
+                    {
+                        "name": "request_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Unique identifier for the request.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "description": "Status of the prediction (e.g., \"succeeded\")."
+                                        },
+                                        "image_url": {
+                                            "type": "string",
+                                            "format": "uri",
+                                            "description": "URL of the toonified image."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "description": "Description of the error."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ]
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "magicapi/deblurer/deblurer": {
+            "post": {
+                "summary": "Deblurer",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image": {
+                                        "type": "string",
+                                        "default": "https://replicate.delivery/mgxm/e7a66188-34c6-483b-813f-be5c96a3952b/blurry-reds-0.jpg"
+                                    },
+                                    "task_type": {
+                                        "type": "string",
+                                        "default": "Image Debluring (REDS)"
+                                    }
+                                },
+                                "required": [
+                                    "image",
+                                    "task_type"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "request_id": {
+                                            "type": "string",
+                                            "description": "Unique identifier for the request."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "description": "Description of the error."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ]
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        }
+    },
+    "security": {},
+    "tags": []
 }

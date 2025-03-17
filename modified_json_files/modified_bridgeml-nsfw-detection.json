@@ -1,93 +1,93 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Image Processing API",
-    "version": "1.2.21",
-    "description": "API for image processing, including toonification and background removal using AI models."
-  },
-  "servers": [
-    {
-      "url": "http://api.magicapi.dev/api/v1/bridgeml/nsfw-detection"
-    }
-  ],
-  "paths": {
-    "bridgeml/nsfw/detection//nsfw-detection": {
-      "post": {
-        "summary": "A fast nsfw detection API",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "image": {
-                    "type": "string",
-                    "default": "https://blog.api.market/wp-content/uploads/2024/07/wonder_woman.png",
-                    "description": "The url for image that wants to be checked for nsfw"
-                  }
-                },
-                "required": [
-                  "image"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Image checked successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "image_url": {
-                      "type": "string",
-                      "description": "The image is nsfw or not"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Error message"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ]
-      },
-      "parameters": [
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Image Processing API",
+        "version": "1.2.21",
+        "description": "API for image processing, including toonification and background removal using AI models."
+    },
+    "servers": [
         {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
+            "url": "http://api.magicapi.dev/api/v1/bridgeml/nsfw-detection"
         }
-      ]
-    }
-  },
-  "security": {},
-  "tags": []
+    ],
+    "paths": {
+        "bridgeml/nsfw_detection/nsfw_detection": {
+            "post": {
+                "summary": "A fast nsfw detection API",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "image": {
+                                        "type": "string",
+                                        "default": "https://blog.api.market/wp-content/uploads/2024/07/wonder_woman.png",
+                                        "description": "The url for image that wants to be checked for nsfw"
+                                    }
+                                },
+                                "required": [
+                                    "image"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Image checked successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "image_url": {
+                                            "type": "string",
+                                            "description": "The image is nsfw or not"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "description": "Error message"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ]
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        }
+    },
+    "security": {},
+    "tags": []
 }

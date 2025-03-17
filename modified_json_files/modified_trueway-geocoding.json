@@ -1,679 +1,679 @@
 {
-  "openapi": "3.0.1",
-  "info": {
-    "title": "TrueWay Geocoding API V1",
-    "description": "Forward and Reverse Geocoding",
-    "contact": {
-      "name": "TrueWay Team",
-      "url": "https://truewayapi.com/",
-      "email": "trueway@usa.com"
-    },
-    "version": "v1"
-  },
-  "servers": [
-    {
-      "url": "http://api.magicapi.dev/api/v1/trueway/geocoding"
-    }
-  ],
-  "paths": {
-    "trueway/geocoding//GeocodingService/Geocode": {
-      "get": {
-        "tags": [
-          "GeocodingService"
-        ],
-        "summary": "Forward Geocoding",
-        "description": "Obtain location(geographic coordinates) for address.",
-        "parameters": [
-          {
-            "name": "address",
-            "in": "query",
-            "description": "The address that you want to geocode",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "505 Howard St, San Francisco"
-          },
-          {
-            "name": "postal_code",
-            "in": "query",
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "country",
-            "in": "query",
-            "description": "The two-letter bias country code (ccTLD or ISO 3166-1) in which to return results",
-            "schema": {
-              "type": "string"
-            },
-            "example": "US"
-          },
-          {
-            "name": "area",
-            "in": "query",
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "locality",
-            "in": "query",
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "street",
-            "in": "query",
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "language",
-            "in": "query",
-            "description": "The two-letter language code in which to return results (ISO 639-1)",
-            "schema": {
-              "type": "string"
-            },
-            "example": "en"
-          },
-          {
-            "name": "region",
-            "in": "query",
-            "description": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "bounds",
-            "in": "query",
-            "description": "The bounding box for results preference",
-            "schema": {
-              "type": "string"
-            },
-            "example": "-90.0,-180.0,90.0,180.0"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "results"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "results": {
-                      "type": "array",
-                      "items": {
-                        "required": [
-                          "location"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "address": {
-                            "type": "string",
-                            "description": "Street address",
-                            "nullable": true
-                          },
-                          "postal_code": {
-                            "type": "string",
-                            "description": "Postal code",
-                            "nullable": true
-                          },
-                          "country": {
-                            "type": "string",
-                            "description": "Country",
-                            "nullable": true
-                          },
-                          "region": {
-                            "type": "string",
-                            "description": "First-order administrative entity below the country level",
-                            "nullable": true
-                          },
-                          "area": {
-                            "type": "string",
-                            "description": "Second-order administrative entity below the country level",
-                            "nullable": true
-                          },
-                          "locality": {
-                            "type": "string",
-                            "description": "Locality (city or town)",
-                            "nullable": true
-                          },
-                          "sublocality": {
-                            "type": "string",
-                            "description": "Locality (First-order entity below a locality)",
-                            "nullable": true
-                          },
-                          "neighborhood": {
-                            "type": "string",
-                            "description": "Named neighborhood",
-                            "nullable": true
-                          },
-                          "street": {
-                            "type": "string",
-                            "description": "Street name",
-                            "nullable": true
-                          },
-                          "house": {
-                            "type": "string",
-                            "description": "House number",
-                            "nullable": true
-                          },
-                          "location": {
-                            "type": "object",
-                            "properties": {
-                              "lat": {
-                                "type": "number",
-                                "format": "double"
-                              },
-                              "lng": {
-                                "type": "number",
-                                "format": "double"
-                              }
-                            },
-                            "additionalProperties": false
-                          },
-                          "location_type": {
-                            "type": "string",
-                            "description": "Location precision: exact/approximate/centroid",
-                            "nullable": true
-                          },
-                          "type": {
-                            "type": "string",
-                            "description": "Type of result: street_address/route/admin_area/country/region/area/locality/sublocality/neighborhood/building/postal_code",
-                            "nullable": true
-                          }
-                        },
-                        "additionalProperties": false
-                      },
-                      "description": "Geocoding results array"
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "error"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string",
-                      "nullable": true
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Unknown Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "error"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string",
-                      "nullable": true
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    },
-    "trueway/geocoding//GeocodingService/ReverseGeocode": {
-      "get": {
-        "tags": [
-          "GeocodingService"
-        ],
-        "summary": "Reverse Geocoding",
-        "description": "Obtain address for location.",
-        "parameters": [
-          {
-            "name": "location",
-            "in": "query",
-            "description": "The location for which you wish to obtain the human-readable address",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "example": "37.7879493,-122.3961974"
-          },
-          {
-            "name": "language",
-            "in": "query",
-            "description": "The two-letter language code in which to return results (ISO 639-1)",
-            "schema": {
-              "type": "string"
-            },
-            "example": "en"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "results"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "results": {
-                      "type": "array",
-                      "items": {
-                        "required": [
-                          "location"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "address": {
-                            "type": "string",
-                            "description": "Street address",
-                            "nullable": true
-                          },
-                          "postal_code": {
-                            "type": "string",
-                            "description": "Postal code",
-                            "nullable": true
-                          },
-                          "country": {
-                            "type": "string",
-                            "description": "Country",
-                            "nullable": true
-                          },
-                          "region": {
-                            "type": "string",
-                            "description": "First-order administrative entity below the country level",
-                            "nullable": true
-                          },
-                          "area": {
-                            "type": "string",
-                            "description": "Second-order administrative entity below the country level",
-                            "nullable": true
-                          },
-                          "locality": {
-                            "type": "string",
-                            "description": "Locality (city or town)",
-                            "nullable": true
-                          },
-                          "sublocality": {
-                            "type": "string",
-                            "description": "Locality (First-order entity below a locality)",
-                            "nullable": true
-                          },
-                          "neighborhood": {
-                            "type": "string",
-                            "description": "Named neighborhood",
-                            "nullable": true
-                          },
-                          "street": {
-                            "type": "string",
-                            "description": "Street name",
-                            "nullable": true
-                          },
-                          "house": {
-                            "type": "string",
-                            "description": "House number",
-                            "nullable": true
-                          },
-                          "location": {
-                            "type": "object",
-                            "properties": {
-                              "lat": {
-                                "type": "number",
-                                "format": "double"
-                              },
-                              "lng": {
-                                "type": "number",
-                                "format": "double"
-                              }
-                            },
-                            "additionalProperties": false
-                          },
-                          "location_type": {
-                            "type": "string",
-                            "description": "Location precision: exact/approximate/centroid",
-                            "nullable": true
-                          },
-                          "type": {
-                            "type": "string",
-                            "description": "Type of result: street_address/route/admin_area/country/region/area/locality/sublocality/neighborhood/building/postal_code",
-                            "nullable": true
-                          }
-                        },
-                        "additionalProperties": false
-                      },
-                      "description": "Geocoding results array"
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "error"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string",
-                      "nullable": true
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "error"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string",
-                      "nullable": true
-                    }
-                  },
-                  "additionalProperties": false
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    }
-  },
-  "components": {
-    "schemas": {
-      "FaultResponse": {
-        "required": [
-          "error"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          }
+    "openapi": "3.0.1",
+    "info": {
+        "title": "TrueWay Geocoding API V1",
+        "description": "Forward and Reverse Geocoding",
+        "contact": {
+            "name": "TrueWay Team",
+            "url": "https://truewayapi.com/",
+            "email": "trueway@usa.com"
         },
-        "additionalProperties": false
-      },
-      "GeocodeResponse": {
-        "required": [
-          "results"
-        ],
-        "type": "object",
-        "properties": {
-          "results": {
-            "type": "array",
-            "items": {
-              "required": [
-                "location"
-              ],
-              "type": "object",
-              "properties": {
-                "address": {
-                  "type": "string",
-                  "description": "Street address",
-                  "nullable": true
+        "version": "v1"
+    },
+    "servers": [
+        {
+            "url": "http://api.magicapi.dev/api/v1/trueway/geocoding"
+        }
+    ],
+    "paths": {
+        "trueway/geocoding/GeocodingService/Geocode": {
+            "get": {
+                "tags": [
+                    "GeocodingService"
+                ],
+                "summary": "Forward Geocoding",
+                "description": "Obtain location(geographic coordinates) for address.",
+                "parameters": [
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "description": "The address that you want to geocode",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "505 Howard St, San Francisco"
+                    },
+                    {
+                        "name": "postal_code",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "country",
+                        "in": "query",
+                        "description": "The two-letter bias country code (ccTLD or ISO 3166-1) in which to return results",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "US"
+                    },
+                    {
+                        "name": "area",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "locality",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "street",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "description": "The two-letter language code in which to return results (ISO 639-1)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "en"
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bounds",
+                        "in": "query",
+                        "description": "The bounding box for results preference",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "-90.0,-180.0,90.0,180.0"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "results"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "results": {
+                                            "type": "array",
+                                            "items": {
+                                                "required": [
+                                                    "location"
+                                                ],
+                                                "type": "object",
+                                                "properties": {
+                                                    "address": {
+                                                        "type": "string",
+                                                        "description": "Street address",
+                                                        "nullable": true
+                                                    },
+                                                    "postal_code": {
+                                                        "type": "string",
+                                                        "description": "Postal code",
+                                                        "nullable": true
+                                                    },
+                                                    "country": {
+                                                        "type": "string",
+                                                        "description": "Country",
+                                                        "nullable": true
+                                                    },
+                                                    "region": {
+                                                        "type": "string",
+                                                        "description": "First-order administrative entity below the country level",
+                                                        "nullable": true
+                                                    },
+                                                    "area": {
+                                                        "type": "string",
+                                                        "description": "Second-order administrative entity below the country level",
+                                                        "nullable": true
+                                                    },
+                                                    "locality": {
+                                                        "type": "string",
+                                                        "description": "Locality (city or town)",
+                                                        "nullable": true
+                                                    },
+                                                    "sublocality": {
+                                                        "type": "string",
+                                                        "description": "Locality (First-order entity below a locality)",
+                                                        "nullable": true
+                                                    },
+                                                    "neighborhood": {
+                                                        "type": "string",
+                                                        "description": "Named neighborhood",
+                                                        "nullable": true
+                                                    },
+                                                    "street": {
+                                                        "type": "string",
+                                                        "description": "Street name",
+                                                        "nullable": true
+                                                    },
+                                                    "house": {
+                                                        "type": "string",
+                                                        "description": "House number",
+                                                        "nullable": true
+                                                    },
+                                                    "location": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "lat": {
+                                                                "type": "number",
+                                                                "format": "double"
+                                                            },
+                                                            "lng": {
+                                                                "type": "number",
+                                                                "format": "double"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false
+                                                    },
+                                                    "location_type": {
+                                                        "type": "string",
+                                                        "description": "Location precision: exact/approximate/centroid",
+                                                        "nullable": true
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "description": "Type of result: street_address/route/admin_area/country/region/area/locality/sublocality/neighborhood/building/postal_code",
+                                                        "nullable": true
+                                                    }
+                                                },
+                                                "additionalProperties": false
+                                            },
+                                            "description": "Geocoding results array"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "error"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "nullable": true
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Unknown Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "error"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "nullable": true
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "trueway/geocoding/GeocodingService/ReverseGeocode": {
+            "get": {
+                "tags": [
+                    "GeocodingService"
+                ],
+                "summary": "Reverse Geocoding",
+                "description": "Obtain address for location.",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "query",
+                        "description": "The location for which you wish to obtain the human-readable address",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "37.7879493,-122.3961974"
+                    },
+                    {
+                        "name": "language",
+                        "in": "query",
+                        "description": "The two-letter language code in which to return results (ISO 639-1)",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "en"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "results"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "results": {
+                                            "type": "array",
+                                            "items": {
+                                                "required": [
+                                                    "location"
+                                                ],
+                                                "type": "object",
+                                                "properties": {
+                                                    "address": {
+                                                        "type": "string",
+                                                        "description": "Street address",
+                                                        "nullable": true
+                                                    },
+                                                    "postal_code": {
+                                                        "type": "string",
+                                                        "description": "Postal code",
+                                                        "nullable": true
+                                                    },
+                                                    "country": {
+                                                        "type": "string",
+                                                        "description": "Country",
+                                                        "nullable": true
+                                                    },
+                                                    "region": {
+                                                        "type": "string",
+                                                        "description": "First-order administrative entity below the country level",
+                                                        "nullable": true
+                                                    },
+                                                    "area": {
+                                                        "type": "string",
+                                                        "description": "Second-order administrative entity below the country level",
+                                                        "nullable": true
+                                                    },
+                                                    "locality": {
+                                                        "type": "string",
+                                                        "description": "Locality (city or town)",
+                                                        "nullable": true
+                                                    },
+                                                    "sublocality": {
+                                                        "type": "string",
+                                                        "description": "Locality (First-order entity below a locality)",
+                                                        "nullable": true
+                                                    },
+                                                    "neighborhood": {
+                                                        "type": "string",
+                                                        "description": "Named neighborhood",
+                                                        "nullable": true
+                                                    },
+                                                    "street": {
+                                                        "type": "string",
+                                                        "description": "Street name",
+                                                        "nullable": true
+                                                    },
+                                                    "house": {
+                                                        "type": "string",
+                                                        "description": "House number",
+                                                        "nullable": true
+                                                    },
+                                                    "location": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "lat": {
+                                                                "type": "number",
+                                                                "format": "double"
+                                                            },
+                                                            "lng": {
+                                                                "type": "number",
+                                                                "format": "double"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false
+                                                    },
+                                                    "location_type": {
+                                                        "type": "string",
+                                                        "description": "Location precision: exact/approximate/centroid",
+                                                        "nullable": true
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "description": "Type of result: street_address/route/admin_area/country/region/area/locality/sublocality/neighborhood/building/postal_code",
+                                                        "nullable": true
+                                                    }
+                                                },
+                                                "additionalProperties": false
+                                            },
+                                            "description": "Geocoding results array"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "error"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "nullable": true
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "error"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "nullable": true
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "FaultResponse": {
+                "required": [
+                    "error"
+                ],
+                "type": "object",
+                "properties": {
+                    "error": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string",
+                        "nullable": true
+                    }
                 },
-                "postal_code": {
-                  "type": "string",
-                  "description": "Postal code",
-                  "nullable": true
+                "additionalProperties": false
+            },
+            "GeocodeResponse": {
+                "required": [
+                    "results"
+                ],
+                "type": "object",
+                "properties": {
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "location"
+                            ],
+                            "type": "object",
+                            "properties": {
+                                "address": {
+                                    "type": "string",
+                                    "description": "Street address",
+                                    "nullable": true
+                                },
+                                "postal_code": {
+                                    "type": "string",
+                                    "description": "Postal code",
+                                    "nullable": true
+                                },
+                                "country": {
+                                    "type": "string",
+                                    "description": "Country",
+                                    "nullable": true
+                                },
+                                "region": {
+                                    "type": "string",
+                                    "description": "First-order administrative entity below the country level",
+                                    "nullable": true
+                                },
+                                "area": {
+                                    "type": "string",
+                                    "description": "Second-order administrative entity below the country level",
+                                    "nullable": true
+                                },
+                                "locality": {
+                                    "type": "string",
+                                    "description": "Locality (city or town)",
+                                    "nullable": true
+                                },
+                                "sublocality": {
+                                    "type": "string",
+                                    "description": "Locality (First-order entity below a locality)",
+                                    "nullable": true
+                                },
+                                "neighborhood": {
+                                    "type": "string",
+                                    "description": "Named neighborhood",
+                                    "nullable": true
+                                },
+                                "street": {
+                                    "type": "string",
+                                    "description": "Street name",
+                                    "nullable": true
+                                },
+                                "house": {
+                                    "type": "string",
+                                    "description": "House number",
+                                    "nullable": true
+                                },
+                                "location": {
+                                    "type": "object",
+                                    "properties": {
+                                        "lat": {
+                                            "type": "number",
+                                            "format": "double"
+                                        },
+                                        "lng": {
+                                            "type": "number",
+                                            "format": "double"
+                                        }
+                                    },
+                                    "additionalProperties": false
+                                },
+                                "location_type": {
+                                    "type": "string",
+                                    "description": "Location precision: exact/approximate/centroid",
+                                    "nullable": true
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "description": "Type of result: street_address/route/admin_area/country/region/area/locality/sublocality/neighborhood/building/postal_code",
+                                    "nullable": true
+                                }
+                            },
+                            "additionalProperties": false
+                        },
+                        "description": "Geocoding results array"
+                    }
                 },
-                "country": {
-                  "type": "string",
-                  "description": "Country",
-                  "nullable": true
+                "additionalProperties": false
+            },
+            "GeocodeResult": {
+                "required": [
+                    "location"
+                ],
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "type": "string",
+                        "description": "Street address",
+                        "nullable": true
+                    },
+                    "postal_code": {
+                        "type": "string",
+                        "description": "Postal code",
+                        "nullable": true
+                    },
+                    "country": {
+                        "type": "string",
+                        "description": "Country",
+                        "nullable": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "First-order administrative entity below the country level",
+                        "nullable": true
+                    },
+                    "area": {
+                        "type": "string",
+                        "description": "Second-order administrative entity below the country level",
+                        "nullable": true
+                    },
+                    "locality": {
+                        "type": "string",
+                        "description": "Locality (city or town)",
+                        "nullable": true
+                    },
+                    "sublocality": {
+                        "type": "string",
+                        "description": "Locality (First-order entity below a locality)",
+                        "nullable": true
+                    },
+                    "neighborhood": {
+                        "type": "string",
+                        "description": "Named neighborhood",
+                        "nullable": true
+                    },
+                    "street": {
+                        "type": "string",
+                        "description": "Street name",
+                        "nullable": true
+                    },
+                    "house": {
+                        "type": "string",
+                        "description": "House number",
+                        "nullable": true
+                    },
+                    "location": {
+                        "type": "object",
+                        "properties": {
+                            "lat": {
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "lng": {
+                                "type": "number",
+                                "format": "double"
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "location_type": {
+                        "type": "string",
+                        "description": "Location precision: exact/approximate/centroid",
+                        "nullable": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Type of result: street_address/route/admin_area/country/region/area/locality/sublocality/neighborhood/building/postal_code",
+                        "nullable": true
+                    }
                 },
-                "region": {
-                  "type": "string",
-                  "description": "First-order administrative entity below the country level",
-                  "nullable": true
-                },
-                "area": {
-                  "type": "string",
-                  "description": "Second-order administrative entity below the country level",
-                  "nullable": true
-                },
-                "locality": {
-                  "type": "string",
-                  "description": "Locality (city or town)",
-                  "nullable": true
-                },
-                "sublocality": {
-                  "type": "string",
-                  "description": "Locality (First-order entity below a locality)",
-                  "nullable": true
-                },
-                "neighborhood": {
-                  "type": "string",
-                  "description": "Named neighborhood",
-                  "nullable": true
-                },
-                "street": {
-                  "type": "string",
-                  "description": "Street name",
-                  "nullable": true
-                },
-                "house": {
-                  "type": "string",
-                  "description": "House number",
-                  "nullable": true
-                },
-                "location": {
-                  "type": "object",
-                  "properties": {
+                "additionalProperties": false
+            },
+            "Location": {
+                "type": "object",
+                "properties": {
                     "lat": {
-                      "type": "number",
-                      "format": "double"
+                        "type": "number",
+                        "format": "double"
                     },
                     "lng": {
-                      "type": "number",
-                      "format": "double"
+                        "type": "number",
+                        "format": "double"
                     }
-                  },
-                  "additionalProperties": false
                 },
-                "location_type": {
-                  "type": "string",
-                  "description": "Location precision: exact/approximate/centroid",
-                  "nullable": true
-                },
-                "type": {
-                  "type": "string",
-                  "description": "Type of result: street_address/route/admin_area/country/region/area/locality/sublocality/neighborhood/building/postal_code",
-                  "nullable": true
-                }
-              },
-              "additionalProperties": false
-            },
-            "description": "Geocoding results array"
-          }
-        },
-        "additionalProperties": false
-      },
-      "GeocodeResult": {
-        "required": [
-          "location"
-        ],
-        "type": "object",
-        "properties": {
-          "address": {
-            "type": "string",
-            "description": "Street address",
-            "nullable": true
-          },
-          "postal_code": {
-            "type": "string",
-            "description": "Postal code",
-            "nullable": true
-          },
-          "country": {
-            "type": "string",
-            "description": "Country",
-            "nullable": true
-          },
-          "region": {
-            "type": "string",
-            "description": "First-order administrative entity below the country level",
-            "nullable": true
-          },
-          "area": {
-            "type": "string",
-            "description": "Second-order administrative entity below the country level",
-            "nullable": true
-          },
-          "locality": {
-            "type": "string",
-            "description": "Locality (city or town)",
-            "nullable": true
-          },
-          "sublocality": {
-            "type": "string",
-            "description": "Locality (First-order entity below a locality)",
-            "nullable": true
-          },
-          "neighborhood": {
-            "type": "string",
-            "description": "Named neighborhood",
-            "nullable": true
-          },
-          "street": {
-            "type": "string",
-            "description": "Street name",
-            "nullable": true
-          },
-          "house": {
-            "type": "string",
-            "description": "House number",
-            "nullable": true
-          },
-          "location": {
-            "type": "object",
-            "properties": {
-              "lat": {
-                "type": "number",
-                "format": "double"
-              },
-              "lng": {
-                "type": "number",
-                "format": "double"
-              }
-            },
-            "additionalProperties": false
-          },
-          "location_type": {
-            "type": "string",
-            "description": "Location precision: exact/approximate/centroid",
-            "nullable": true
-          },
-          "type": {
-            "type": "string",
-            "description": "Type of result: street_address/route/admin_area/country/region/area/locality/sublocality/neighborhood/building/postal_code",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Location": {
-        "type": "object",
-        "properties": {
-          "lat": {
-            "type": "number",
-            "format": "double"
-          },
-          "lng": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "additionalProperties": false
-      }
-    }
-  },
-  "security": {},
-  "tags": []
+                "additionalProperties": false
+            }
+        }
+    },
+    "security": {},
+    "tags": []
 }

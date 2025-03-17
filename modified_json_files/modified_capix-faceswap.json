@@ -1,573 +1,573 @@
 {
-  "openapi": "3.1.0",
-  "info": {
-    "title": "FaceSwap API",
-    "version": "0.1.1"
-  },
-  "servers": [
-    {
-      "url": "http://api.magicapi.dev/api/v1/capix/faceswap"
-    }
-  ],
-  "paths": {
-    "capix/faceswap//upload/": {
-      "post": {
-        "tags": [
-          "Upload"
-        ],
-        "summary": "Upload",
-        "operationId": "Upload",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "properties": {
-                  "file1": {
-                    "type": "string",
-                    "format": "binary",
-                    "title": "File1"
-                  }
-                },
-                "type": "object",
-                "required": [
-                  "file1"
-                ],
-                "title": "Body_Upload"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message"
-                    }
-                  },
-                  "type": "object",
-                  "required": [
-                    "message"
-                  ],
-                  "title": "ValueError"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Invalid request data"
-                    }
-                  },
-                  "type": "object",
-                  "title": "ValidationError"
-                }
-              }
-            },
-            "description": "Unprocessable Entity"
-          },
-          "500": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Internal Server Error"
-                    }
-                  },
-                  "type": "object",
-                  "title": "ServerError"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+    "openapi": "3.1.0",
+    "info": {
+        "title": "FaceSwap API",
+        "version": "0.1.1"
     },
-    "capix/faceswap//faceswap/v1/image": {
-      "post": {
-        "tags": [
-          "FaceSwap"
-        ],
-        "summary": "Face Swap Image",
-        "operationId": "ImageFaceSwap",
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "target_url": {
-                    "type": "string",
-                    "title": "Target Url",
-                    "description": "Require an image with a face",
-                    "default": "https://storage.ws.pho.to/s2/7aa4876bc1f50bc92fc54cb3c326181ac5bbf5ef_m.jpeg"
-                  },
-                  "swap_url": {
-                    "type": "string",
-                    "title": "Swap Url",
-                    "description": "Require an image with a face",
-                    "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
-                  }
-                },
-                "required": [
-                  "swap_url",
-                  "target_url"
-                ],
-                "title": "Body"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message"
-                    }
-                  },
-                  "type": "object",
-                  "required": [
-                    "message"
-                  ],
-                  "title": "ValueError"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Invalid request data"
-                    }
-                  },
-                  "type": "object",
-                  "title": "ValidationError"
-                }
-              }
-            },
-            "description": "Unprocessable Entity"
-          },
-          "500": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Internal Server Error"
-                    }
-                  },
-                  "type": "object",
-                  "title": "ServerError"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "parameters": [
+    "servers": [
         {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
+            "url": "http://api.magicapi.dev/api/v1/capix/faceswap"
         }
-      ]
-    },
-    "capix/faceswap//faceswap/v1/video": {
-      "post": {
-        "tags": [
-          "FaceSwap"
-        ],
-        "summary": "Face Swap Video",
-        "operationId": "VideoFaceSwap",
-        "requestBody": {
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "target_url": {
-                    "type": "string",
-                    "pattern": "^.*\\.mp4$",
-                    "title": "Target Url",
-                    "description": "Require only .mp4 video file url",
-                    "default": "https://storage.ws.pho.to/s2/7e2131eaef5e5cbb0d2c9eef7e2f19343b5a1292.mp4"
-                  },
-                  "swap_url": {
-                    "type": "string",
-                    "title": "Swap Url",
-                    "description": "Require an image with a face",
-                    "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
-                  }
-                },
-                "required": [
-                  "swap_url",
-                  "target_url"
+    ],
+    "paths": {
+        "capix/faceswap/upload/": {
+            "post": {
+                "tags": [
+                    "Upload"
                 ],
-                "title": "Body"
-              }
-            }
-          }
+                "summary": "Upload",
+                "operationId": "Upload",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file1": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "title": "File1"
+                                    }
+                                },
+                                "type": "object",
+                                "required": [
+                                    "file1"
+                                ],
+                                "title": "Body_Upload"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "required": [
+                                        "message"
+                                    ],
+                                    "title": "ValueError"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message",
+                                            "default": "Invalid request data"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "title": "ValidationError"
+                                }
+                            }
+                        },
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message",
+                                            "default": "Internal Server Error"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "title": "ServerError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
         },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message"
+        "capix/faceswap/faceswap/v1/image": {
+            "post": {
+                "tags": [
+                    "FaceSwap"
+                ],
+                "summary": "Face Swap Image",
+                "operationId": "ImageFaceSwap",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "target_url": {
+                                        "type": "string",
+                                        "title": "Target Url",
+                                        "description": "Require an image with a face",
+                                        "default": "https://storage.ws.pho.to/s2/7aa4876bc1f50bc92fc54cb3c326181ac5bbf5ef_m.jpeg"
+                                    },
+                                    "swap_url": {
+                                        "type": "string",
+                                        "title": "Swap Url",
+                                        "description": "Require an image with a face",
+                                        "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
+                                    }
+                                },
+                                "required": [
+                                    "target_url",
+                                    "swap_url"
+                                ],
+                                "title": "Body"
+                            }
+                        }
                     }
-                  },
-                  "type": "object",
-                  "required": [
-                    "message"
-                  ],
-                  "title": "ValueError"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Invalid request data"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "required": [
+                                        "message"
+                                    ],
+                                    "title": "ValueError"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message",
+                                            "default": "Invalid request data"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "title": "ValidationError"
+                                }
+                            }
+                        },
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message",
+                                            "default": "Internal Server Error"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "title": "ServerError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
                     }
-                  },
-                  "type": "object",
-                  "title": "ValidationError"
                 }
-              }
             },
-            "description": "Unprocessable Entity"
-          },
-          "500": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Internal Server Error"
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
                     }
-                  },
-                  "type": "object",
-                  "title": "ServerError"
                 }
-              }
+            ]
+        },
+        "capix/faceswap/faceswap/v1/video": {
+            "post": {
+                "tags": [
+                    "FaceSwap"
+                ],
+                "summary": "Face Swap Video",
+                "operationId": "VideoFaceSwap",
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "target_url": {
+                                        "type": "string",
+                                        "pattern": "^.*\\.mp4$",
+                                        "title": "Target Url",
+                                        "description": "Require only .mp4 video file url",
+                                        "default": "https://storage.ws.pho.to/s2/7e2131eaef5e5cbb0d2c9eef7e2f19343b5a1292.mp4"
+                                    },
+                                    "swap_url": {
+                                        "type": "string",
+                                        "title": "Swap Url",
+                                        "description": "Require an image with a face",
+                                        "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
+                                    }
+                                },
+                                "required": [
+                                    "target_url",
+                                    "swap_url"
+                                ],
+                                "title": "Body"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "required": [
+                                        "message"
+                                    ],
+                                    "title": "ValueError"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message",
+                                            "default": "Invalid request data"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "title": "ValidationError"
+                                }
+                            }
+                        },
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message",
+                                            "default": "Internal Server Error"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "title": "ServerError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
+                    }
+                }
             },
-            "description": "Internal Server Error"
-          }
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "capix/faceswap/result/": {
+            "post": {
+                "tags": [
+                    "Get Result"
+                ],
+                "summary": "Result",
+                "operationId": "Result",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "request_id": {
+                                        "type": "string",
+                                        "title": "Request Id"
+                                    }
+                                },
+                                "type": "object",
+                                "required": [
+                                    "request_id"
+                                ],
+                                "title": "Body_Result"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "required": [
+                                        "message"
+                                    ],
+                                    "title": "ValueError"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    },
+                    "422": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message",
+                                            "default": "Invalid request data"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "title": "ValidationError"
+                                }
+                            }
+                        },
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "title": "Message",
+                                            "default": "Internal Server Error"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "title": "ServerError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
         }
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
     },
-    "capix/faceswap//result/": {
-      "post": {
-        "tags": [
-          "Get Result"
-        ],
-        "summary": "Result",
-        "operationId": "Result",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/x-www-form-urlencoded": {
-              "schema": {
+    "components": {
+        "schemas": {
+            "Body_ImageFaceSwap": {
                 "properties": {
-                  "request_id": {
-                    "type": "string",
-                    "title": "Request Id"
-                  }
+                    "target_url": {
+                        "type": "string",
+                        "title": "Target Url",
+                        "description": "Require an image with a face",
+                        "default": "https://storage.ws.pho.to/s2/7aa4876bc1f50bc92fc54cb3c326181ac5bbf5ef_m.jpeg"
+                    },
+                    "swap_url": {
+                        "type": "string",
+                        "title": "Swap Url",
+                        "description": "Require an image with a face",
+                        "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
+                    }
+                },
+                "required": [
+                    "target_url",
+                    "swap_url"
+                ],
+                "type": "object",
+                "title": "Body_ImageFaceSwap"
+            },
+            "Body_Result": {
+                "properties": {
+                    "request_id": {
+                        "type": "string",
+                        "title": "Request Id"
+                    }
                 },
                 "type": "object",
                 "required": [
-                  "request_id"
+                    "request_id"
                 ],
                 "title": "Body_Result"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message"
+            },
+            "Body_Upload": {
+                "properties": {
+                    "file1": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "File1"
                     }
-                  },
-                  "type": "object",
-                  "required": [
+                },
+                "type": "object",
+                "required": [
+                    "file1"
+                ],
+                "title": "Body_Upload"
+            },
+            "Body_VideoFaceSwap": {
+                "properties": {
+                    "target_url": {
+                        "type": "string",
+                        "pattern": "^.*\\.mp4$",
+                        "title": "Target Url",
+                        "description": "Require only .mp4 video file url",
+                        "default": "https://storage.ws.pho.to/s2/7e2131eaef5e5cbb0d2c9eef7e2f19343b5a1292.mp4"
+                    },
+                    "swap_url": {
+                        "type": "string",
+                        "title": "Swap Url",
+                        "description": "Require an image with a face",
+                        "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
+                    }
+                },
+                "required": [
+                    "target_url",
+                    "swap_url"
+                ],
+                "type": "object",
+                "title": "Body_VideoFaceSwap"
+            },
+            "ServerError": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "title": "Message",
+                        "default": "Internal Server Error"
+                    }
+                },
+                "type": "object",
+                "title": "ServerError"
+            },
+            "ValidationError": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "title": "Message",
+                        "default": "Invalid request data"
+                    }
+                },
+                "type": "object",
+                "title": "ValidationError"
+            },
+            "ValueError": {
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "title": "Message"
+                    }
+                },
+                "type": "object",
+                "required": [
                     "message"
-                  ],
-                  "title": "ValueError"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Invalid request data"
-                    }
-                  },
-                  "type": "object",
-                  "title": "ValidationError"
-                }
-              }
-            },
-            "description": "Unprocessable Entity"
-          },
-          "500": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "title": "Message",
-                      "default": "Internal Server Error"
-                    }
-                  },
-                  "type": "object",
-                  "title": "ServerError"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          }
+                ],
+                "title": "ValueError"
+            }
         }
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    }
-  },
-  "components": {
-    "schemas": {
-      "Body_ImageFaceSwap": {
-        "properties": {
-          "target_url": {
-            "type": "string",
-            "title": "Target Url",
-            "description": "Require an image with a face",
-            "default": "https://storage.ws.pho.to/s2/7aa4876bc1f50bc92fc54cb3c326181ac5bbf5ef_m.jpeg"
-          },
-          "swap_url": {
-            "type": "string",
-            "title": "Swap Url",
-            "description": "Require an image with a face",
-            "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
-          }
-        },
-        "required": [
-          "target_url",
-          "swap_url"
-        ],
-        "type": "object",
-        "title": "Body_ImageFaceSwap"
-      },
-      "Body_Result": {
-        "properties": {
-          "request_id": {
-            "type": "string",
-            "title": "Request Id"
-          }
-        },
-        "type": "object",
-        "required": [
-          "request_id"
-        ],
-        "title": "Body_Result"
-      },
-      "Body_Upload": {
-        "properties": {
-          "file1": {
-            "type": "string",
-            "format": "binary",
-            "title": "File1"
-          }
-        },
-        "type": "object",
-        "required": [
-          "file1"
-        ],
-        "title": "Body_Upload"
-      },
-      "Body_VideoFaceSwap": {
-        "properties": {
-          "target_url": {
-            "type": "string",
-            "pattern": "^.*\\.mp4$",
-            "title": "Target Url",
-            "description": "Require only .mp4 video file url",
-            "default": "https://storage.ws.pho.to/s2/7e2131eaef5e5cbb0d2c9eef7e2f19343b5a1292.mp4"
-          },
-          "swap_url": {
-            "type": "string",
-            "title": "Swap Url",
-            "description": "Require an image with a face",
-            "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
-          }
-        },
-        "required": [
-          "target_url",
-          "swap_url"
-        ],
-        "type": "object",
-        "title": "Body_VideoFaceSwap"
-      },
-      "ServerError": {
-        "properties": {
-          "message": {
-            "type": "string",
-            "title": "Message",
-            "default": "Internal Server Error"
-          }
-        },
-        "type": "object",
-        "title": "ServerError"
-      },
-      "ValidationError": {
-        "properties": {
-          "message": {
-            "type": "string",
-            "title": "Message",
-            "default": "Invalid request data"
-          }
-        },
-        "type": "object",
-        "title": "ValidationError"
-      },
-      "ValueError": {
-        "properties": {
-          "message": {
-            "type": "string",
-            "title": "Message"
-          }
-        },
-        "type": "object",
-        "required": [
-          "message"
-        ],
-        "title": "ValueError"
-      }
-    }
-  },
-  "security": {},
-  "tags": []
+    },
+    "security": {},
+    "tags": []
 }

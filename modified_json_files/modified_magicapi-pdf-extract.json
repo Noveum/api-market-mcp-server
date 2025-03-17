@@ -1,326 +1,326 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "PDF to Text/HTML API",
-    "description": "Convert PDF to Text/HTML API",
-    "version": "1.0.2"
-  },
-  "paths": {
-    "magicapi/pdf/extract//pdf-to-html-url/": {
-      "post": {
-        "summary": "Convert PDF to HTML from URL",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "pdf_url": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "URL of the PDF file to convert",
-                    "example": "https://www.sbs.ox.ac.uk/sites/default/files/2019-01/cv-template.pdf"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "HTML content generated from the PDF",
-            "content": {
-              "text/html": {
-                "schema": {
-                  "type": "string",
-                  "description": "HTML content generated from the PDF"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+    "openapi": "3.0.0",
+    "info": {
+        "title": "PDF to Text/HTML API",
+        "description": "Convert PDF to Text/HTML API",
+        "version": "1.0.2"
     },
-    "magicapi/pdf/extract//pdf-to-text-url/": {
-      "post": {
-        "summary": "Convert PDF to Text from URL",
-        "description": "Converts a PDF file located at the provided URL to plain text.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "pdf_url": {
-                    "type": "string",
-                    "description": "URL of the PDF file to convert",
-                    "example": "https://www.sbs.ox.ac.uk/sites/default/files/2019-01/cv-template.pdf"
-                  }
+    "paths": {
+        "magicapi/pdf_extract/pdf_to_html_url/": {
+            "post": {
+                "summary": "Convert PDF to HTML from URL",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "pdf_url": {
+                                        "type": "string",
+                                        "format": "uri",
+                                        "description": "URL of the PDF file to convert",
+                                        "example": "https://www.sbs.ox.ac.uk/sites/default/files/2019-01/cv-template.pdf"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "HTML content generated from the PDF",
+                        "content": {
+                            "text/html": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "HTML content generated from the PDF"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
                 }
-              }
-            }
-          }
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
         },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "text": {
-                      "type": "string",
-                      "description": "Plain text extracted from the PDF file from given URL"
+        "magicapi/pdf_extract/pdf_to_text_url/": {
+            "post": {
+                "summary": "Convert PDF to Text from URL",
+                "description": "Converts a PDF file located at the provided URL to plain text.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "pdf_url": {
+                                        "type": "string",
+                                        "description": "URL of the PDF file to convert",
+                                        "example": "https://www.sbs.ox.ac.uk/sites/default/files/2019-01/cv-template.pdf"
+                                    }
+                                }
+                            }
+                        }
                     }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Description of the error"
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "description": "Plain text extracted from the PDF file from given URL"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "description": "Description of the error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "description": "Description of the error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                  }
                 }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Description of the error"
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
                     }
-                  }
                 }
-              }
-            }
-          }
+            ]
+        },
+        "magicapi/pdf_extract/pdf_to_text_file/": {
+            "post": {
+                "summary": "Convert PDF to Text from File",
+                "description": "Converts a PDF file uploaded as form data to plain text.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "pdf_file": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "PDF file to convert"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "description": "Plain text extracted from the PDF file"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "description": "Description of the error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "description": "Description of the error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "magicapi/pdf_extract/pdf_to_html_file/": {
+            "post": {
+                "summary": "Convert PDF to HTML from File",
+                "description": "Converts a PDF file uploaded as form data to HTML.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "pdf_file": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "PDF file to convert"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "html": {
+                                            "type": "string",
+                                            "description": "HTML content generated from the PDF file"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "description": "Description of the error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "description": "Description of the error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
         }
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
     },
-    "magicapi/pdf/extract//pdf-to-text-file/": {
-      "post": {
-        "summary": "Convert PDF to Text from File",
-        "description": "Converts a PDF file uploaded as form data to plain text.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "pdf_file": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "PDF file to convert"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "text": {
-                      "type": "string",
-                      "description": "Plain text extracted from the PDF file"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Description of the error"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Description of the error"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
+    "servers": [
         {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
+            "url": "http://api.magicapi.dev/api/v1/magicapi/pdf-extract"
         }
-      ]
-    },
-    "magicapi/pdf/extract//pdf-to-html-file/": {
-      "post": {
-        "summary": "Convert PDF to HTML from File",
-        "description": "Converts a PDF file uploaded as form data to HTML.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "pdf_file": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "PDF file to convert"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "html": {
-                      "type": "string",
-                      "description": "HTML content generated from the PDF file"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Description of the error"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "description": "Description of the error"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    }
-  },
-  "servers": [
-    {
-      "url": "http://api.magicapi.dev/api/v1/magicapi/pdf-extract"
-    }
-  ],
-  "security": {},
-  "tags": []
+    ],
+    "security": {},
+    "tags": []
 }

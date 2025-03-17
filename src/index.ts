@@ -157,9 +157,10 @@ class OpenAPIMCPServer {
 
         const op = operation as OpenAPIV3.OperationObject;
         // Create a clean tool ID by removing the leading slash and replacing special chars
+        console.error(path);
         const cleanPath = path.replace(/^\//, "");
         const toolId = `${method.toUpperCase()}-${cleanPath}`.replace(
-          /[^a-zA-Z0-9-]/g,
+          /[^a-zA-Z0-9-_]/g,
           "-",
         );
         console.error(`Registering tool: ${toolId}`); // Debug logging
@@ -236,7 +237,24 @@ class OpenAPIMCPServer {
               }
             }
           }
+        
+        
+        else if (content && content['multipart/form-data']) {
+          this.headers.set(toolId, 'multipart/form-data');
+          const urlencodedSchema = content['multipart/form-data'].schema as OpenAPIV3.SchemaObject;
+        
+          if (urlencodedSchema.properties) {
+            for (const [propName, propSchema] of Object.entries(urlencodedSchema.properties)) {
+              tool.inputSchema.properties[propName] = propSchema;
+            }
+        
+            if (urlencodedSchema.required) {
+              tool.inputSchema.required = tool.inputSchema.required || [];
+              tool.inputSchema.required.push(...urlencodedSchema.required);
+            }
+          }
         }
+      }
         
         this.tools.set(toolId, tool);
       }
@@ -291,8 +309,11 @@ class OpenAPIMCPServer {
       try {
         // Extract method and path from tool ID
         const [method, ...pathParts] = toolId.split("-");
-        const path = "/" + pathParts.join("/").replace(/-/g, "/");
-
+        const path_temp = "/" + pathParts.join("/").replace(/-/g, "/");
+        const path = path_temp.replaceAll('_', "-");
+        console.error('the path');
+        console.error(path_temp)
+        console.error(path)
         // Ensure base URL ends with slash for proper joining
         const baseUrl = this.config.apiBaseUrl.endsWith("/")
           ? this.config.apiBaseUrl

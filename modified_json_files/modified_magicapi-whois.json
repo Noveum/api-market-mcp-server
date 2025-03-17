@@ -1,136 +1,136 @@
 {
-  "openapi": "3.0.3",
-  "info": {
-    "title": "WHOIS API",
-    "description": "API for querying domain WHOIS information.",
-    "version": "1.0.2"
-  },
-  "servers": [
-    {
-      "url": "http://api.magicapi.dev/api/v1/magicapi/whois"
-    }
-  ],
-  "paths": {
-    "magicapi/whois//whois/{domain}": {
-      "get": {
-        "summary": "Get WHOIS information for a domain",
-        "operationId": "getWhoisInfo",
-        "parameters": [
-          {
-            "name": "domain",
-            "in": "path",
-            "required": true,
-            "description": "Domain to query WHOIS information for",
-            "schema": {
-              "type": "string"
+    "openapi": "3.0.3",
+    "info": {
+        "title": "WHOIS API",
+        "description": "API for querying domain WHOIS information.",
+        "version": "1.0.2"
+    },
+    "servers": [
+        {
+            "url": "http://api.magicapi.dev/api/v1/magicapi/whois"
+        }
+    ],
+    "paths": {
+        "magicapi/whois/whois/{domain}": {
+            "get": {
+                "summary": "Get WHOIS information for a domain",
+                "operationId": "getWhoisInfo",
+                "parameters": [
+                    {
+                        "name": "domain",
+                        "in": "path",
+                        "required": true,
+                        "description": "Domain to query WHOIS information for",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "google.com"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "OrganizationName": {
+                                            "type": "string",
+                                            "nullable": true
+                                        },
+                                        "Raw": {
+                                            "type": "string"
+                                        },
+                                        "RespondedServers": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "AddressRange": {
+                                            "type": "string",
+                                            "nullable": true
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "examples": {
+                            "google_example": {
+                                "summary": "Example response for google.com",
+                                "value": {
+                                    "OrganizationName": "Google LLC",
+                                    "Raw": "Domain Name: GOOGLE.COM\nRegistrar: MarkMonitor Inc.\n...",
+                                    "RespondedServers": [
+                                        "whois.verisign-grs.com",
+                                        "whois.markmonitor.com"
+                                    ],
+                                    "AddressRange": "172.217.0.0 - 172.217.255.255"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    },
+                    "401": {
+                        "description": "Unauthorized request"
+                    },
+                    "404": {
+                        "description": "Domain not found"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
             },
-            "example": "google.com"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "WhoisResponse": {
+                "type": "object",
+                "properties": {
                     "OrganizationName": {
-                      "type": "string",
-                      "nullable": true
+                        "type": "string",
+                        "nullable": true
                     },
                     "Raw": {
-                      "type": "string"
+                        "type": "string"
                     },
                     "RespondedServers": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
                     },
                     "AddressRange": {
-                      "type": "string",
-                      "nullable": true
+                        "type": "string",
+                        "nullable": true
                     }
-                  }
                 }
-              }
-            },
-            "examples": {
-              "google_example": {
-                "summary": "Example response for google.com",
-                "value": {
-                  "OrganizationName": "Google LLC",
-                  "Raw": "Domain Name: GOOGLE.COM\nRegistrar: MarkMonitor Inc.\n...",
-                  "RespondedServers": [
-                    "whois.verisign-grs.com",
-                    "whois.markmonitor.com"
-                  ],
-                  "AddressRange": "172.217.0.0 - 172.217.255.255"
-                }
-              }
             }
-          },
-          "400": {
-            "description": "Invalid request"
-          },
-          "401": {
-            "description": "Unauthorized request"
-          },
-          "404": {
-            "description": "Domain not found"
-          },
-          "500": {
-            "description": "Server error"
-          }
         },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
-    }
-  },
-  "components": {
-    "schemas": {
-      "WhoisResponse": {
-        "type": "object",
-        "properties": {
-          "OrganizationName": {
-            "type": "string",
-            "nullable": true
-          },
-          "Raw": {
-            "type": "string"
-          },
-          "RespondedServers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "AddressRange": {
-            "type": "string",
-            "nullable": true
-          }
-        }
-      }
+        "securitySchemes": {}
     },
-    "securitySchemes": {}
-  },
-  "security": {},
-  "tags": []
+    "security": {},
+    "tags": []
 }

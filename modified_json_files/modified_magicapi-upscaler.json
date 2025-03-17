@@ -1,179 +1,179 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Image Upscaler API",
-    "version": "1.0.5",
-    "description": "API for upscaling images using Super-Resolution models"
-  },
-  "paths": {
-    "magicapi/upscaler//upscale2x/": {
-      "post": {
-        "summary": "Upscale Image by 2x",
-        "description": "Upscale an image by 2x using Super-Resolution models",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "url": {
-                    "type": "string",
-                    "description": "URL of the image to upscale",
-                    "example": "https://production-media.paperswithcode.com/datasets/Set5-0000002728-07a9793f_zA3bDjj.jpg"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Upscaled image successfully generated",
-            "content": {
-              "image/jpeg": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid scale factor provided"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Image Upscaler API",
+        "version": "1.0.5",
+        "description": "API for upscaling images using Super-Resolution models"
     },
-    "magicapi/upscaler//upscale4x/": {
-      "post": {
-        "summary": "Upscale Image by 4x",
-        "description": "Upscale an image by 4x using Super-Resolution models",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "url": {
-                    "type": "string",
-                    "description": "URL of the image to upscale",
-                    "example": "https://production-media.paperswithcode.com/datasets/Set5-0000002728-07a9793f_zA3bDjj.jpg"
-                  }
+    "paths": {
+        "magicapi/upscaler/upscale2x/": {
+            "post": {
+                "summary": "Upscale Image by 2x",
+                "description": "Upscale an image by 2x using Super-Resolution models",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "url": {
+                                        "type": "string",
+                                        "description": "URL of the image to upscale",
+                                        "example": "https://production-media.paperswithcode.com/datasets/Set5-0000002728-07a9793f_zA3bDjj.jpg"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Upscaled image successfully generated",
+                        "content": {
+                            "image/jpeg": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid scale factor provided"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
                 }
-              }
-            }
-          }
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
         },
-        "responses": {
-          "200": {
-            "description": "Upscaled image successfully generated",
-            "content": {
-              "image/jpeg": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
+        "magicapi/upscaler/upscale4x/": {
+            "post": {
+                "summary": "Upscale Image by 4x",
+                "description": "Upscale an image by 4x using Super-Resolution models",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "url": {
+                                        "type": "string",
+                                        "description": "URL of the image to upscale",
+                                        "example": "https://production-media.paperswithcode.com/datasets/Set5-0000002728-07a9793f_zA3bDjj.jpg"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Upscaled image successfully generated",
+                        "content": {
+                            "image/jpeg": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid scale factor provided"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
                 }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid scale factor provided"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "magicapi/upscaler/upscale8x/": {
+            "post": {
+                "summary": "Upscale Image by 8x",
+                "description": "Upscale an image by 8x using Super-Resolution models",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "url": {
+                                        "type": "string",
+                                        "description": "URL of the image to upscale",
+                                        "example": "https://production-media.paperswithcode.com/datasets/Set5-0000002728-07a9793f_zA3bDjj.jpg"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Upscaled image successfully generated",
+                        "content": {
+                            "image/jpeg": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid scale factor provided"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "description": "API.market API Key",
+                    "in": "header",
+                    "name": "x-magicapi-key",
+                    "value": "clp7flnx6000j3pifm3pinw92",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
         }
-      },
-      "parameters": [
-        {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }
-      ]
     },
-    "magicapi/upscaler//upscale8x/": {
-      "post": {
-        "summary": "Upscale Image by 8x",
-        "description": "Upscale an image by 8x using Super-Resolution models",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "url": {
-                    "type": "string",
-                    "description": "URL of the image to upscale",
-                    "example": "https://production-media.paperswithcode.com/datasets/Set5-0000002728-07a9793f_zA3bDjj.jpg"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Upscaled image successfully generated",
-            "content": {
-              "image/jpeg": {
-                "schema": {
-                  "type": "string",
-                  "format": "binary"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid scale factor provided"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        }
-      },
-      "parameters": [
+    "servers": [
         {
-          "description": "API.market API Key",
-          "in": "header",
-          "name": "x-magicapi-key",
-          "value": "clp7flnx6000j3pifm3pinw92",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
+            "url": "http://api.magicapi.dev/api/v1/magicapi/upscaler"
         }
-      ]
-    }
-  },
-  "servers": [
-    {
-      "url": "http://api.magicapi.dev/api/v1/magicapi/upscaler"
-    }
-  ],
-  "security": {},
-  "tags": []
+    ],
+    "security": {},
+    "tags": []
 }
