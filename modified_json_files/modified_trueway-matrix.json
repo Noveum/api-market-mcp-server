@@ -21,7 +21,7 @@
         "tags": [
           "MatrixService"
         ],
-        "summary": "calculateDistancesDurations",
+        "summary": "distance_between_Origins.destinations",
         "description": "Calculate length and driving time of the optimal routes between origin and destination points on the real road network.",
         "parameters": [
           {

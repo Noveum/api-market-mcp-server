@@ -21,7 +21,7 @@
         "tags": [
           "DirectionsService"
         ],
-        "summary": "getting best route & multiple stops driving directions",
+        "summary": "get directions",
         "description": "Finding optimal route to visit several locations.",
         "parameters": [
           {
@@ -122,7 +122,7 @@
         "tags": [
           "DirectionsService"
         ],
-        "summary": "Route optimization.",
+        "summary": "find route",
         "description": "Finding optimal route from a origin to a destination, passing through multiple waypoints(optional).",
         "parameters": [
           {

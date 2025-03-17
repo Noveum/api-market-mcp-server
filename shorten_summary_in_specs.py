@@ -4,10 +4,15 @@ import yaml
 import json
 import logging
 import requests
+import re
 
 # Set up logging with time, level, and message
 logging.basicConfig(level=logging.ERROR,
                     format='%(levelname)s - %(message)s')
+
+def is_valid_string(s):
+    pattern =  r'^[a-zA-Z0-9_-]+$'
+    return bool(re.match(pattern, s))
 
 
 def update_summary(current_summary: str) -> str:
@@ -47,7 +52,7 @@ def update_summary(current_summary: str) -> str:
         "messages": [
             {
                 "role": "system",
-                "content": "You will be given a summary by the user, without any explanations. The entire user input is the summary. You have to respond by shortening the summary even further, the resulting output should be lesser than 54 characters(including whitespaces). Your entire output will be considered as the output, so please do not use any fluff. The user inputs are functionality of some particular API, so make sure that you keep the meaning of the summary intact "
+                "content": "You will be given a summary by the user, without any explanations. The entire user input is the summary. You have to respond by shortening the summary even further, the resulting output should be lesser than 54 characters(including whitespaces). Your entire output will be considered as the output, so please do not use any fluff. The user inputs are functionality of some particular API, so make sure that you keep the meaning of the summary intact. Also make sure that you do not use any special characters. You may omit words like 'or', 'and' and other words like those if needed."
             },
             {
                 "role": "user",
@@ -69,7 +74,7 @@ def update_summary(current_summary: str) -> str:
     # Parse the API response and extract the new summary
     data = response.json()
     new_summary = data["choices"][0]["message"]["content"]
-    if (len(new_summary) >= 55):
+    if (len(new_summary) >= 55 or not is_valid_string(new_summary)) :
         update_summary(new_summary)
     return new_summary
 

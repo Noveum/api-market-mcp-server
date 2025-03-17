@@ -13,7 +13,7 @@
   "paths": {
     "bridgeml/text/to/image//text-to-image": {
       "post": {
-        "summary": "text-to-image model, 4steps, fast",
+        "summary": "high-quality images.",
         "requestBody": {
           "required": true,
           "content": {
