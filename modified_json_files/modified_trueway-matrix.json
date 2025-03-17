@@ -21,7 +21,7 @@
         "tags": [
           "MatrixService"
         ],
-        "summary": "distance_between_Origins.destinations",
+        "summary": "atan2",
         "description": "Calculate length and driving time of the optimal routes between origin and destination points on the real road network.",
         "parameters": [
           {
@@ -85,7 +85,36 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DistanceMatrixResponse"
+                  "required": [
+                    "distances",
+                    "durations"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "distances": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "integer",
+                          "format": "int32"
+                        }
+                      },
+                      "description": "An array of distances(in meters) between origins and destinations locations"
+                    },
+                    "durations": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "integer",
+                          "format": "int32"
+                        }
+                      },
+                      "description": "An array of durations(in seconds) between origins and destinations locations"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -95,7 +124,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -105,7 +147,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }

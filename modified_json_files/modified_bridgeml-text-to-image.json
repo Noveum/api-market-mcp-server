@@ -13,7 +13,7 @@
   "paths": {
     "bridgeml/text/to/image//text-to-image": {
       "post": {
-        "summary": "high-quality images.",
+        "summary": "24",
         "requestBody": {
           "required": true,
           "content": {

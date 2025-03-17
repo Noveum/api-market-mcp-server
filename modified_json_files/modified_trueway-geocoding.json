@@ -108,7 +108,100 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeocodeResponse"
+                  "required": [
+                    "results"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "location"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "address": {
+                            "type": "string",
+                            "description": "Street address",
+                            "nullable": true
+                          },
+                          "postal_code": {
+                            "type": "string",
+                            "description": "Postal code",
+                            "nullable": true
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Country",
+                            "nullable": true
+                          },
+                          "region": {
+                            "type": "string",
+                            "description": "First-order administrative entity below the country level",
+                            "nullable": true
+                          },
+                          "area": {
+                            "type": "string",
+                            "description": "Second-order administrative entity below the country level",
+                            "nullable": true
+                          },
+                          "locality": {
+                            "type": "string",
+                            "description": "Locality (city or town)",
+                            "nullable": true
+                          },
+                          "sublocality": {
+                            "type": "string",
+                            "description": "Locality (First-order entity below a locality)",
+                            "nullable": true
+                          },
+                          "neighborhood": {
+                            "type": "string",
+                            "description": "Named neighborhood",
+                            "nullable": true
+                          },
+                          "street": {
+                            "type": "string",
+                            "description": "Street name",
+                            "nullable": true
+                          },
+                          "house": {
+                            "type": "string",
+                            "description": "House number",
+                            "nullable": true
+                          },
+                          "location": {
+                            "type": "object",
+                            "properties": {
+                              "lat": {
+                                "type": "number",
+                                "format": "double"
+                              },
+                              "lng": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "location_type": {
+                            "type": "string",
+                            "description": "Location precision: exact/approximate/centroid",
+                            "nullable": true
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Type of result: street_address/route/admin_area/country/region/area/locality/sublocality/neighborhood/building/postal_code",
+                            "nullable": true
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "description": "Geocoding results array"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -118,7 +211,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -128,7 +234,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -182,7 +301,100 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GeocodeResponse"
+                  "required": [
+                    "results"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "location"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "address": {
+                            "type": "string",
+                            "description": "Street address",
+                            "nullable": true
+                          },
+                          "postal_code": {
+                            "type": "string",
+                            "description": "Postal code",
+                            "nullable": true
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Country",
+                            "nullable": true
+                          },
+                          "region": {
+                            "type": "string",
+                            "description": "First-order administrative entity below the country level",
+                            "nullable": true
+                          },
+                          "area": {
+                            "type": "string",
+                            "description": "Second-order administrative entity below the country level",
+                            "nullable": true
+                          },
+                          "locality": {
+                            "type": "string",
+                            "description": "Locality (city or town)",
+                            "nullable": true
+                          },
+                          "sublocality": {
+                            "type": "string",
+                            "description": "Locality (First-order entity below a locality)",
+                            "nullable": true
+                          },
+                          "neighborhood": {
+                            "type": "string",
+                            "description": "Named neighborhood",
+                            "nullable": true
+                          },
+                          "street": {
+                            "type": "string",
+                            "description": "Street name",
+                            "nullable": true
+                          },
+                          "house": {
+                            "type": "string",
+                            "description": "House number",
+                            "nullable": true
+                          },
+                          "location": {
+                            "type": "object",
+                            "properties": {
+                              "lat": {
+                                "type": "number",
+                                "format": "double"
+                              },
+                              "lng": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "location_type": {
+                            "type": "string",
+                            "description": "Location precision: exact/approximate/centroid",
+                            "nullable": true
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "Type of result: street_address/route/admin_area/country/region/area/locality/sublocality/neighborhood/building/postal_code",
+                            "nullable": true
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "description": "Geocoding results array"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -192,7 +404,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -202,7 +427,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -250,7 +488,87 @@
           "results": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/GeocodeResult"
+              "required": [
+                "location"
+              ],
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "description": "Street address",
+                  "nullable": true
+                },
+                "postal_code": {
+                  "type": "string",
+                  "description": "Postal code",
+                  "nullable": true
+                },
+                "country": {
+                  "type": "string",
+                  "description": "Country",
+                  "nullable": true
+                },
+                "region": {
+                  "type": "string",
+                  "description": "First-order administrative entity below the country level",
+                  "nullable": true
+                },
+                "area": {
+                  "type": "string",
+                  "description": "Second-order administrative entity below the country level",
+                  "nullable": true
+                },
+                "locality": {
+                  "type": "string",
+                  "description": "Locality (city or town)",
+                  "nullable": true
+                },
+                "sublocality": {
+                  "type": "string",
+                  "description": "Locality (First-order entity below a locality)",
+                  "nullable": true
+                },
+                "neighborhood": {
+                  "type": "string",
+                  "description": "Named neighborhood",
+                  "nullable": true
+                },
+                "street": {
+                  "type": "string",
+                  "description": "Street name",
+                  "nullable": true
+                },
+                "house": {
+                  "type": "string",
+                  "description": "House number",
+                  "nullable": true
+                },
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "format": "double"
+                    },
+                    "lng": {
+                      "type": "number",
+                      "format": "double"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "location_type": {
+                  "type": "string",
+                  "description": "Location precision: exact/approximate/centroid",
+                  "nullable": true
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Type of result: street_address/route/admin_area/country/region/area/locality/sublocality/neighborhood/building/postal_code",
+                  "nullable": true
+                }
+              },
+              "additionalProperties": false
             },
             "description": "Geocoding results array"
           }
@@ -314,7 +632,18 @@
             "nullable": true
           },
           "location": {
-            "$ref": "#/components/schemas/Location"
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "format": "double"
+              },
+              "lng": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "additionalProperties": false
           },
           "location_type": {
             "type": "string",

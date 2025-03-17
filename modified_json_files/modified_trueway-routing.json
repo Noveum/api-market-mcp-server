@@ -21,7 +21,7 @@
         "tags": [
           "DirectionsService"
         ],
-        "summary": "get directions",
+        "summary": "findapiidbyaddress",
         "description": "Finding optimal route to visit several locations.",
         "parameters": [
           {
@@ -77,7 +77,419 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RouteResponse"
+                  "required": [
+                    "route"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "route": {
+                      "type": "object",
+                      "properties": {
+                        "distance": {
+                          "type": "integer",
+                          "description": "The length of route (meters).",
+                          "format": "int32"
+                        },
+                        "duration": {
+                          "type": "integer",
+                          "description": "The time of route (seconds).",
+                          "format": "int32"
+                        },
+                        "bounds": {
+                          "type": "object",
+                          "properties": {
+                            "south": {
+                              "type": "number",
+                              "description": "South",
+                              "format": "double"
+                            },
+                            "west": {
+                              "type": "number",
+                              "description": "West",
+                              "format": "double"
+                            },
+                            "north": {
+                              "type": "number",
+                              "description": "North",
+                              "format": "double"
+                            },
+                            "east": {
+                              "type": "number",
+                              "description": "East",
+                              "format": "double"
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "geometry": {
+                          "type": "object",
+                          "properties": {
+                            "coordinates": {
+                              "type": "array",
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number",
+                                  "format": "double"
+                                }
+                              },
+                              "description": "Coordinates",
+                              "nullable": true
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "legs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "distance": {
+                                "type": "integer",
+                                "description": "The length of leg (meters).",
+                                "format": "int32"
+                              },
+                              "duration": {
+                                "type": "integer",
+                                "description": "The time of leg (seconds).",
+                                "format": "int32"
+                              },
+                              "start_point_index": {
+                                "type": "integer",
+                                "description": "The index of point (within geometry.coordinates array) at which the leg starts.",
+                                "format": "int32",
+                                "nullable": true
+                              },
+                              "start_point": {
+                                "type": "object",
+                                "properties": {
+                                  "lat": {
+                                    "type": "number",
+                                    "description": "Latitude",
+                                    "format": "double"
+                                  },
+                                  "lng": {
+                                    "type": "number",
+                                    "description": "Longitude",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "end_point_index": {
+                                "type": "integer",
+                                "description": "The index of point (within geometry.coordinates array) at which the leg ends.",
+                                "format": "int32",
+                                "nullable": true
+                              },
+                              "end_point": {
+                                "type": "object",
+                                "properties": {
+                                  "lat": {
+                                    "type": "number",
+                                    "description": "Latitude",
+                                    "format": "double"
+                                  },
+                                  "lng": {
+                                    "type": "number",
+                                    "description": "Longitude",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "bounds": {
+                                "type": "object",
+                                "properties": {
+                                  "south": {
+                                    "type": "number",
+                                    "description": "South",
+                                    "format": "double"
+                                  },
+                                  "west": {
+                                    "type": "number",
+                                    "description": "West",
+                                    "format": "double"
+                                  },
+                                  "north": {
+                                    "type": "number",
+                                    "description": "North",
+                                    "format": "double"
+                                  },
+                                  "east": {
+                                    "type": "number",
+                                    "description": "East",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "geometry": {
+                                "type": "object",
+                                "properties": {
+                                  "coordinates": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number",
+                                        "format": "double"
+                                      }
+                                    },
+                                    "description": "Coordinates",
+                                    "nullable": true
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "steps": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "distance": {
+                                      "type": "integer",
+                                      "description": "The length of step (meters).",
+                                      "format": "int32"
+                                    },
+                                    "duration": {
+                                      "type": "integer",
+                                      "description": "The time of step (seconds).",
+                                      "format": "int32"
+                                    },
+                                    "start_point_index": {
+                                      "type": "integer",
+                                      "description": "The index of point (within geometry.coordinates array) at which the step starts.",
+                                      "format": "int32",
+                                      "nullable": true
+                                    },
+                                    "start_point": {
+                                      "type": "object",
+                                      "properties": {
+                                        "lat": {
+                                          "type": "number",
+                                          "description": "Latitude",
+                                          "format": "double"
+                                        },
+                                        "lng": {
+                                          "type": "number",
+                                          "description": "Longitude",
+                                          "format": "double"
+                                        }
+                                      },
+                                      "additionalProperties": false
+                                    },
+                                    "end_point_index": {
+                                      "type": "integer",
+                                      "description": "The index of point (within geometry.coordinates array) at which the step ends.",
+                                      "format": "int32",
+                                      "nullable": true
+                                    },
+                                    "end_point": {
+                                      "type": "object",
+                                      "properties": {
+                                        "lat": {
+                                          "type": "number",
+                                          "description": "Latitude",
+                                          "format": "double"
+                                        },
+                                        "lng": {
+                                          "type": "number",
+                                          "description": "Longitude",
+                                          "format": "double"
+                                        }
+                                      },
+                                      "additionalProperties": false
+                                    },
+                                    "bounds": {
+                                      "type": "object",
+                                      "properties": {
+                                        "south": {
+                                          "type": "number",
+                                          "description": "South",
+                                          "format": "double"
+                                        },
+                                        "west": {
+                                          "type": "number",
+                                          "description": "West",
+                                          "format": "double"
+                                        },
+                                        "north": {
+                                          "type": "number",
+                                          "description": "North",
+                                          "format": "double"
+                                        },
+                                        "east": {
+                                          "type": "number",
+                                          "description": "East",
+                                          "format": "double"
+                                        }
+                                      },
+                                      "additionalProperties": false
+                                    },
+                                    "geometry": {
+                                      "type": "object",
+                                      "properties": {
+                                        "coordinates": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "number",
+                                              "format": "double"
+                                            }
+                                          },
+                                          "description": "Coordinates",
+                                          "nullable": true
+                                        }
+                                      },
+                                      "additionalProperties": false
+                                    },
+                                    "maneuver": {
+                                      "type": "string",
+                                      "description": "The action to take for the step ('turn left', 'turn right', etc.).",
+                                      "nullable": true
+                                    }
+                                  },
+                                  "additionalProperties": false
+                                },
+                                "description": "An array which contains information about a step of the leg.",
+                                "nullable": true
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "description": "An array which contains information about a leg of the route, between two locations within the route. A route with no intermediate waypoints will contain exactly one leg within the legs array. Each leg consists of a series of steps. For FindDrivingRoute only.",
+                          "nullable": true
+                        },
+                        "stops_order": {
+                          "type": "array",
+                          "items": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "description": "The optimal order of stops. For FindDrivingRoute only with optimize=true.",
+                          "nullable": true
+                        },
+                        "steps": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "distance": {
+                                "type": "integer",
+                                "description": "The length of step (meters).",
+                                "format": "int32"
+                              },
+                              "duration": {
+                                "type": "integer",
+                                "description": "The time of step (seconds).",
+                                "format": "int32"
+                              },
+                              "start_point_index": {
+                                "type": "integer",
+                                "description": "The index of point (within geometry.coordinates array) at which the step starts.",
+                                "format": "int32",
+                                "nullable": true
+                              },
+                              "start_point": {
+                                "type": "object",
+                                "properties": {
+                                  "lat": {
+                                    "type": "number",
+                                    "description": "Latitude",
+                                    "format": "double"
+                                  },
+                                  "lng": {
+                                    "type": "number",
+                                    "description": "Longitude",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "end_point_index": {
+                                "type": "integer",
+                                "description": "The index of point (within geometry.coordinates array) at which the step ends.",
+                                "format": "int32",
+                                "nullable": true
+                              },
+                              "end_point": {
+                                "type": "object",
+                                "properties": {
+                                  "lat": {
+                                    "type": "number",
+                                    "description": "Latitude",
+                                    "format": "double"
+                                  },
+                                  "lng": {
+                                    "type": "number",
+                                    "description": "Longitude",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "bounds": {
+                                "type": "object",
+                                "properties": {
+                                  "south": {
+                                    "type": "number",
+                                    "description": "South",
+                                    "format": "double"
+                                  },
+                                  "west": {
+                                    "type": "number",
+                                    "description": "West",
+                                    "format": "double"
+                                  },
+                                  "north": {
+                                    "type": "number",
+                                    "description": "North",
+                                    "format": "double"
+                                  },
+                                  "east": {
+                                    "type": "number",
+                                    "description": "East",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "geometry": {
+                                "type": "object",
+                                "properties": {
+                                  "coordinates": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number",
+                                        "format": "double"
+                                      }
+                                    },
+                                    "description": "Coordinates",
+                                    "nullable": true
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "maneuver": {
+                                "type": "string",
+                                "description": "The action to take for the step ('turn left', 'turn right', etc.).",
+                                "nullable": true
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "description": "An array which contains information about a step. For FindDrivingPath only.",
+                          "nullable": true
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -87,7 +499,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -97,7 +522,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -122,7 +560,7 @@
         "tags": [
           "DirectionsService"
         ],
-        "summary": "find route",
+        "summary": "10",
         "description": "Finding optimal route from a origin to a destination, passing through multiple waypoints(optional).",
         "parameters": [
           {
@@ -195,7 +633,419 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RouteResponse"
+                  "required": [
+                    "route"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "route": {
+                      "type": "object",
+                      "properties": {
+                        "distance": {
+                          "type": "integer",
+                          "description": "The length of route (meters).",
+                          "format": "int32"
+                        },
+                        "duration": {
+                          "type": "integer",
+                          "description": "The time of route (seconds).",
+                          "format": "int32"
+                        },
+                        "bounds": {
+                          "type": "object",
+                          "properties": {
+                            "south": {
+                              "type": "number",
+                              "description": "South",
+                              "format": "double"
+                            },
+                            "west": {
+                              "type": "number",
+                              "description": "West",
+                              "format": "double"
+                            },
+                            "north": {
+                              "type": "number",
+                              "description": "North",
+                              "format": "double"
+                            },
+                            "east": {
+                              "type": "number",
+                              "description": "East",
+                              "format": "double"
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "geometry": {
+                          "type": "object",
+                          "properties": {
+                            "coordinates": {
+                              "type": "array",
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number",
+                                  "format": "double"
+                                }
+                              },
+                              "description": "Coordinates",
+                              "nullable": true
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "legs": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "distance": {
+                                "type": "integer",
+                                "description": "The length of leg (meters).",
+                                "format": "int32"
+                              },
+                              "duration": {
+                                "type": "integer",
+                                "description": "The time of leg (seconds).",
+                                "format": "int32"
+                              },
+                              "start_point_index": {
+                                "type": "integer",
+                                "description": "The index of point (within geometry.coordinates array) at which the leg starts.",
+                                "format": "int32",
+                                "nullable": true
+                              },
+                              "start_point": {
+                                "type": "object",
+                                "properties": {
+                                  "lat": {
+                                    "type": "number",
+                                    "description": "Latitude",
+                                    "format": "double"
+                                  },
+                                  "lng": {
+                                    "type": "number",
+                                    "description": "Longitude",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "end_point_index": {
+                                "type": "integer",
+                                "description": "The index of point (within geometry.coordinates array) at which the leg ends.",
+                                "format": "int32",
+                                "nullable": true
+                              },
+                              "end_point": {
+                                "type": "object",
+                                "properties": {
+                                  "lat": {
+                                    "type": "number",
+                                    "description": "Latitude",
+                                    "format": "double"
+                                  },
+                                  "lng": {
+                                    "type": "number",
+                                    "description": "Longitude",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "bounds": {
+                                "type": "object",
+                                "properties": {
+                                  "south": {
+                                    "type": "number",
+                                    "description": "South",
+                                    "format": "double"
+                                  },
+                                  "west": {
+                                    "type": "number",
+                                    "description": "West",
+                                    "format": "double"
+                                  },
+                                  "north": {
+                                    "type": "number",
+                                    "description": "North",
+                                    "format": "double"
+                                  },
+                                  "east": {
+                                    "type": "number",
+                                    "description": "East",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "geometry": {
+                                "type": "object",
+                                "properties": {
+                                  "coordinates": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number",
+                                        "format": "double"
+                                      }
+                                    },
+                                    "description": "Coordinates",
+                                    "nullable": true
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "steps": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "distance": {
+                                      "type": "integer",
+                                      "description": "The length of step (meters).",
+                                      "format": "int32"
+                                    },
+                                    "duration": {
+                                      "type": "integer",
+                                      "description": "The time of step (seconds).",
+                                      "format": "int32"
+                                    },
+                                    "start_point_index": {
+                                      "type": "integer",
+                                      "description": "The index of point (within geometry.coordinates array) at which the step starts.",
+                                      "format": "int32",
+                                      "nullable": true
+                                    },
+                                    "start_point": {
+                                      "type": "object",
+                                      "properties": {
+                                        "lat": {
+                                          "type": "number",
+                                          "description": "Latitude",
+                                          "format": "double"
+                                        },
+                                        "lng": {
+                                          "type": "number",
+                                          "description": "Longitude",
+                                          "format": "double"
+                                        }
+                                      },
+                                      "additionalProperties": false
+                                    },
+                                    "end_point_index": {
+                                      "type": "integer",
+                                      "description": "The index of point (within geometry.coordinates array) at which the step ends.",
+                                      "format": "int32",
+                                      "nullable": true
+                                    },
+                                    "end_point": {
+                                      "type": "object",
+                                      "properties": {
+                                        "lat": {
+                                          "type": "number",
+                                          "description": "Latitude",
+                                          "format": "double"
+                                        },
+                                        "lng": {
+                                          "type": "number",
+                                          "description": "Longitude",
+                                          "format": "double"
+                                        }
+                                      },
+                                      "additionalProperties": false
+                                    },
+                                    "bounds": {
+                                      "type": "object",
+                                      "properties": {
+                                        "south": {
+                                          "type": "number",
+                                          "description": "South",
+                                          "format": "double"
+                                        },
+                                        "west": {
+                                          "type": "number",
+                                          "description": "West",
+                                          "format": "double"
+                                        },
+                                        "north": {
+                                          "type": "number",
+                                          "description": "North",
+                                          "format": "double"
+                                        },
+                                        "east": {
+                                          "type": "number",
+                                          "description": "East",
+                                          "format": "double"
+                                        }
+                                      },
+                                      "additionalProperties": false
+                                    },
+                                    "geometry": {
+                                      "type": "object",
+                                      "properties": {
+                                        "coordinates": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "number",
+                                              "format": "double"
+                                            }
+                                          },
+                                          "description": "Coordinates",
+                                          "nullable": true
+                                        }
+                                      },
+                                      "additionalProperties": false
+                                    },
+                                    "maneuver": {
+                                      "type": "string",
+                                      "description": "The action to take for the step ('turn left', 'turn right', etc.).",
+                                      "nullable": true
+                                    }
+                                  },
+                                  "additionalProperties": false
+                                },
+                                "description": "An array which contains information about a step of the leg.",
+                                "nullable": true
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "description": "An array which contains information about a leg of the route, between two locations within the route. A route with no intermediate waypoints will contain exactly one leg within the legs array. Each leg consists of a series of steps. For FindDrivingRoute only.",
+                          "nullable": true
+                        },
+                        "stops_order": {
+                          "type": "array",
+                          "items": {
+                            "type": "integer",
+                            "format": "int32"
+                          },
+                          "description": "The optimal order of stops. For FindDrivingRoute only with optimize=true.",
+                          "nullable": true
+                        },
+                        "steps": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "distance": {
+                                "type": "integer",
+                                "description": "The length of step (meters).",
+                                "format": "int32"
+                              },
+                              "duration": {
+                                "type": "integer",
+                                "description": "The time of step (seconds).",
+                                "format": "int32"
+                              },
+                              "start_point_index": {
+                                "type": "integer",
+                                "description": "The index of point (within geometry.coordinates array) at which the step starts.",
+                                "format": "int32",
+                                "nullable": true
+                              },
+                              "start_point": {
+                                "type": "object",
+                                "properties": {
+                                  "lat": {
+                                    "type": "number",
+                                    "description": "Latitude",
+                                    "format": "double"
+                                  },
+                                  "lng": {
+                                    "type": "number",
+                                    "description": "Longitude",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "end_point_index": {
+                                "type": "integer",
+                                "description": "The index of point (within geometry.coordinates array) at which the step ends.",
+                                "format": "int32",
+                                "nullable": true
+                              },
+                              "end_point": {
+                                "type": "object",
+                                "properties": {
+                                  "lat": {
+                                    "type": "number",
+                                    "description": "Latitude",
+                                    "format": "double"
+                                  },
+                                  "lng": {
+                                    "type": "number",
+                                    "description": "Longitude",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "bounds": {
+                                "type": "object",
+                                "properties": {
+                                  "south": {
+                                    "type": "number",
+                                    "description": "South",
+                                    "format": "double"
+                                  },
+                                  "west": {
+                                    "type": "number",
+                                    "description": "West",
+                                    "format": "double"
+                                  },
+                                  "north": {
+                                    "type": "number",
+                                    "description": "North",
+                                    "format": "double"
+                                  },
+                                  "east": {
+                                    "type": "number",
+                                    "description": "East",
+                                    "format": "double"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "geometry": {
+                                "type": "object",
+                                "properties": {
+                                  "coordinates": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number",
+                                        "format": "double"
+                                      }
+                                    },
+                                    "description": "Coordinates",
+                                    "nullable": true
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "maneuver": {
+                                "type": "string",
+                                "description": "The action to take for the step ('turn left', 'turn right', etc.).",
+                                "nullable": true
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "description": "An array which contains information about a step. For FindDrivingPath only.",
+                          "nullable": true
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -205,7 +1055,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -215,7 +1078,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -334,7 +1210,20 @@
             "nullable": true
           },
           "start_point": {
-            "$ref": "#/components/schemas/GeoPoint"
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "description": "Latitude",
+                "format": "double"
+              },
+              "lng": {
+                "type": "number",
+                "description": "Longitude",
+                "format": "double"
+              }
+            },
+            "additionalProperties": false
           },
           "end_point_index": {
             "type": "integer",
@@ -343,18 +1232,175 @@
             "nullable": true
           },
           "end_point": {
-            "$ref": "#/components/schemas/GeoPoint"
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "description": "Latitude",
+                "format": "double"
+              },
+              "lng": {
+                "type": "number",
+                "description": "Longitude",
+                "format": "double"
+              }
+            },
+            "additionalProperties": false
           },
           "bounds": {
-            "$ref": "#/components/schemas/GeoRect"
+            "type": "object",
+            "properties": {
+              "south": {
+                "type": "number",
+                "description": "South",
+                "format": "double"
+              },
+              "west": {
+                "type": "number",
+                "description": "West",
+                "format": "double"
+              },
+              "north": {
+                "type": "number",
+                "description": "North",
+                "format": "double"
+              },
+              "east": {
+                "type": "number",
+                "description": "East",
+                "format": "double"
+              }
+            },
+            "additionalProperties": false
           },
           "geometry": {
-            "$ref": "#/components/schemas/GeoPolyline"
+            "type": "object",
+            "properties": {
+              "coordinates": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "double"
+                  }
+                },
+                "description": "Coordinates",
+                "nullable": true
+              }
+            },
+            "additionalProperties": false
           },
           "steps": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Step"
+              "type": "object",
+              "properties": {
+                "distance": {
+                  "type": "integer",
+                  "description": "The length of step (meters).",
+                  "format": "int32"
+                },
+                "duration": {
+                  "type": "integer",
+                  "description": "The time of step (seconds).",
+                  "format": "int32"
+                },
+                "start_point_index": {
+                  "type": "integer",
+                  "description": "The index of point (within geometry.coordinates array) at which the step starts.",
+                  "format": "int32",
+                  "nullable": true
+                },
+                "start_point": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "description": "Latitude",
+                      "format": "double"
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "Longitude",
+                      "format": "double"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "end_point_index": {
+                  "type": "integer",
+                  "description": "The index of point (within geometry.coordinates array) at which the step ends.",
+                  "format": "int32",
+                  "nullable": true
+                },
+                "end_point": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "description": "Latitude",
+                      "format": "double"
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "Longitude",
+                      "format": "double"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "bounds": {
+                  "type": "object",
+                  "properties": {
+                    "south": {
+                      "type": "number",
+                      "description": "South",
+                      "format": "double"
+                    },
+                    "west": {
+                      "type": "number",
+                      "description": "West",
+                      "format": "double"
+                    },
+                    "north": {
+                      "type": "number",
+                      "description": "North",
+                      "format": "double"
+                    },
+                    "east": {
+                      "type": "number",
+                      "description": "East",
+                      "format": "double"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "geometry": {
+                  "type": "object",
+                  "properties": {
+                    "coordinates": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "number",
+                          "format": "double"
+                        }
+                      },
+                      "description": "Coordinates",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "maneuver": {
+                  "type": "string",
+                  "description": "The action to take for the step ('turn left', 'turn right', etc.).",
+                  "nullable": true
+                }
+              },
+              "additionalProperties": false
             },
             "description": "An array which contains information about a step of the leg.",
             "nullable": true
@@ -376,15 +1422,268 @@
             "format": "int32"
           },
           "bounds": {
-            "$ref": "#/components/schemas/GeoRect"
+            "type": "object",
+            "properties": {
+              "south": {
+                "type": "number",
+                "description": "South",
+                "format": "double"
+              },
+              "west": {
+                "type": "number",
+                "description": "West",
+                "format": "double"
+              },
+              "north": {
+                "type": "number",
+                "description": "North",
+                "format": "double"
+              },
+              "east": {
+                "type": "number",
+                "description": "East",
+                "format": "double"
+              }
+            },
+            "additionalProperties": false
           },
           "geometry": {
-            "$ref": "#/components/schemas/GeoPolyline"
+            "type": "object",
+            "properties": {
+              "coordinates": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "double"
+                  }
+                },
+                "description": "Coordinates",
+                "nullable": true
+              }
+            },
+            "additionalProperties": false
           },
           "legs": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Leg"
+              "type": "object",
+              "properties": {
+                "distance": {
+                  "type": "integer",
+                  "description": "The length of leg (meters).",
+                  "format": "int32"
+                },
+                "duration": {
+                  "type": "integer",
+                  "description": "The time of leg (seconds).",
+                  "format": "int32"
+                },
+                "start_point_index": {
+                  "type": "integer",
+                  "description": "The index of point (within geometry.coordinates array) at which the leg starts.",
+                  "format": "int32",
+                  "nullable": true
+                },
+                "start_point": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "description": "Latitude",
+                      "format": "double"
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "Longitude",
+                      "format": "double"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "end_point_index": {
+                  "type": "integer",
+                  "description": "The index of point (within geometry.coordinates array) at which the leg ends.",
+                  "format": "int32",
+                  "nullable": true
+                },
+                "end_point": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "description": "Latitude",
+                      "format": "double"
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "Longitude",
+                      "format": "double"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "bounds": {
+                  "type": "object",
+                  "properties": {
+                    "south": {
+                      "type": "number",
+                      "description": "South",
+                      "format": "double"
+                    },
+                    "west": {
+                      "type": "number",
+                      "description": "West",
+                      "format": "double"
+                    },
+                    "north": {
+                      "type": "number",
+                      "description": "North",
+                      "format": "double"
+                    },
+                    "east": {
+                      "type": "number",
+                      "description": "East",
+                      "format": "double"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "geometry": {
+                  "type": "object",
+                  "properties": {
+                    "coordinates": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "number",
+                          "format": "double"
+                        }
+                      },
+                      "description": "Coordinates",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "steps": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "distance": {
+                        "type": "integer",
+                        "description": "The length of step (meters).",
+                        "format": "int32"
+                      },
+                      "duration": {
+                        "type": "integer",
+                        "description": "The time of step (seconds).",
+                        "format": "int32"
+                      },
+                      "start_point_index": {
+                        "type": "integer",
+                        "description": "The index of point (within geometry.coordinates array) at which the step starts.",
+                        "format": "int32",
+                        "nullable": true
+                      },
+                      "start_point": {
+                        "type": "object",
+                        "properties": {
+                          "lat": {
+                            "type": "number",
+                            "description": "Latitude",
+                            "format": "double"
+                          },
+                          "lng": {
+                            "type": "number",
+                            "description": "Longitude",
+                            "format": "double"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "end_point_index": {
+                        "type": "integer",
+                        "description": "The index of point (within geometry.coordinates array) at which the step ends.",
+                        "format": "int32",
+                        "nullable": true
+                      },
+                      "end_point": {
+                        "type": "object",
+                        "properties": {
+                          "lat": {
+                            "type": "number",
+                            "description": "Latitude",
+                            "format": "double"
+                          },
+                          "lng": {
+                            "type": "number",
+                            "description": "Longitude",
+                            "format": "double"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "bounds": {
+                        "type": "object",
+                        "properties": {
+                          "south": {
+                            "type": "number",
+                            "description": "South",
+                            "format": "double"
+                          },
+                          "west": {
+                            "type": "number",
+                            "description": "West",
+                            "format": "double"
+                          },
+                          "north": {
+                            "type": "number",
+                            "description": "North",
+                            "format": "double"
+                          },
+                          "east": {
+                            "type": "number",
+                            "description": "East",
+                            "format": "double"
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "geometry": {
+                        "type": "object",
+                        "properties": {
+                          "coordinates": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            },
+                            "description": "Coordinates",
+                            "nullable": true
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "maneuver": {
+                        "type": "string",
+                        "description": "The action to take for the step ('turn left', 'turn right', etc.).",
+                        "nullable": true
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "description": "An array which contains information about a step of the leg.",
+                  "nullable": true
+                }
+              },
+              "additionalProperties": false
             },
             "description": "An array which contains information about a leg of the route, between two locations within the route. A route with no intermediate waypoints will contain exactly one leg within the legs array. Each leg consists of a series of steps. For FindDrivingRoute only.",
             "nullable": true
@@ -401,7 +1700,113 @@
           "steps": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Step"
+              "type": "object",
+              "properties": {
+                "distance": {
+                  "type": "integer",
+                  "description": "The length of step (meters).",
+                  "format": "int32"
+                },
+                "duration": {
+                  "type": "integer",
+                  "description": "The time of step (seconds).",
+                  "format": "int32"
+                },
+                "start_point_index": {
+                  "type": "integer",
+                  "description": "The index of point (within geometry.coordinates array) at which the step starts.",
+                  "format": "int32",
+                  "nullable": true
+                },
+                "start_point": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "description": "Latitude",
+                      "format": "double"
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "Longitude",
+                      "format": "double"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "end_point_index": {
+                  "type": "integer",
+                  "description": "The index of point (within geometry.coordinates array) at which the step ends.",
+                  "format": "int32",
+                  "nullable": true
+                },
+                "end_point": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "description": "Latitude",
+                      "format": "double"
+                    },
+                    "lng": {
+                      "type": "number",
+                      "description": "Longitude",
+                      "format": "double"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "bounds": {
+                  "type": "object",
+                  "properties": {
+                    "south": {
+                      "type": "number",
+                      "description": "South",
+                      "format": "double"
+                    },
+                    "west": {
+                      "type": "number",
+                      "description": "West",
+                      "format": "double"
+                    },
+                    "north": {
+                      "type": "number",
+                      "description": "North",
+                      "format": "double"
+                    },
+                    "east": {
+                      "type": "number",
+                      "description": "East",
+                      "format": "double"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "geometry": {
+                  "type": "object",
+                  "properties": {
+                    "coordinates": {
+                      "type": "array",
+                      "items": {
+                        "type": "array",
+                        "items": {
+                          "type": "number",
+                          "format": "double"
+                        }
+                      },
+                      "description": "Coordinates",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "maneuver": {
+                  "type": "string",
+                  "description": "The action to take for the step ('turn left', 'turn right', etc.).",
+                  "nullable": true
+                }
+              },
+              "additionalProperties": false
             },
             "description": "An array which contains information about a step. For FindDrivingPath only.",
             "nullable": true
@@ -416,7 +1821,410 @@
         "type": "object",
         "properties": {
           "route": {
-            "$ref": "#/components/schemas/Route"
+            "type": "object",
+            "properties": {
+              "distance": {
+                "type": "integer",
+                "description": "The length of route (meters).",
+                "format": "int32"
+              },
+              "duration": {
+                "type": "integer",
+                "description": "The time of route (seconds).",
+                "format": "int32"
+              },
+              "bounds": {
+                "type": "object",
+                "properties": {
+                  "south": {
+                    "type": "number",
+                    "description": "South",
+                    "format": "double"
+                  },
+                  "west": {
+                    "type": "number",
+                    "description": "West",
+                    "format": "double"
+                  },
+                  "north": {
+                    "type": "number",
+                    "description": "North",
+                    "format": "double"
+                  },
+                  "east": {
+                    "type": "number",
+                    "description": "East",
+                    "format": "double"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "geometry": {
+                "type": "object",
+                "properties": {
+                  "coordinates": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "number",
+                        "format": "double"
+                      }
+                    },
+                    "description": "Coordinates",
+                    "nullable": true
+                  }
+                },
+                "additionalProperties": false
+              },
+              "legs": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "distance": {
+                      "type": "integer",
+                      "description": "The length of leg (meters).",
+                      "format": "int32"
+                    },
+                    "duration": {
+                      "type": "integer",
+                      "description": "The time of leg (seconds).",
+                      "format": "int32"
+                    },
+                    "start_point_index": {
+                      "type": "integer",
+                      "description": "The index of point (within geometry.coordinates array) at which the leg starts.",
+                      "format": "int32",
+                      "nullable": true
+                    },
+                    "start_point": {
+                      "type": "object",
+                      "properties": {
+                        "lat": {
+                          "type": "number",
+                          "description": "Latitude",
+                          "format": "double"
+                        },
+                        "lng": {
+                          "type": "number",
+                          "description": "Longitude",
+                          "format": "double"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "end_point_index": {
+                      "type": "integer",
+                      "description": "The index of point (within geometry.coordinates array) at which the leg ends.",
+                      "format": "int32",
+                      "nullable": true
+                    },
+                    "end_point": {
+                      "type": "object",
+                      "properties": {
+                        "lat": {
+                          "type": "number",
+                          "description": "Latitude",
+                          "format": "double"
+                        },
+                        "lng": {
+                          "type": "number",
+                          "description": "Longitude",
+                          "format": "double"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "bounds": {
+                      "type": "object",
+                      "properties": {
+                        "south": {
+                          "type": "number",
+                          "description": "South",
+                          "format": "double"
+                        },
+                        "west": {
+                          "type": "number",
+                          "description": "West",
+                          "format": "double"
+                        },
+                        "north": {
+                          "type": "number",
+                          "description": "North",
+                          "format": "double"
+                        },
+                        "east": {
+                          "type": "number",
+                          "description": "East",
+                          "format": "double"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "geometry": {
+                      "type": "object",
+                      "properties": {
+                        "coordinates": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "number",
+                              "format": "double"
+                            }
+                          },
+                          "description": "Coordinates",
+                          "nullable": true
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "steps": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "distance": {
+                            "type": "integer",
+                            "description": "The length of step (meters).",
+                            "format": "int32"
+                          },
+                          "duration": {
+                            "type": "integer",
+                            "description": "The time of step (seconds).",
+                            "format": "int32"
+                          },
+                          "start_point_index": {
+                            "type": "integer",
+                            "description": "The index of point (within geometry.coordinates array) at which the step starts.",
+                            "format": "int32",
+                            "nullable": true
+                          },
+                          "start_point": {
+                            "type": "object",
+                            "properties": {
+                              "lat": {
+                                "type": "number",
+                                "description": "Latitude",
+                                "format": "double"
+                              },
+                              "lng": {
+                                "type": "number",
+                                "description": "Longitude",
+                                "format": "double"
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "end_point_index": {
+                            "type": "integer",
+                            "description": "The index of point (within geometry.coordinates array) at which the step ends.",
+                            "format": "int32",
+                            "nullable": true
+                          },
+                          "end_point": {
+                            "type": "object",
+                            "properties": {
+                              "lat": {
+                                "type": "number",
+                                "description": "Latitude",
+                                "format": "double"
+                              },
+                              "lng": {
+                                "type": "number",
+                                "description": "Longitude",
+                                "format": "double"
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "bounds": {
+                            "type": "object",
+                            "properties": {
+                              "south": {
+                                "type": "number",
+                                "description": "South",
+                                "format": "double"
+                              },
+                              "west": {
+                                "type": "number",
+                                "description": "West",
+                                "format": "double"
+                              },
+                              "north": {
+                                "type": "number",
+                                "description": "North",
+                                "format": "double"
+                              },
+                              "east": {
+                                "type": "number",
+                                "description": "East",
+                                "format": "double"
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "coordinates": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "number",
+                                    "format": "double"
+                                  }
+                                },
+                                "description": "Coordinates",
+                                "nullable": true
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "maneuver": {
+                            "type": "string",
+                            "description": "The action to take for the step ('turn left', 'turn right', etc.).",
+                            "nullable": true
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "description": "An array which contains information about a step of the leg.",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "description": "An array which contains information about a leg of the route, between two locations within the route. A route with no intermediate waypoints will contain exactly one leg within the legs array. Each leg consists of a series of steps. For FindDrivingRoute only.",
+                "nullable": true
+              },
+              "stops_order": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": "The optimal order of stops. For FindDrivingRoute only with optimize=true.",
+                "nullable": true
+              },
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "distance": {
+                      "type": "integer",
+                      "description": "The length of step (meters).",
+                      "format": "int32"
+                    },
+                    "duration": {
+                      "type": "integer",
+                      "description": "The time of step (seconds).",
+                      "format": "int32"
+                    },
+                    "start_point_index": {
+                      "type": "integer",
+                      "description": "The index of point (within geometry.coordinates array) at which the step starts.",
+                      "format": "int32",
+                      "nullable": true
+                    },
+                    "start_point": {
+                      "type": "object",
+                      "properties": {
+                        "lat": {
+                          "type": "number",
+                          "description": "Latitude",
+                          "format": "double"
+                        },
+                        "lng": {
+                          "type": "number",
+                          "description": "Longitude",
+                          "format": "double"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "end_point_index": {
+                      "type": "integer",
+                      "description": "The index of point (within geometry.coordinates array) at which the step ends.",
+                      "format": "int32",
+                      "nullable": true
+                    },
+                    "end_point": {
+                      "type": "object",
+                      "properties": {
+                        "lat": {
+                          "type": "number",
+                          "description": "Latitude",
+                          "format": "double"
+                        },
+                        "lng": {
+                          "type": "number",
+                          "description": "Longitude",
+                          "format": "double"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "bounds": {
+                      "type": "object",
+                      "properties": {
+                        "south": {
+                          "type": "number",
+                          "description": "South",
+                          "format": "double"
+                        },
+                        "west": {
+                          "type": "number",
+                          "description": "West",
+                          "format": "double"
+                        },
+                        "north": {
+                          "type": "number",
+                          "description": "North",
+                          "format": "double"
+                        },
+                        "east": {
+                          "type": "number",
+                          "description": "East",
+                          "format": "double"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "geometry": {
+                      "type": "object",
+                      "properties": {
+                        "coordinates": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "number",
+                              "format": "double"
+                            }
+                          },
+                          "description": "Coordinates",
+                          "nullable": true
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "maneuver": {
+                      "type": "string",
+                      "description": "The action to take for the step ('turn left', 'turn right', etc.).",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "description": "An array which contains information about a step. For FindDrivingPath only.",
+                "nullable": true
+              }
+            },
+            "additionalProperties": false
           }
         },
         "additionalProperties": false
@@ -441,7 +2249,20 @@
             "nullable": true
           },
           "start_point": {
-            "$ref": "#/components/schemas/GeoPoint"
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "description": "Latitude",
+                "format": "double"
+              },
+              "lng": {
+                "type": "number",
+                "description": "Longitude",
+                "format": "double"
+              }
+            },
+            "additionalProperties": false
           },
           "end_point_index": {
             "type": "integer",
@@ -450,13 +2271,64 @@
             "nullable": true
           },
           "end_point": {
-            "$ref": "#/components/schemas/GeoPoint"
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "description": "Latitude",
+                "format": "double"
+              },
+              "lng": {
+                "type": "number",
+                "description": "Longitude",
+                "format": "double"
+              }
+            },
+            "additionalProperties": false
           },
           "bounds": {
-            "$ref": "#/components/schemas/GeoRect"
+            "type": "object",
+            "properties": {
+              "south": {
+                "type": "number",
+                "description": "South",
+                "format": "double"
+              },
+              "west": {
+                "type": "number",
+                "description": "West",
+                "format": "double"
+              },
+              "north": {
+                "type": "number",
+                "description": "North",
+                "format": "double"
+              },
+              "east": {
+                "type": "number",
+                "description": "East",
+                "format": "double"
+              }
+            },
+            "additionalProperties": false
           },
           "geometry": {
-            "$ref": "#/components/schemas/GeoPolyline"
+            "type": "object",
+            "properties": {
+              "coordinates": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "double"
+                  }
+                },
+                "description": "Coordinates",
+                "nullable": true
+              }
+            },
+            "additionalProperties": false
           },
           "maneuver": {
             "type": "string",

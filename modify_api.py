@@ -15,6 +15,27 @@ def modify_paths(data: dict, prefix: str) -> dict:
     data['paths'] = modified_paths
     return data
 
+def resolve_references(data):
+    components = data.get("components", {})
+
+    def _resolve(item):
+        if isinstance(item, dict):
+            if "$ref" in item:
+                ref_path = item["$ref"].replace("#/components/", "").split("/")
+                ref_obj = components
+                for part in ref_path:
+                    ref_obj = ref_obj.get(part, {})
+                if not ref_obj:
+                    raise ValueError(f"Reference {item['$ref']} not found in components.")
+                return _resolve(ref_obj)
+            else:
+                return {key: _resolve(value) for key, value in item.items()}
+        elif isinstance(item, list):
+            return [_resolve(sub_item) for sub_item in item]
+        else:
+            return item
+
+    return _resolve(data)
 
 def process_files(directory: str):
     files = get_json_files(directory)
@@ -32,7 +53,7 @@ def process_files(directory: str):
         # Generate prefix from the filename, e.g., 'a-b-c.json' -> 'a/b/c/'
         prefix = '/'.join(file_name.replace('.json', '').split('-')) + '/'
         modified_data = modify_paths(data, prefix)
-
+        modified_data = resolve_references(modified_data)
         # Save modified data to modified_json_files directory
         output_file = os.path.relpath(os.path.join(modified_dir, f"modified_{file_name}"))
         with open(output_file, 'w') as file:
@@ -49,3 +70,4 @@ def process_files(directory: str):
 if __name__ == "__main__":
     directory = "./json_files"  # Specify your directory containing the JSON files
     process_files(directory)
+

@@ -59,7 +59,81 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlacesResponse"
+                  "required": [
+                    "results"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "id",
+                          "location"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "maxLength": 32,
+                            "minLength": 32,
+                            "type": "string",
+                            "description": "Unique place identifier"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Name of place",
+                            "nullable": true
+                          },
+                          "address": {
+                            "type": "string",
+                            "description": "Street address",
+                            "nullable": true
+                          },
+                          "phone_number": {
+                            "type": "string",
+                            "description": "Phone number",
+                            "nullable": true
+                          },
+                          "website": {
+                            "type": "string",
+                            "description": "Place website",
+                            "nullable": true
+                          },
+                          "location": {
+                            "type": "object",
+                            "properties": {
+                              "lat": {
+                                "type": "number",
+                                "format": "double"
+                              },
+                              "lng": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "types": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Place types",
+                            "nullable": true
+                          },
+                          "distance": {
+                            "type": "integer",
+                            "description": "Distance to the place (meters). For nearby search only.",
+                            "format": "int32",
+                            "nullable": true
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "description": "Searching results array"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -69,7 +143,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -79,7 +166,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -153,7 +253,81 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlacesResponse"
+                  "required": [
+                    "results"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "required": [
+                          "id",
+                          "location"
+                        ],
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "maxLength": 32,
+                            "minLength": 32,
+                            "type": "string",
+                            "description": "Unique place identifier"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Name of place",
+                            "nullable": true
+                          },
+                          "address": {
+                            "type": "string",
+                            "description": "Street address",
+                            "nullable": true
+                          },
+                          "phone_number": {
+                            "type": "string",
+                            "description": "Phone number",
+                            "nullable": true
+                          },
+                          "website": {
+                            "type": "string",
+                            "description": "Place website",
+                            "nullable": true
+                          },
+                          "location": {
+                            "type": "object",
+                            "properties": {
+                              "lat": {
+                                "type": "number",
+                                "format": "double"
+                              },
+                              "lng": {
+                                "type": "number",
+                                "format": "double"
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "types": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            },
+                            "description": "Place types",
+                            "nullable": true
+                          },
+                          "distance": {
+                            "type": "integer",
+                            "description": "Distance to the place (meters). For nearby search only.",
+                            "format": "int32",
+                            "nullable": true
+                          }
+                        },
+                        "additionalProperties": false
+                      },
+                      "description": "Searching results array"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -163,7 +337,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -173,7 +360,20 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FaultResponse"
+                  "required": [
+                    "error"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "additionalProperties": false
                 }
               }
             }
@@ -260,7 +460,18 @@
             "nullable": true
           },
           "location": {
-            "$ref": "#/components/schemas/Location"
+            "type": "object",
+            "properties": {
+              "lat": {
+                "type": "number",
+                "format": "double"
+              },
+              "lng": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "additionalProperties": false
           },
           "types": {
             "type": "array",
@@ -288,7 +499,68 @@
           "results": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Place"
+              "required": [
+                "id",
+                "location"
+              ],
+              "type": "object",
+              "properties": {
+                "id": {
+                  "maxLength": 32,
+                  "minLength": 32,
+                  "type": "string",
+                  "description": "Unique place identifier"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of place",
+                  "nullable": true
+                },
+                "address": {
+                  "type": "string",
+                  "description": "Street address",
+                  "nullable": true
+                },
+                "phone_number": {
+                  "type": "string",
+                  "description": "Phone number",
+                  "nullable": true
+                },
+                "website": {
+                  "type": "string",
+                  "description": "Place website",
+                  "nullable": true
+                },
+                "location": {
+                  "type": "object",
+                  "properties": {
+                    "lat": {
+                      "type": "number",
+                      "format": "double"
+                    },
+                    "lng": {
+                      "type": "number",
+                      "format": "double"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "types": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Place types",
+                  "nullable": true
+                },
+                "distance": {
+                  "type": "integer",
+                  "description": "Distance to the place (meters). For nearby search only.",
+                  "format": "int32",
+                  "nullable": true
+                }
+              },
+              "additionalProperties": false
             },
             "description": "Searching results array"
           }

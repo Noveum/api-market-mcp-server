@@ -22,7 +22,18 @@
           "content": {
             "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Body_Upload"
+                "properties": {
+                  "file1": {
+                    "type": "string",
+                    "format": "binary",
+                    "title": "File1"
+                  }
+                },
+                "type": "object",
+                "required": [
+                  "file1"
+                ],
+                "title": "Body_Upload"
               }
             }
           }
@@ -40,7 +51,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValueError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "title": "ValueError"
                 }
               }
             },
@@ -50,7 +71,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Invalid request data"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ValidationError"
                 }
               }
             },
@@ -60,7 +89,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Internal Server Error"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ServerError"
                 }
               }
             },
@@ -94,7 +131,26 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Body_ImageFaceSwap"
+                    "properties": {
+                      "target_url": {
+                        "type": "string",
+                        "title": "Target Url",
+                        "description": "Require an image with a face",
+                        "default": "https://storage.ws.pho.to/s2/7aa4876bc1f50bc92fc54cb3c326181ac5bbf5ef_m.jpeg"
+                      },
+                      "swap_url": {
+                        "type": "string",
+                        "title": "Swap Url",
+                        "description": "Require an image with a face",
+                        "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
+                      }
+                    },
+                    "required": [
+                      "target_url",
+                      "swap_url"
+                    ],
+                    "type": "object",
+                    "title": "Body_ImageFaceSwap"
                   }
                 ],
                 "title": "Body"
@@ -115,7 +171,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValueError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "title": "ValueError"
                 }
               }
             },
@@ -125,7 +191,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Invalid request data"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ValidationError"
                 }
               }
             },
@@ -135,7 +209,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Internal Server Error"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ServerError"
                 }
               }
             },
@@ -169,7 +251,27 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Body_VideoFaceSwap"
+                    "properties": {
+                      "target_url": {
+                        "type": "string",
+                        "pattern": "^.*\\.mp4$",
+                        "title": "Target Url",
+                        "description": "Require only .mp4 video file url",
+                        "default": "https://storage.ws.pho.to/s2/7e2131eaef5e5cbb0d2c9eef7e2f19343b5a1292.mp4"
+                      },
+                      "swap_url": {
+                        "type": "string",
+                        "title": "Swap Url",
+                        "description": "Require an image with a face",
+                        "default": "https://storage.ws.pho.to/s2/818f3e408ee37c090cf23a3d12e15a08ada80ad9_m.jpeg"
+                      }
+                    },
+                    "required": [
+                      "target_url",
+                      "swap_url"
+                    ],
+                    "type": "object",
+                    "title": "Body_VideoFaceSwap"
                   }
                 ],
                 "title": "Body"
@@ -190,7 +292,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValueError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "title": "ValueError"
                 }
               }
             },
@@ -200,7 +312,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Invalid request data"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ValidationError"
                 }
               }
             },
@@ -210,7 +330,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Internal Server Error"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ServerError"
                 }
               }
             },
@@ -243,7 +371,17 @@
           "content": {
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/Body_Result"
+                "properties": {
+                  "request_id": {
+                    "type": "string",
+                    "title": "Request Id"
+                  }
+                },
+                "type": "object",
+                "required": [
+                  "request_id"
+                ],
+                "title": "Body_Result"
               }
             }
           }
@@ -261,7 +399,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValueError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "title": "ValueError"
                 }
               }
             },
@@ -271,7 +419,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Invalid request data"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ValidationError"
                 }
               }
             },
@@ -281,7 +437,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Internal Server Error"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ServerError"
                 }
               }
             },

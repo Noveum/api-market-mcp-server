@@ -33,7 +33,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/WhoisResponse"
+                  "type": "object",
+                  "properties": {
+                    "OrganizationName": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "Raw": {
+                      "type": "string"
+                    },
+                    "RespondedServers": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "AddressRange": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  }
                 }
               }
             },

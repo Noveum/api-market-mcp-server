@@ -23,7 +23,31 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Body_EssayGenerator"
+                    "properties": {
+                      "description": {
+                        "type": "string",
+                        "title": "Description",
+                        "default": "Essay Topic: The Impact of Social Media on Human Communication\n\n\nKey Details and Questions:\n\n\nIntroduction: Introduce the topic by highlighting the ubiquity of social media in modern life. Pose the central question: Has social media enhanced or hindered human communication?\n\n\nHistorical Perspective:\n\n\nHow did people communicate before the advent of social media?\nWhat were the key stages in the evolution of social media platforms?\nPositive Impacts of Social Media:\n\n\nHow has social media facilitated global connectivity and understanding?\nDiscuss the role of social media in democratizing content creation and information sharing.\nNegative Impacts of Social Media:\n\n\nAnalyze the potential for misinformation and echo chambers.\nExplore the effects of social media on mental health and interpersonal relationships.\nSocial Media and Business:\n\n\nHow has social media transformed business marketing and customer engagement?\nDiscuss the rise of influencer culture and its implications.\nThe Future of Social Media:\n\n\nSpeculate on the future trends in social media.\nWhat role might emerging technologies like AI and VR play in the evolution of social media?\nConclusion:\n\n\nSummarize the main points.\nReflect on the balance between the benefits and drawbacks of social media.\nProvide a personal perspective or a call to action on how to use social media responsibly.\nThemes to Explore:\n\n\nThe role of technology in shaping human interaction.\nThe balance between virtual and real-life communication.\nEthical considerations in the age of digital media."
+                      },
+                      "word_count": {
+                        "type": "integer",
+                        "title": "Word Count",
+                        "default": 1200
+                      },
+                      "mode": {
+                        "type": "string",
+                        "title": "Mode",
+                        "description": "`Standard`, `Academic`, `Professional`, `Creative`, `Journalistic`",
+                        "default": "Standard"
+                      }
+                    },
+                    "required": [
+                      "description",
+                      "word_count",
+                      "mode"
+                    ],
+                    "type": "object",
+                    "title": "Body_EssayGenerator"
                   }
                 ],
                 "title": "Body"
@@ -44,7 +68,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValueError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "title": "ValueError"
                 }
               }
             },
@@ -54,7 +88,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Invalid request data"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ValidationError"
                 }
               }
             },
@@ -64,7 +106,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Internal Server Error"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ServerError"
                 }
               }
             },

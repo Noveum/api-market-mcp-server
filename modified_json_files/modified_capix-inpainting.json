@@ -24,7 +24,20 @@
               "schema": {
                 "allOf": [
                   {
-                    "$ref": "#/components/schemas/Body_Inpainting"
+                    "properties": {
+                      "image_url": {
+                        "type": "string",
+                        "title": "Image Url",
+                        "default": "https://telegra.ph/file/1dbd57f8abf95e6ae2911.png"
+                      },
+                      "mask_url": {
+                        "type": "string",
+                        "title": "Mask Url",
+                        "default": "https://telegra.ph/file/2402e4a3dd551cc0bca33.png"
+                      }
+                    },
+                    "type": "object",
+                    "title": "Body_Inpainting"
                   }
                 ],
                 "title": "Body"
@@ -45,7 +58,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValueError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "message"
+                  ],
+                  "title": "ValueError"
                 }
               }
             },
@@ -55,7 +78,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ValidationError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Invalid request data"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ValidationError"
                 }
               }
             },
@@ -65,7 +96,15 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ServerError"
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "title": "Message",
+                      "default": "Internal Server Error"
+                    }
+                  },
+                  "type": "object",
+                  "title": "ServerError"
                 }
               }
             },
