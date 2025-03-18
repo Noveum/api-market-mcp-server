@@ -23,7 +23,13 @@ def update_summary(current_summary: str) -> str:
 
     while True:
         print(f"\nOriginal summary: {current_summary}")
-        new_summary = input("Enter a new summary under 54 characters: ").strip()
+        summaries = ["A fast text-to-image model that makes high-quality images in 4 steps", "Finding the best route and get multiple stops driving directions", "Finding the best route between an origin and a destination", "Calculate distances and durations between a set of origins and destinations."]
+        shortened_summaries = ["text-to-image", "best route for multiple stops", "best route bw start and stop", "distance and duration bw starts and stops"]
+        if current_summary in summaries:
+            index = summaries.index(current_summary)
+            current_summary = shortened_summaries[index]
+        else:
+            new_summary = input("Enter a new summary under 54 characters: ").strip()
 
         if len(new_summary) < 55 and is_valid_string(new_summary):
             return new_summary

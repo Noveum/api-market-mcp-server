@@ -1,6 +1,6 @@
 {
   "name": "@shvmgpt/openapi-mcp-server",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "An MCP server that exposes OpenAPI endpoints as resources",
   "license": "MIT",
   "type": "module",
@@ -15,7 +15,7 @@
   "files": [
     "dist",
     "modified_files.txt",
-    "modified_json_files/"
+    "src/lib"
   ],
   "scripts": {
     "build": "node build.js && chmod +x bin/mcp-server.js",

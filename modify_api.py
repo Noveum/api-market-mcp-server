@@ -24,7 +24,9 @@ def replace_hyphens_in_paths(data):
 def modify_paths(data: dict, prefix: str) -> dict:
     modified_paths = {f"{prefix}{path}": details for path, details in data['paths'].items()}
     data['paths'] = modified_paths
-    print(modified_paths.keys())
+    modified_paths_keys = list(modified_paths.keys())
+    for x in modified_paths_keys:
+        print(x)
     return data
 
 def resolve_references(data):
@@ -70,7 +72,7 @@ def process_files(directory: str):
     modified_files = []
 
     # Create a directory for modified files if it doesn't exist
-    modified_dir = os.path.join('./', 'modified_json_files')
+    modified_dir = os.path.join('./', 'src/lib')
     os.makedirs(modified_dir, exist_ok=True)
 
     for file_name in files:

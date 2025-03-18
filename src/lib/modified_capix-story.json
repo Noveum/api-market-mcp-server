@@ -41,8 +41,8 @@
                                     }
                                 },
                                 "required": [
-                                    "text",
                                     "mode",
+                                    "text",
                                     "word_count"
                                 ],
                                 "title": "Body"

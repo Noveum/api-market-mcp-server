@@ -35,8 +35,8 @@
                                     }
                                 },
                                 "required": [
-                                    "word_count",
-                                    "sentence"
+                                    "sentence",
+                                    "word_count"
                                 ],
                                 "title": "Body"
                             }

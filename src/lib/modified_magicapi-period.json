@@ -3,18 +3,18 @@
     "info": {
         "title": "Image Processing API",
         "version": "1.1.3",
-        "description": "API for image processing, including toonification and background removal using AI models."
+        "description": "API for creating an ageing gif, given the image of a person using AI models."
     },
     "servers": [
         {
-            "url": "http://api.magicapi.dev/api/v1/magicapi/coder"
+            "url": "http://api.magicapi.dev/api/v1/magicapi/period"
         }
     ],
     "paths": {
-        "magicapi/coder/predictions/{request_id}": {
+        "magicapi/period/predictions/{request_id}": {
             "get": {
-                "summary": "Get Toonified Image URL",
-                "description": "This endpoint retrieves the URL of the toonified image for a given request ID.\n",
+                "summary": "Get ageing gif URL",
+                "description": "This endpoint retrieves the URL of the ageing gif for a given request ID.\n",
                 "parameters": [
                     {
                         "name": "request_id",
@@ -84,9 +84,10 @@
                 }
             ]
         },
-        "magicapi/coder/coder": {
+        "magicapi/period/period": {
             "post": {
-                "summary": "Coding Assistant",
+                "summary": "Period changer",
+                "description": "Makes an ageing gif showing the future of the person shown in the image \n Make sure you call get ageing gif URL, MCP tool to get the URL for the request id received from this API",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -94,52 +95,18 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "top_k": {
-                                        "type": "integer",
-                                        "default": 250
-                                    },
-                                    "top_p": {
-                                        "type": "integer",
-                                        "default": 0.95
-                                    },
-                                    "prompt": {
+                                    "image": {
                                         "type": "string",
-                                        "default": "Write a javascript function that calculates euclidean distance between two coordinates of any dimension"
+                                        "default": "https://replicate.delivery/mgxm/806bea64-bb51-4c8a-bf4d-15602eb60fdd/1287.jpg"
                                     },
-                                    "max_tokens": {
-                                        "type": "integer",
-                                        "default": 500
-                                    },
-                                    "temperature": {
-                                        "type": "integer",
-                                        "default": 0.95
-                                    },
-                                    "system_prompt": {
-                                        "type": "string"
-                                    },
-                                    "repeat_penalty": {
-                                        "type": "integer",
-                                        "default": 1.1
-                                    },
-                                    "presence_penalty": {
-                                        "type": "integer",
-                                        "default": 0
-                                    },
-                                    "frequency_penalty": {
-                                        "type": "integer",
-                                        "default": 0
+                                    "target_age": {
+                                        "type": "string",
+                                        "default": "default"
                                     }
                                 },
                                 "required": [
-                                    "top_k",
-                                    "top_p",
-                                    "prompt",
-                                    "max_tokens",
-                                    "temperature",
-                                    "system_prompt",
-                                    "repeat_penalty",
-                                    "presence_penalty",
-                                    "frequency_penalty"
+                                    "image",
+                                    "target_age"
                                 ]
                             }
                         }

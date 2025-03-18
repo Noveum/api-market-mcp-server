@@ -254,6 +254,7 @@ class OpenAPIMCPServer {
             }
           }
         }
+        
       }
         
         this.tools.set(toolId, tool);

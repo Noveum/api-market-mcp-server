@@ -3,3 +3,4 @@
 dist/
 node_modules/
 json_files/
+openapi_extraction.ods

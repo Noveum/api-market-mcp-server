@@ -3,7 +3,7 @@
     "info": {
         "title": "Image Processing API",
         "version": "1.1.8",
-        "description": "API for image processing, including toonification and background removal using AI models."
+        "description": "API for image colorization using AI models."
     },
     "servers": [
         {
@@ -13,8 +13,8 @@
     "paths": {
         "magicapi/colorizer/predictions/{request_id}": {
             "get": {
-                "summary": "Get Toonified Image URL",
-                "description": "This endpoint retrieves the URL of the toonified image for a given request ID.\n",
+                "summary": "Get Colorized Image URL",
+                "description": "This endpoint retrieves the URL of the colorized image for a given request ID.\n",
                 "parameters": [
                     {
                         "name": "request_id",
@@ -41,7 +41,7 @@
                                         "image_url": {
                                             "type": "string",
                                             "format": "uri",
-                                            "description": "URL of the toonified image."
+                                            "description": "URL of the colorized image."
                                         }
                                     }
                                 }
@@ -87,7 +87,7 @@
         "magicapi/colorizer/colorizer": {
             "post": {
                 "summary": "Colorizes greyscale images",
-                "description": "This endpoint takes in a URL of an image and colorize old images\n",
+                "description": "This endpoint takes in a URL of an image and colorize old images\n Make sure you call get colorized image URL, MCP tool to get the URL for the request id received from this API",
                 "requestBody": {
                     "required": true,
                     "content": {
