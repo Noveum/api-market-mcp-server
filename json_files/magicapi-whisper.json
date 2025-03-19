@@ -3,7 +3,7 @@
   "info": {
     "title": "Image Processing API",
     "version": "1.1.3",
-    "description": "API for image processing, including toonification and background removal using AI models."
+    "description": "API for sentece wise transcription and analysis of audio, using AI models."
   },
   "servers": [
     {
@@ -13,8 +13,8 @@
   "paths": {
     "/predictions/{request_id}": {
       "get": {
-        "summary": "Get Toonified Image URL",
-        "description": "This endpoint retrieves the URL of the toonified image for a given request ID.\n",
+        "summary": "Get audio analysis URL",
+        "description": "This endpoint retrieves the URL of the transcription and analysis of the audio for the given request ID.\n",
         "parameters": [
           {
             "name": "request_id",
@@ -87,6 +87,7 @@
     "/whisper": {
       "post": {
         "summary": "Whisper Audio Processing",
+        "description":"API for sentece wise transcription and analysis of audio, using AI models. Make sure to call get audio analysis URL with the request ID received from this API.",
         "requestBody": {
           "required": true,
           "content": {

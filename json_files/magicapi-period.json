@@ -3,7 +3,7 @@
   "info": {
     "title": "Image Processing API",
     "version": "1.1.3",
-    "description": "API for image processing, including toonification and background removal using AI models."
+    "description": "API for generating ageing gif using AI models."
   },
   "servers": [
     {
@@ -13,8 +13,8 @@
   "paths": {
     "/predictions/{request_id}": {
       "get": {
-        "summary": "Get Toonified Image URL",
-        "description": "This endpoint retrieves the URL of the toonified image for a given request ID.\n",
+        "summary": "Get ageing gif URL",
+        "description": "This endpoint retrieves the URL of the ageing gif for a given request ID.\n",
         "parameters": [
           {
             "name": "request_id",
@@ -87,6 +87,7 @@
     "/period": {
       "post": {
         "summary": "Period changer",
+        "description":"API for generating ageing gif using AI models. Make sure to call get ageing gif URL, with the result id received from this API",
         "requestBody": {
           "required": true,
           "content": {

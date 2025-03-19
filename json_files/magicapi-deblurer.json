@@ -3,7 +3,7 @@
   "info": {
     "title": "Image Processing API",
     "version": "1.2.2",
-    "description": "API for image processing, including toonification and background removal using AI models."
+    "description": "API for image deblurring, using AI models."
   },
   "servers": [
     {
@@ -13,8 +13,8 @@
   "paths": {
     "/predictions/{request_id}": {
       "get": {
-        "summary": "Get Toonified Image URL",
-        "description": "This endpoint retrieves the URL of the toonified image for a given request ID.\n",
+        "summary": "Get Unblurred Image URL",
+        "description": "This endpoint retrieves the URL of the Unblurred image for a given request ID.\n",
         "parameters": [
           {
             "name": "request_id",
@@ -87,6 +87,7 @@
     "/deblurer": {
       "post": {
         "summary": "Deblurer",
+        "description":"API for image deblurring. \n Make sure you call get deblurred image URL, MCP tool to get the URL for the request id received from this API",
         "requestBody": {
           "required": true,
           "content": {
