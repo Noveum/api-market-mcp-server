@@ -89,7 +89,7 @@ def process_files(directory: str):
             file_name_no_ext = file_name_no_ext.replace('-', '/', 1)
 
         # Replace remaining hyphens with underscores
-        prefix = file_name_no_ext.replace('-', '_')
+        prefix = file_name_no_ext.replace('-', '!')
         modified_data = modify_paths(data, prefix)
         modified_data = resolve_references(modified_data)
         modified_data = replace_hyphens_in_paths(modified_data)

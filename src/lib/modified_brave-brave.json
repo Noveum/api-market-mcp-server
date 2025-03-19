@@ -1,540 +1,540 @@
 {
-    "openapi": "3.0.1",
-    "info": {
-        "title": "Brave Search API",
-        "description": "API for accessing various search functionalities in Brave Search",
-        "version": "1.0.0"
-    },
-    "servers": [
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Brave Search API",
+    "description": "API for accessing various search functionalities in Brave Search",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://api.magicapi.dev/api/v1/brave/brave"
+    }
+  ],
+  "paths": {
+    "brave/brave/videos/search": {
+      "get": {
+        "summary": "Search Videos",
+        "description": "Retrieve video search results based on query parameters",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "required": false,
+            "description": "Number of results to return",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "description": "Country code",
+            "schema": {
+              "type": "string",
+              "default": "us"
+            }
+          },
+          {
+            "name": "search_lang",
+            "in": "query",
+            "required": false,
+            "description": "Search language",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            }
+          },
+          {
+            "name": "spellcheck",
+            "in": "query",
+            "required": false,
+            "description": "Enable spellcheck",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful video search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "parameters": [
         {
-            "url": "http://api.magicapi.dev/api/v1/brave/brave"
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
         }
-    ],
-    "paths": {
-        "brave/brave/videos/search": {
-            "get": {
-                "summary": "Search Videos",
-                "description": "Retrieve video search results based on query parameters",
-                "parameters": [
-                    {
-                        "name": "q",
-                        "in": "query",
-                        "required": true,
-                        "description": "Search query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "count",
-                        "in": "query",
-                        "required": false,
-                        "description": "Number of results to return",
-                        "schema": {
-                            "type": "integer",
-                            "default": 10
-                        }
-                    },
-                    {
-                        "name": "country",
-                        "in": "query",
-                        "required": false,
-                        "description": "Country code",
-                        "schema": {
-                            "type": "string",
-                            "default": "us"
-                        }
-                    },
-                    {
-                        "name": "search_lang",
-                        "in": "query",
-                        "required": false,
-                        "description": "Search language",
-                        "schema": {
-                            "type": "string",
-                            "default": "en"
-                        }
-                    },
-                    {
-                        "name": "spellcheck",
-                        "in": "query",
-                        "required": false,
-                        "description": "Enable spellcheck",
-                        "schema": {
-                            "type": "boolean",
-                            "default": true
-                        }
+      ]
+    },
+    "brave/brave/web/search": {
+      "get": {
+        "summary": "Search Web",
+        "description": "Retrieve web search results based on query parameters",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful web search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful video search results",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "results": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
-            },
-            "parameters": [
-                {
-                    "description": "API.market API Key",
-                    "in": "header",
-                    "name": "x-magicapi-key",
-                    "value": "clp7flnx6000j3pifm3pinw92",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
+                  }
                 }
-            ]
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
         },
-        "brave/brave/web/search": {
-            "get": {
-                "summary": "Search Web",
-                "description": "Retrieve web search results based on query parameters",
-                "parameters": [
-                    {
-                        "name": "q",
-                        "in": "query",
-                        "required": true,
-                        "description": "Search query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful web search results",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "results": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
-            },
-            "parameters": [
-                {
-                    "description": "API.market API Key",
-                    "in": "header",
-                    "name": "x-magicapi-key",
-                    "value": "clp7flnx6000j3pifm3pinw92",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ]
-        },
-        "brave/brave/images/search": {
-            "get": {
-                "summary": "Search Images",
-                "description": "Retrieve image search results based on query parameters",
-                "parameters": [
-                    {
-                        "name": "q",
-                        "in": "query",
-                        "required": true,
-                        "description": "Search query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "safesearch",
-                        "in": "query",
-                        "required": false,
-                        "description": "Safe search filter",
-                        "schema": {
-                            "type": "string",
-                            "default": "strict"
-                        }
-                    },
-                    {
-                        "name": "count",
-                        "in": "query",
-                        "required": false,
-                        "description": "Number of results to return",
-                        "schema": {
-                            "type": "integer",
-                            "default": 20
-                        }
-                    },
-                    {
-                        "name": "search_lang",
-                        "in": "query",
-                        "required": false,
-                        "description": "Search language",
-                        "schema": {
-                            "type": "string",
-                            "default": "en"
-                        }
-                    },
-                    {
-                        "name": "country",
-                        "in": "query",
-                        "required": false,
-                        "description": "Country code",
-                        "schema": {
-                            "type": "string",
-                            "default": "us"
-                        }
-                    },
-                    {
-                        "name": "spellcheck",
-                        "in": "query",
-                        "required": false,
-                        "description": "Enable spellcheck",
-                        "schema": {
-                            "type": "boolean",
-                            "default": true
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful image search results",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "results": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
-            },
-            "parameters": [
-                {
-                    "description": "API.market API Key",
-                    "in": "header",
-                    "name": "x-magicapi-key",
-                    "value": "clp7flnx6000j3pifm3pinw92",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ]
-        },
-        "brave/brave/news/search": {
-            "get": {
-                "summary": "Search News",
-                "description": "Retrieve news search results based on query parameters",
-                "parameters": [
-                    {
-                        "name": "q",
-                        "in": "query",
-                        "required": true,
-                        "description": "Search query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "count",
-                        "in": "query",
-                        "required": false,
-                        "description": "Number of results to return",
-                        "schema": {
-                            "type": "integer",
-                            "default": 10
-                        }
-                    },
-                    {
-                        "name": "country",
-                        "in": "query",
-                        "required": false,
-                        "description": "Country code",
-                        "schema": {
-                            "type": "string",
-                            "default": "us"
-                        }
-                    },
-                    {
-                        "name": "search_lang",
-                        "in": "query",
-                        "required": false,
-                        "description": "Search language",
-                        "schema": {
-                            "type": "string",
-                            "default": "en"
-                        }
-                    },
-                    {
-                        "name": "spellcheck",
-                        "in": "query",
-                        "required": false,
-                        "description": "Enable spellcheck",
-                        "schema": {
-                            "type": "boolean",
-                            "default": true
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful news search results",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "results": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
-            },
-            "parameters": [
-                {
-                    "description": "API.market API Key",
-                    "in": "header",
-                    "name": "x-magicapi-key",
-                    "value": "clp7flnx6000j3pifm3pinw92",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ]
-        },
-        "brave/brave/suggest/search": {
-            "get": {
-                "summary": "Search Suggestions",
-                "description": "Retrieve search suggestions based on query parameters",
-                "parameters": [
-                    {
-                        "name": "q",
-                        "in": "query",
-                        "required": true,
-                        "description": "Search query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "country",
-                        "in": "query",
-                        "required": false,
-                        "description": "Country code",
-                        "schema": {
-                            "type": "string",
-                            "default": "US"
-                        }
-                    },
-                    {
-                        "name": "count",
-                        "in": "query",
-                        "required": false,
-                        "description": "Number of suggestions to return",
-                        "schema": {
-                            "type": "integer",
-                            "default": 5
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful search suggestions",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "suggestions": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
-            },
-            "parameters": [
-                {
-                    "description": "API.market API Key",
-                    "in": "header",
-                    "name": "x-magicapi-key",
-                    "value": "clp7flnx6000j3pifm3pinw92",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ]
-        },
-        "brave/brave/spellcheck/search": {
-            "get": {
-                "summary": "Spellcheck Search",
-                "description": "Retrieve spellcheck suggestions based on query parameters",
-                "parameters": [
-                    {
-                        "name": "q",
-                        "in": "query",
-                        "required": true,
-                        "description": "Search query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "country",
-                        "in": "query",
-                        "required": false,
-                        "description": "Country code",
-                        "schema": {
-                            "type": "string",
-                            "default": "US"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful spellcheck suggestions",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "spellcheck": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ]
-            },
-            "parameters": [
-                {
-                    "description": "API.market API Key",
-                    "in": "header",
-                    "name": "x-magicapi-key",
-                    "value": "clp7flnx6000j3pifm3pinw92",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ]
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
         }
+      ]
     },
-    "components": {
-        "securitySchemes": {}
+    "brave/brave/images/search": {
+      "get": {
+        "summary": "Search Images",
+        "description": "Retrieve image search results based on query parameters",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "safesearch",
+            "in": "query",
+            "required": false,
+            "description": "Safe search filter",
+            "schema": {
+              "type": "string",
+              "default": "strict"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "required": false,
+            "description": "Number of results to return",
+            "schema": {
+              "type": "integer",
+              "default": 20
+            }
+          },
+          {
+            "name": "search_lang",
+            "in": "query",
+            "required": false,
+            "description": "Search language",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "description": "Country code",
+            "schema": {
+              "type": "string",
+              "default": "us"
+            }
+          },
+          {
+            "name": "spellcheck",
+            "in": "query",
+            "required": false,
+            "description": "Enable spellcheck",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful image search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
     },
-    "security": {},
-    "tags": []
+    "brave/brave/news/search": {
+      "get": {
+        "summary": "Search News",
+        "description": "Retrieve news search results based on query parameters",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "required": false,
+            "description": "Number of results to return",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "description": "Country code",
+            "schema": {
+              "type": "string",
+              "default": "us"
+            }
+          },
+          {
+            "name": "search_lang",
+            "in": "query",
+            "required": false,
+            "description": "Search language",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            }
+          },
+          {
+            "name": "spellcheck",
+            "in": "query",
+            "required": false,
+            "description": "Enable spellcheck",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful news search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "brave/brave/suggest/search": {
+      "get": {
+        "summary": "Search Suggestions",
+        "description": "Retrieve search suggestions based on query parameters",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "description": "Country code",
+            "schema": {
+              "type": "string",
+              "default": "US"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "required": false,
+            "description": "Number of suggestions to return",
+            "schema": {
+              "type": "integer",
+              "default": 5
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search suggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "suggestions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "brave/brave/spellcheck/search": {
+      "get": {
+        "summary": "Spellcheck Search",
+        "description": "Retrieve spellcheck suggestions based on query parameters",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Search query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "description": "Country code",
+            "schema": {
+              "type": "string",
+              "default": "US"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful spellcheck suggestions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "spellcheck": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "securitySchemes": {}
+  },
+  "security": {},
+  "tags": []
 }

@@ -1,171 +1,170 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "Image Processing API",
-        "version": "1.1.3",
-        "description": "API for creating an ageing gif, given the image of a person using AI models."
-    },
-    "servers": [
-        {
-            "url": "http://api.magicapi.dev/api/v1/magicapi/period"
-        }
-    ],
-    "paths": {
-        "magicapi/period/predictions/{request_id}": {
-            "get": {
-                "summary": "Get ageing gif URL",
-                "description": "This endpoint retrieves the URL of the ageing gif for a given request ID.\n",
-                "parameters": [
-                    {
-                        "name": "request_id",
-                        "in": "path",
-                        "required": true,
-                        "description": "Unique identifier for the request.",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "description": "Status of the prediction (e.g., \"succeeded\")."
-                                        },
-                                        "image_url": {
-                                            "type": "string",
-                                            "format": "uri",
-                                            "description": "URL of the toonified image."
-                                        }
-                                    }
-                                }
-                            }
-                        }
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Image Processing API",
+    "version": "1.1.3",
+    "description": "API for image processing, including toonification and background removal using AI models."
+  },
+  "servers": [
+    {
+      "url": "http://api.magicapi.dev/api/v1/magicapi/period"
+    }
+  ],
+  "paths": {
+    "magicapi/period/predictions/{request_id}": {
+      "get": {
+        "summary": "Get Toonified Image URL",
+        "description": "This endpoint retrieves the URL of the toonified image for a given request ID.\n",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "description": "Unique identifier for the request.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Status of the prediction (e.g., \"succeeded\")."
                     },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "description": "Description of the error."
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                    "image_url": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "URL of the toonified image."
                     }
-                },
-                "security": [
-                    {
-                        "apiKey": []
-                    }
-                ]
-            },
-            "parameters": [
-                {
-                    "description": "API.market API Key",
-                    "in": "header",
-                    "name": "x-magicapi-key",
-                    "value": "clp7flnx6000j3pifm3pinw92",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
+                  }
                 }
-            ]
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Description of the error."
+                    }
+                  }
+                }
+              }
+            }
+          }
         },
-        "magicapi/period/period": {
-            "post": {
-                "summary": "Period changer",
-                "description": "Makes an ageing gif showing the future of the person shown in the image \n Make sure you call get ageing gif URL, MCP tool to get the URL for the request id received from this API",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "image": {
-                                        "type": "string",
-                                        "default": "https://replicate.delivery/mgxm/806bea64-bb51-4c8a-bf4d-15602eb60fdd/1287.jpg"
-                                    },
-                                    "target_age": {
-                                        "type": "string",
-                                        "default": "default"
-                                    }
-                                },
-                                "required": [
-                                    "image",
-                                    "target_age"
-                                ]
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful response",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "request_id": {
-                                            "type": "string",
-                                            "description": "Unique identifier for the request."
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "description": "Description of the error."
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "apiKey": []
-                    }
-                ]
-            },
-            "parameters": [
-                {
-                    "description": "API.market API Key",
-                    "in": "header",
-                    "name": "x-magicapi-key",
-                    "value": "clp7flnx6000j3pifm3pinw92",
-                    "required": true,
-                    "schema": {
-                        "type": "string"
-                    }
-                }
-            ]
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
         }
+      ]
     },
-    "security": {},
-    "tags": []
+    "magicapi/period/period": {
+      "post": {
+        "summary": "Period changer",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "default": "https://replicate.delivery/mgxm/806bea64-bb51-4c8a-bf4d-15602eb60fdd/1287.jpg"
+                  },
+                  "target_age": {
+                    "type": "string",
+                    "default": "default"
+                  }
+                },
+                "required": [
+                  "image",
+                  "target_age"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "request_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Description of the error."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "API.market API Key",
+          "in": "header",
+          "name": "x-magicapi-key",
+          "value": "clp7flnx6000j3pifm3pinw92",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "security": {},
+  "tags": []
 }

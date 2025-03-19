@@ -28,6 +28,8 @@ def update_summary(current_summary: str) -> str:
         if current_summary in summaries:
             index = summaries.index(current_summary)
             current_summary = shortened_summaries[index]
+            print(current_summary)
+            return current_summary
         else:
             new_summary = input("Enter a new summary under 54 characters: ").strip()
 
@@ -55,7 +57,7 @@ def update_method_summaries(paths_dict):
 
 file_patterns = ["*.yaml", "*.yml", "*.json"]
 files = []
-directory = r"modified_json_files"
+directory = r"src/lib"
 for pattern in file_patterns:
     search_pattern = os.path.join(directory, pattern)
     files.extend(glob.glob(search_pattern))

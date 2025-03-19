@@ -157,13 +157,14 @@ class OpenAPIMCPServer {
 
         const op = operation as OpenAPIV3.OperationObject;
         // Create a clean tool ID by removing the leading slash and replacing special chars
-        console.error(path);
+        
         const cleanPath = path.replace(/^\//, "");
         const toolId = `${method.toUpperCase()}-${cleanPath}`.replace(
           /[^a-zA-Z0-9-_]/g,
           "-",
         );
-        console.error(`Registering tool: ${toolId}`); // Debug logging
+        console.error(toolId);
+        //console.error(`Registering tool: ${toolId}`); // Debug logging
         const tool: Tool = {
           name:
             (op.operationId || op.summary || `${method.toUpperCase()} ${path}`).replace(/\s+/g, "_"),
@@ -178,7 +179,7 @@ class OpenAPIMCPServer {
         };
 
         // Store the mapping between name and ID for reverse lookup
-        console.error(`Registering tool: ${toolId} (${tool.name})`);
+        //console.error(`Registering tool: ${toolId} (${tool.name})`);
 
         // Add parameters from operation
         if (op.parameters) {
@@ -311,7 +312,7 @@ class OpenAPIMCPServer {
         // Extract method and path from tool ID
         const [method, ...pathParts] = toolId.split("-");
         const path_temp = "/" + pathParts.join("/").replace(/-/g, "/");
-        const path = path_temp.replaceAll('_', "-");
+        const path = path_temp.replaceAll('!', "-");
         console.error('the path');
         console.error(path_temp)
         console.error(path)
