@@ -100,7 +100,7 @@ class OpenAPIMCPServer {
 
   private tools: Map<string, Tool> = new Map();
   private headers: Map<string, string> = new Map();
-  
+
   constructor(config: OpenAPIMCPServerConfig) {
     this.config = config;
     this.server = new Server({
@@ -126,143 +126,125 @@ class OpenAPIMCPServer {
     return file_path as OpenAPIV3.Document;
   }
 
-  private async listOfFilePaths(): Promise<string[]>{
+  private async listOfFilePaths(): Promise<string[]> {
     const lines = [];
     const fileStream = fs.createReadStream(this.config.openApiSpec);
 
     const rl = readline.createInterface({
-        input: fileStream,
-        crlfDelay: Infinity
+      input: fileStream,
+      crlfDelay: Infinity
     });
 
     for await (const line of rl) {
-        lines.push(line);
+      lines.push(line);
     }
 
     return lines; // Return the array of lines    
   }
   private async parseOpenAPISpec(): Promise<void> {
     const paths = await this.listOfFilePaths()
-    for (const cur_path of paths){
+    for (const cur_path of paths) {
 
-    
-    const spec = await this.loadOpenAPISpec(path.resolve(__dirname, cur_path));
 
-    // Convert each OpenAPI path to an MCP tool
-    for (const [path, pathItem] of Object.entries(spec.paths)) {
-      if (!pathItem) continue;
+      const spec = await this.loadOpenAPISpec(path.resolve(__dirname, cur_path));
 
-      for (const [method, operation] of Object.entries(pathItem)) {
-        if (method === "parameters" || !operation) continue;
+      // Convert each OpenAPI path to an MCP tool
+      for (const [path, pathItem] of Object.entries(spec.paths)) {
+        if (!pathItem) continue;
 
-        const op = operation as OpenAPIV3.OperationObject;
-        // Create a clean tool ID by removing the leading slash and replacing special chars
-        
-        const cleanPath = path.replace(/^\//, "");
-        const toolId = `${method.toUpperCase()}-${cleanPath}`.replace(
-          /[^a-zA-Z0-9-_]/g,
-          "-",
-        );
-        console.error(toolId);
-        //console.error(`Registering tool: ${toolId}`); // Debug logging
-        const tool: Tool = {
-          name:
-            (op.operationId || op.summary || `${method.toUpperCase()} ${path}`).replace(/\s+/g, "_"),
-          description:
-            op.description ||
-            `Make a ${method.toUpperCase()} request to ${path}`,
-          inputSchema: {
-            type: "object",
-            properties: {},
-            // Add any additional properties from OpenAPI spec
-          },
-        };
+        for (const [method, operation] of Object.entries(pathItem)) {
+          if (method === "parameters" || !operation) continue;
 
-        // Store the mapping between name and ID for reverse lookup
-        //console.error(`Registering tool: ${toolId} (${tool.name})`);
+          const op = operation as OpenAPIV3.OperationObject;
+          // Create a clean tool ID by removing the leading slash and replacing special chars
 
-        // Add parameters from operation
-        if (op.parameters) {
-          for (const param of op.parameters) {
-            if ("name" in param && "in" in param) {
-              const paramSchema = param.schema as OpenAPIV3.SchemaObject;
-              tool.inputSchema.properties[param.name] = {
-                type: paramSchema.type || "string",
-                description: param.description || `${param.name} parameter`,
-              };
-              if (param.required) {
-                tool.inputSchema.required = tool.inputSchema.required || [];
-                tool.inputSchema.required.push(param.name);
+          const cleanPath = path.replace(/^\//, "");
+          const toolId = `${method.toUpperCase()}-${cleanPath}`.replace(
+            /[^a-zA-Z0-9-_]/g,
+            "-",
+          );
+          console.error(toolId);
+          //console.error(`Registering tool: ${toolId}`); // Debug logging
+          const tool: Tool = {
+            name:
+              (op.operationId || op.summary || `${method.toUpperCase()} ${path}`).replace(/\s+/g, "_"),
+            description:
+              op.description ||
+              `Make a ${method.toUpperCase()} request to ${path}`,
+            inputSchema: {
+              type: "object",
+              properties: {},
+              // Add any additional properties from OpenAPI spec
+            },
+          };
+
+          // Store the mapping between name and ID for reverse lookup
+          //console.error(`Registering tool: ${toolId} (${tool.name})`);
+
+          // Add parameters from operation
+          if (op.parameters) {
+            for (const param of op.parameters) {
+              if ("name" in param && "in" in param) {
+                const paramSchema = param.schema as OpenAPIV3.SchemaObject;
+                tool.inputSchema.properties[param.name] = {
+                  type: paramSchema.type || "string",
+                  description: param.description || `${param.name} parameter`,
+                };
+                if (param.required) {
+                  tool.inputSchema.required = tool.inputSchema.required || [];
+                  tool.inputSchema.required.push(param.name);
+                }
               }
             }
           }
+
+          // Add request body if present (for POST, PUT, etc.)
+          if (op.requestBody) {
+            const requestBody = op.requestBody as OpenAPIV3.RequestBodyObject;
+            const content = requestBody.content;
+
+            // Usually we'd look for application/json content type
+            if (content && content['application/json']) {
+              this.headers.set(toolId, 'application/json');
+              const jsonSchema = content['application/json'].schema as OpenAPIV3.SchemaObject;
+
+              // If it's a reference, we'd need to resolve it
+              // For simplicity, assuming it's an inline schema
+              if (jsonSchema.properties) {
+                // Add all properties from the request body schema
+                for (const [propName, propSchema] of Object.entries(jsonSchema.properties)) {
+                  tool.inputSchema.properties[propName] = propSchema;
+                }
+
+                // Add required properties if defined
+                if (jsonSchema.required) {
+                  tool.inputSchema.required = tool.inputSchema.required || [];
+                  tool.inputSchema.required.push(...jsonSchema.required);
+                }
+              }
+            }
+            else if (content && content['application/x-www-form-urlencoded']) {
+              this.headers.set(toolId, 'application/x-www-form-urlencoded');
+              const urlencodedSchema = content['application/x-www-form-urlencoded'].schema as OpenAPIV3.SchemaObject;
+
+              if (urlencodedSchema.properties) {
+                for (const [propName, propSchema] of Object.entries(urlencodedSchema.properties)) {
+                  tool.inputSchema.properties[propName] = propSchema;
+                }
+
+                if (urlencodedSchema.required) {
+                  tool.inputSchema.required = tool.inputSchema.required || [];
+                  tool.inputSchema.required.push(...urlencodedSchema.required);
+                }
+              }
+            }
+          }
+
+          this.tools.set(toolId, tool);
         }
-
-        // Add request body if present (for POST, PUT, etc.)
-        if (op.requestBody) {
-          const requestBody = op.requestBody as OpenAPIV3.RequestBodyObject;
-          const content = requestBody.content;
-          
-          // Usually we'd look for application/json content type
-          if (content && content['application/json']) {
-            this.headers.set(toolId, 'application/json');
-            const jsonSchema = content['application/json'].schema as OpenAPIV3.SchemaObject;
-            
-            // If it's a reference, we'd need to resolve it
-            // For simplicity, assuming it's an inline schema
-            if (jsonSchema.properties) {
-              // Add all properties from the request body schema
-              for (const [propName, propSchema] of Object.entries(jsonSchema.properties)) {
-                tool.inputSchema.properties[propName] = propSchema;
-              }
-              
-              // Add required properties if defined
-              if (jsonSchema.required) {
-                tool.inputSchema.required = tool.inputSchema.required || [];
-                tool.inputSchema.required.push(...jsonSchema.required);
-              }
-            }
-          }
-          else if (content && content['application/x-www-form-urlencoded']) {
-            this.headers.set(toolId, 'application/x-www-form-urlencoded');
-            const urlencodedSchema = content['application/x-www-form-urlencoded'].schema as OpenAPIV3.SchemaObject;
-          
-            if (urlencodedSchema.properties) {
-              for (const [propName, propSchema] of Object.entries(urlencodedSchema.properties)) {
-                tool.inputSchema.properties[propName] = propSchema;
-              }
-          
-              if (urlencodedSchema.required) {
-                tool.inputSchema.required = tool.inputSchema.required || [];
-                tool.inputSchema.required.push(...urlencodedSchema.required);
-              }
-            }
-          }
-        
-        
-        else if (content && content['multipart/form-data']) {
-          this.headers.set(toolId, 'multipart/form-data');
-          const urlencodedSchema = content['multipart/form-data'].schema as OpenAPIV3.SchemaObject;
-        
-          if (urlencodedSchema.properties) {
-            for (const [propName, propSchema] of Object.entries(urlencodedSchema.properties)) {
-              tool.inputSchema.properties[propName] = propSchema;
-            }
-        
-            if (urlencodedSchema.required) {
-              tool.inputSchema.required = tool.inputSchema.required || [];
-              tool.inputSchema.required.push(...urlencodedSchema.required);
-            }
-          }
-        }
-        
-      }
-        
-        this.tools.set(toolId, tool);
       }
     }
   }
-}
 
   private initializeHandlers(): void {
     // Handle tool listing
