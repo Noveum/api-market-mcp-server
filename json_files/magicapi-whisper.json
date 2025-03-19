@@ -38,10 +38,10 @@
                       "type": "string",
                       "description": "Status of the prediction (e.g., \"succeeded\")."
                     },
-                    "image_url": {
+                    "response_url": {
                       "type": "string",
                       "format": "uri",
-                      "description": "URL of the toonified image."
+                      "description": "URL of the  audio's transcription and analysis."
                     }
                   }
                 }

@@ -3,7 +3,7 @@
   "info": {
     "title": "Image Processing API",
     "version": "1.1.3",
-    "description": "API for image processing, including toonification and background removal using AI models."
+    "description": "API for simulating different hair styles using AI models."
   },
   "servers": [
     {
@@ -13,8 +13,8 @@
   "paths": {
     "magicapi/hair/predictions/{request_id}": {
       "get": {
-        "summary": "Get Toonified Image URL",
-        "description": "This endpoint retrieves the URL of the toonified image for a given request ID.\n",
+        "summary": "Get hairstyled image URL",
+        "description": "This endpoint retrieves the URL of the simulated hairstyle image for a given request ID.\n",
         "parameters": [
           {
             "name": "request_id",
@@ -41,7 +41,7 @@
                     "image_url": {
                       "type": "string",
                       "format": "uri",
-                      "description": "URL of the toonified image."
+                      "description": "URL of the hairstyled image."
                     }
                   }
                 }
@@ -86,7 +86,8 @@
     },
     "magicapi/hair/hair": {
       "post": {
-        "summary": "Hair changer",
+        "summary": "Hair style simulator",
+        "description": "API for simulating different hair styles using AI models. Make sure to call get hairstyled image after with the request id received from this API.",
         "requestBody": {
           "required": true,
           "content": {
