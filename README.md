@@ -17,7 +17,7 @@ You do not need to clone this repository to use this MCP server. You can simply 
      "mcpServers": {
        "openapi": {
          "command": "npx",
-         "args": ["-y", "@shvmgpt/openapi-mcp-server"],
+         "args": ["-y", "@noveum-ai/mcp-server"],
          "env": {
            "API_HEADERS": "X-magicapi-key:your-api-key,Accept:application/json"
          }
@@ -38,7 +38,7 @@ You do not need to clone this repository to use this MCP server. You can simply 
 4. Paste the following command.
 
    ```bash
-   npx -y @shvmgpt/openapi-mcp-server --headers x-magicapi-key:your-api-key,Accept:application/json
+   npx -y @noveum-ai/mcp-server --headers x-magicapi-key:your-api-key,Accept:application/json
    ```
 ## Getting API Key from API.market
 
@@ -48,36 +48,41 @@ You do not need to clone this repository to use this MCP server. You can simply 
  3. Your API keys will be displayed here
 
 ## List of APIs in this MCP
-- GET-trueway-matrix-MatrixService-CalculateDrivingMatrix
-- GET-magicapi-whisper-predictions--request_id
-- POST-magicapi-whisper-whisper
-- POST-capix-faceswap-upload
-- POST-capix-faceswap-faceswap-v1-image POST-capix-faceswap-faceswap-v1-video
-- POST-capix-faceswap-result
-- GET-trueway-geocoding-GeocodingService-Geocode 
-- GET-trueway-geocoding-GeocodingService-ReverseGeocode
-- POST-magicapi-dnschecker-dnschecker
-- GET-magicapi-coder-predictions--request_id
-- POST-magicapi-coder-coder
-- POST-bridgeml-nsfw-detection-nsfw_detection
-- GET-magicapi-whois-whois--domain-
-- GET-magicapi-deblurer-predictions--request_id
-- POST-magicapi-deblurer-deblurer
-- POST-bridgeml-text-to-image-text_to_image
-- GET-magicapi-period-predictions--request_id
-- POST-magicapi-period-period
-- GET-trueway-places-PlacesService-FindPlaceByText
-- GET-trueway-places-PlacesService-FindPlacesNearby
-- GET-magicapi-hair-predictions--request_id
-- POST-magicapi-hair-hair
-- POST-bridgeml-codellama-bridgeml-codellama
-- GET-brave-brave-videos-search
-- GET-brave-brave-web-search GET-brave-brave-images-search
-- GET-brave-brave-news-search GET-brave-brave-suggest-search GET-brave-brave-spellcheck-search
-- POST-magicapi-domainchecker-check_domains
-- GET-trueway-routing-DirectionsService-FindDrivingRoute
-- GET-trueway-routing-DirectionsService-FindDrivingPath
-- POST-pipfeed-parse-extract
+
+- [GET-trueway-matrix-MatrixService-CalculateDrivingMatrix](https://api.market/store/trueway/matrix)
+- [GET-magicapi-whisper-predictions--request_id](https://api.market/store/magicapi/whisper)
+- [POST-magicapi-whisper-whisper](https://api.market/store/magicapi/whisper)
+- [POST-capix-faceswap-upload](https://api.market/store/capix/faceswap)
+- [POST-capix-faceswap-faceswap-v1-image](https://api.market/store/capix/faceswap)
+- [POST-capix-faceswap-faceswap-v1-video](https://api.market/store/capix/faceswap)
+- [POST-capix-faceswap-result](https://api.market/store/capix/faceswap)
+- [GET-trueway-geocoding-GeocodingService-Geocode](https://api.market/store/trueway/geocoding)
+- [GET-trueway-geocoding-GeocodingService-ReverseGeocode](https://api.market/store/trueway/geocoding)
+- [POST-magicapi-dnschecker-dnschecker](https://api.market/store/magicapi/dnschecker)
+- [GET-magicapi-coder-predictions--request_id](https://api.market/store/magicapi/coder)
+- [POST-magicapi-coder-coder](https://api.market/store/magicapi/coder)
+- [POST-bridgeml-nsfw-detection-nsfw_detection](https://api.market/store/bridgeml/nsfw)
+- [GET-magicapi-whois-whois--domain-](https://api.market/store/magicapi/whois)
+- [GET-magicapi-deblurer-predictions--request_id](https://api.market/store/magicapi/deblurer)
+- [POST-magicapi-deblurer-deblurer](https://api.market/store/magicapi/deblurer)
+- [POST-bridgeml-text-to-image-text_to_image](https://api.market/store/bridgeml/text)
+- [GET-magicapi-period-predictions--request_id](https://api.market/store/magicapi/period)
+- [POST-magicapi-period-period](https://api.market/store/magicapi/period)
+- [GET-trueway-places-PlacesService-FindPlaceByText](https://api.market/store/trueway/places)
+- [GET-trueway-places-PlacesService-FindPlacesNearby](https://api.market/store/trueway/places)
+- [GET-magicapi-hair-predictions--request_id](https://api.market/store/magicapi/hair)
+- [POST-magicapi-hair-hair](https://api.market/store/magicapi/hair)
+- [POST-bridgeml-codellama-bridgeml-codellama](https://api.market/store/bridgeml/codellama)
+- [GET-brave-brave-videos-search](https://api.market/store/brave/brave)
+- [GET-brave-brave-web-search](https://api.market/store/brave/brave)
+- [GET-brave-brave-images-search](https://api.market/store/brave/brave)
+- [GET-brave-brave-news-search](https://api.market/store/brave/brave)
+- [GET-brave-brave-suggest-search](https://api.market/store/brave/brave)
+- [GET-brave-brave-spellcheck-search](https://api.market/store/brave/brave)
+- [POST-magicapi-domainchecker-check_domains](https://api.market/store/magicapi/domainchecker)
+- [GET-trueway-routing-DirectionsService-FindDrivingRoute](https://api.market/store/trueway/routing)
+- [GET-trueway-routing-DirectionsService-FindDrivingPath](https://api.market/store/trueway/routing)
+- [POST-pipfeed-parse-extract](https://api.market/store/pipfeed/parse)
 
 ## Example and Usage
 ### Example 1
@@ -111,47 +116,6 @@ We can use the agent to look for available domains
 - `npm run lint` - Runs ESLint.
 - `npm run typecheck` - Verifies TypeScript types.
 
-### Adding Your Own API to the MCP Server
-To add your own API, ensure it is an **OpenAPI formatted API**. Follow these steps:
-1. Create a new folder for your API.
-2. Clone this repository:
-```bash
-git clone https://github.com/your-username/repo-name.git
-```
-3. Change into your folder:
-```bash
-cd your-folder
-```
-4. In the folder named `json_files`, add your OpenAPI specification.
-Before running the Node commands, please follow these steps:
-
-
-5. Run modify_api.py:
-- Execute the `modify_api.py` script with the directory set to the folder containing the JSON files. This will:
-  - Create a new folder named `modified_json_files` inside the folder with the JSON files.
-  - Generate a file named `modified_files.txt` that lists all the modified files.
-
-6. Run shorten_summary_in_specs:
-- Add your `x-magicapi-key` as an environment variable.
-- Run the Python script.
-- Alternatively, you can use `manual_summary_shortner.py` to shorten the summaries manually.
-
-
-6. Publish your package using npm:
-```bash
-npm publish --access public
-```
-
-### Configuration
-The server can be configured through environment variables or command line arguments:
-
-#### Environment Variables
-- `API_BASE_URL` - Base URL for the API endpoints.
-- `OPENAPI_SPEC_PATH` - Path or URL to the OpenAPI specification.
-- `API_HEADERS` - Comma-separated key:value pairs for API headers.
-- `SERVER_NAME` - Name for the MCP server (default: "mcp-openapi-server").
-- `SERVER_VERSION` - Version of the server (default: "1.0.0").
-
 ##### Set Environment Variables:
 Configure your environment by running the following commands:
 ```bash
@@ -183,7 +147,7 @@ npm run inspect-watch
 To debug or run the MCP server locally:
 1. Clone the repository and install dependencies:
 ```bash
-git clone https://github.com/your-username/repo-name.git
+git clone https://github.com/Noveum/api-market-mcp-server.git
 cd repo-name
 npm install
 ```
