@@ -19,7 +19,7 @@ You do not need to clone this repository to use this MCP server. You can simply 
          "command": "npx",
          "args": ["-y", "@noveum-ai/mcp-server"],
          "env": {
-           "API_HEADERS": "X-magicapi-key:your-api-key,Accept:application/json"
+           "API_HEADERS": "x-magicapi-key:your-api-key,Accept:application/json"
          }
        }
      }
@@ -29,7 +29,7 @@ You do not need to clone this repository to use this MCP server. You can simply 
 3. Replace the environment variables with your actual API configuration:
  - `API_BASE_URL`: The base URL of your API (optional)
  - `OPENAPI_SPEC_PATH`: URL or path to your OpenAPI specification (optional)
- -`API_HEADERS`: Comma-separated key:value pairs for API authentication headers
+ - `API_HEADERS`: Comma-separated key:value pairs for API authentication headers
 
 ### For Cursor
 1. Go to File -> Preferences -> Cursor Settings.
