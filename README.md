@@ -116,13 +116,13 @@ We can use the agent to look for available domains
 - `npm run lint` - Runs ESLint.
 - `npm run typecheck` - Verifies TypeScript types.
 
-##### Set Environment Variables:
+<!-- ##### Set Environment Variables:
 Configure your environment by running the following commands:
 ```bash
 export OPENAPI_SPEC_PATH=modified_files.txt # optional
 export API_BASE_URL=https://api.magicapi.dev/api/v1/ # optional
 export API_HEADERS="x-magicapi-key:your-api-key,Accept:application/json"
-```
+``` -->
 
 #### Command Line Arguments
 ```bash

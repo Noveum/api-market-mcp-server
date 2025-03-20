@@ -37,13 +37,13 @@ This project is designed to be used as an MCP server and is primarily accessed v
    npx -y @noveum-ai/mcp-server --headers x-magicapi-key:<your-api-key>,Accept:application/json
    ```
 
-## Environment Variables
+<!-- ## Environment Variables
 
 You can configure the following environment variables for further customization:
 
 - **API_BASE_URL**: The base URL of your API (optional).
 - **OPENAPI_SPEC_PATH**: URL or path to your OpenAPI specification (optional).
-- **API_HEADERS**: Comma-separated key:value pairs for API authentication headers.
+- **API_HEADERS**: Comma-separated key:value pairs for API authentication headers. -->
 
 ## For Development Purposes
 
