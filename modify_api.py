@@ -3,6 +3,7 @@ import os
 import re
 from typing import List
 
+#modifes api files
 
 def get_json_files(directory: str) -> List[str]:
     # Pattern to match filenames like a-b-c.json, a-b.json, etc.
