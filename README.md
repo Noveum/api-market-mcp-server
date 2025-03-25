@@ -34,12 +34,41 @@ You do not need to clone this repository to use this MCP server. You can simply 
 ### For Cursor
 1. Go to File -> Preferences -> Cursor Settings.
 2. Select MCP.
-3. Click on Add New MCP Server.
-4. Paste the following command.
+3. Click on Add new global MCP Server.
+4. Paste the following into mcp.json file.
 
-   ```bash
-   npx -y @noveum-ai/mcp-server --headers x-magicapi-key:your-api-key,Accept:application/json
+   ```json
+{
+  "mcpServers": {
+    "openapi": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@noveum-ai/mcp-server",
+        "--headers",
+        "x-magicapi-key:<your-api-key>,Accept:application/json"
+      ]
+    }
+  }
+}
    ```
+OR add this as the first value for mcpServers.
+  ```json
+  
+    "openapi": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@noveum-ai/mcp-server",
+        "--headers",
+        "x-magicapi-key:<your-api-key>,Accept:application/json"
+      ]
+    },
+   ```
+5. For older versions of Cursor add the following command after clicking on Add new MCP server 
+  ```bash
+  npx -y @noveum-ai/mcp-server --headers x-magicapi-key:your-api-key,Accept:application/json
+  ```
 ## Getting API Key from API.market
 
  To obtain your API key
