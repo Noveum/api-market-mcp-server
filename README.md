@@ -52,8 +52,7 @@ You do not need to clone this repository to use this MCP server. You can simply 
     }
   }
 ```
-OR add this as the first value for mcpServers.
-
+Alternatively, add this as the first entry in mcpServers.
 ```json  
     "openapi": {
       "command": "npx",
@@ -115,7 +114,7 @@ OR add this as the first value for mcpServers.
 
 ## Example and Usage
 ### Example 1
-We can use the agent to find route between any two points
+We can use the agent to find a route between any two points
 
 ![Example 1](./images/example1.png "Example 1")
 
@@ -168,7 +167,7 @@ npm run inspect -- \
 ```bash
 npm run inspect-watch
 ```
-2. Make changes to the TypeScript files in `src/`.
+2. Modify the TypeScript files in `src/`.
 3. The server will automatically rebuild and restart.
 4. Use the MCP Inspector UI to test your changes.
 
@@ -180,7 +179,7 @@ git clone https://github.com/Noveum/api-market-mcp-server.git
 cd repo-name
 npm install
 ```
-2. build the server:
+2. Build the server:
 ```bash
 npm run build
 ```
