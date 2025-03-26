@@ -260,9 +260,6 @@ export class APIMarketMCPServer {
           try {
   
             const response = await axios(config);
-            console.error("Response status:", response.status);
-            console.error("Response headers:", response.headers);
-            console.error("Response data:", response.data);
             return {
               content: [{
                 type: "text",
