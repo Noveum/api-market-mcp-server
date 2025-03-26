@@ -19,7 +19,7 @@ You do not need to clone this repository to use this MCP server. You can simply 
          "command": "npx",
          "args": ["-y", "@noveum-ai/mcp-server"],
          "env": {
-           "API_HEADERS": "x-magicapi-key:your-api-key,Accept:application/json"
+           "API_HEADERS": "x-magicapi-key:your-api-key"
          }
        }
      }
@@ -46,7 +46,7 @@ You do not need to clone this repository to use this MCP server. You can simply 
           "-y",
           "@noveum-ai/mcp-server",
           "--headers",
-          "x-magicapi-key:<your-api-key>,Accept:application/json"
+          "x-magicapi-key:<your-api-key>"
         ]
       }
     }
@@ -60,13 +60,13 @@ Alternatively, add this as the first entry in mcpServers.
         "-y",
         "@noveum-ai/mcp-server",
         "--headers",
-        "x-magicapi-key:<your-api-key>,Accept:application/json"
+        "x-magicapi-key:<your-api-key>"
       ]
     },
 ```
 5. For older versions of Cursor, add the following command after clicking on Add new MCP server 
 ```bash
-npx -y @noveum-ai/mcp-server --headers x-magicapi-key:your-api-key,Accept:application/json
+npx -y @noveum-ai/mcp-server --headers x-magicapi-key:your-api-key
 ```
 ## Getting an API Key from API.market
 
@@ -149,7 +149,7 @@ Configure your environment by running the following commands:
 ```bash
 export OPENAPI_SPEC_PATH=modified_files.txt # optional
 export API_BASE_URL=https://api.magicapi.dev/api/v1/ # optional
-export API_HEADERS="x-magicapi-key:your-api-key,Accept:application/json"
+export API_HEADERS="x-magicapi-key:your-api-key"
 ``` -->
 
 #### Command Line Arguments
@@ -157,7 +157,7 @@ export API_HEADERS="x-magicapi-key:your-api-key,Accept:application/json"
 npm run inspect -- \
   --api-base-url https://api.magicapi.dev/api/v1/ \
   --openapi-spec modified_files.txt \
-  --headers "x-magicapi-key:your-api-key,Accept:application/json" \
+  --headers "x-magicapi-key:your-api-key" \
   --name "my-mcp-server" \
   --version "1.0.0"
 ```

@@ -24,6 +24,7 @@ interface OpenAPIMCPServerConfig {
 
 function parseHeaders(headerStr?: string): Record<string, string> {
   const headers: Record<string, string> = {};
+  headers['Accept'] = 'application/json';
   if (headerStr) {
     headerStr.split(",").forEach((header) => {
       const [key, value] = header.split(":");

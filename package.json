@@ -1,6 +1,6 @@
 {
   "name": "@noveum-ai/mcp-server",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An MCP server that exposes OpenAPI endpoints as resources",
   "license": "MIT",
   "type": "module",
