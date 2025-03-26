@@ -66,11 +66,11 @@ Alternatively, add this as the first entry in mcpServers.
 ```
 5. For older versions of Cursor add the following command after clicking on Add new MCP server 
 ```bash
-    npx -y @noveum-ai/mcp-server --headers x-magicapi-key:your-api-key,Accept:application/json
+npx -y @noveum-ai/mcp-server --headers x-magicapi-key:your-api-key,Accept:application/json
 ```
 ## Getting API Key from API.market
 
- To obtain your API key
+ To obtain an API key
  1. Log in to https://api.market/
  2. Go to your profile and select 'My API Keys'
  3. Your API keys will be displayed here
