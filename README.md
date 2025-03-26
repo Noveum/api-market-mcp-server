@@ -1,7 +1,7 @@
-# OpenAPI MCP Server
+# API-MARKET MCP Server
 
 ## About
-A Model Context Protocol (MCP) server that exposes OpenAPI endpoints as MCP resources. This server allows Large Language Models to discover and interact with APIs defined by OpenAPI specifications through the MCP protocol.  
+A Model Context Protocol (MCP) server that exposes API-Market's endpoints as MCP resources. This server allows Large Language Models to discover and interact with APIs defined by OpenAPI specifications through the MCP protocol.  
 This repository provides access to the APIs available at [API.market](https://api.market/). The tool is free to use and allows agents to communicate freely with all available APIs, making it super powerful. With over **200+ APIs** available at [API.market](https://api.market/), you can leverage a wide range of functionalities.
 
 ## Quick Start
@@ -11,11 +11,11 @@ You do not need to clone this repository to use this MCP server. You can simply 
 ### For Claude Desktop
 1. Locate or create your Claude Desktop configuration file:
    - On macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-2. Add the following configuration to enable the OpenAPI MCP server:
+2. Add the following configuration to enable the API-Market MCP server:
    ```json
    {
      "mcpServers": {
-       "openapi": {
+       "api-market": {
          "command": "npx",
          "args": ["-y", "@noveum-ai/mcp-server"],
          "env": {
@@ -40,7 +40,7 @@ You do not need to clone this repository to use this MCP server. You can simply 
 ```json
   {
     "mcpServers": {
-      "openapi": {
+      "api-market": {
         "command": "npx",
         "args": [
           "-y",
@@ -54,7 +54,7 @@ You do not need to clone this repository to use this MCP server. You can simply 
 ```
 Alternatively, add this as the first entry in mcpServers.
 ```json  
-    "openapi": {
+    "api-market": {
       "command": "npx",
       "args": [
         "-y",
@@ -176,7 +176,7 @@ To debug or run the MCP server locally:
 1. Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/Noveum/api-market-mcp-server.git
-cd repo-name
+cd api-market-mcp-server
 npm install
 ```
 2. Build the server:
