@@ -2,6 +2,4 @@
 .env
 dist/
 node_modules/
-openapi_extraction.ods
-openapi_extraction.xlsx
 json_files/

@@ -25,12 +25,6 @@ You do not need to clone this repository to use this MCP server. You can simply 
      }
    }
    ```
-
-3. Replace the environment variables with your actual API configuration:
-- `API_BASE_URL`: The base URL of your API (optional)
-- `OPENAPI_SPEC_PATH`: URL or path to your OpenAPI specification (optional)
-- `API_HEADERS`: Comma-separated key:value pairs for API authentication headers
-
 ### For Cursor
 1. Go to File -> Preferences -> Cursor Settings.
 2. Select MCP.
