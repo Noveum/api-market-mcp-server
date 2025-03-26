@@ -39,7 +39,6 @@ import { dirname } from 'path';
 
 // Define __dirname for ESM compatibility
 const __dirname = dirname(fileURLToPath(import.meta.url));
-console.log(__dirname);
 function loadConfig(): OpenAPIMCPServerConfig {
   const argv = yargs(hideBin(process.argv))
     .option("api-base-url", {
@@ -112,7 +111,7 @@ class OpenAPIMCPServer {
     this.initializeHandlers();
   }
 
-  private async loadOpenAPISpec(file_path): Promise<OpenAPIV3.Document> {  //mark
+  private async loadOpenAPISpec(file_path: string): Promise<OpenAPIV3.Document> {  //mark
     if (typeof file_path === "string") {
       if (file_path.startsWith("http")) {
         // Load from URL
@@ -164,8 +163,6 @@ class OpenAPIMCPServer {
             /[^a-zA-Z0-9-_]/g,
             "-",
           );
-          console.error(toolId);
-          //console.error(`Registering tool: ${toolId}`); // Debug logging
           const tool: Tool = {
             name:
               (op.operationId || op.summary || `${method.toUpperCase()} ${path}`).replace(/\s+/g, "_"),
@@ -205,7 +202,7 @@ class OpenAPIMCPServer {
             const content = requestBody.content;
 
             // Usually we'd look for application/json content type
-            if (content && content['application/json']) {
+            if (content?.['application/json']) {
               this.headers.set(toolId, 'application/json');
               const jsonSchema = content['application/json'].schema as OpenAPIV3.SchemaObject;
 
@@ -224,7 +221,7 @@ class OpenAPIMCPServer {
                 }
               }
             }
-            else if (content && content['application/x-www-form-urlencoded']) {
+            else if (content?.['application/x-www-form-urlencoded']) {
               this.headers.set(toolId, 'application/x-www-form-urlencoded');
               const urlencodedSchema = content['application/x-www-form-urlencoded'].schema as OpenAPIV3.SchemaObject;
 
@@ -296,9 +293,6 @@ class OpenAPIMCPServer {
         const [method, ...pathParts] = toolId.split("-");
         const path_temp = "/" + pathParts.join("/").replace(/-/g, "/");
         const path = path_temp.replaceAll('!', "-");
-        console.error('the path');
-        console.error(path_temp)
-        console.error(path)
         // Ensure base URL ends with slash for proper joining
         const baseUrl = this.config.apiBaseUrl.endsWith("/")
           ? this.config.apiBaseUrl
@@ -310,12 +304,6 @@ class OpenAPIMCPServer {
         // Construct the full URL
         const url = new URL(cleanPath, baseUrl).toString();
 
-        //console.error(`Making API request: ${method.toLowerCase()} ${url}`);
-        //console.error(`Base URL: ${baseUrl}`);
-        //console.error(`Path: ${cleanPath}`);
-        //console.error(`Raw parameters:`, params);
-        //console.error(`Request headers:`, this.config.headers);
-
         // Prepare request configuration
         this.config.headers['Content-Type'] = this.headers.get(toolId)
         const config: any = {
@@ -323,8 +311,6 @@ class OpenAPIMCPServer {
           url: url,
           headers: this.config.headers,
         };
-        console.error(this.config.headers);
-        console.error('just marking')
 
         // Handle different parameter types based on HTTP method
         if (method.toLowerCase() === "get") {
@@ -348,15 +334,10 @@ class OpenAPIMCPServer {
           config.data = params;
         }
 
-        console.error(`Processed parameters:`, config.params || config.data);
-
         console.error("Final request config:", config);
 
         try {
-          console.error('lolololol');
-          console.error(config);
-          console.error(Object.keys(config));
-          console.error(Object.values(config))
+
           const response = await axios(config);
           console.error("Response status:", response.status);
           console.error("Response headers:", response.headers);

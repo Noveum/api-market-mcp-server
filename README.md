@@ -27,9 +27,9 @@ You do not need to clone this repository to use this MCP server. You can simply 
    ```
 
 3. Replace the environment variables with your actual API configuration:
- - `API_BASE_URL`: The base URL of your API (optional)
- - `OPENAPI_SPEC_PATH`: URL or path to your OpenAPI specification (optional)
- - `API_HEADERS`: Comma-separated key:value pairs for API authentication headers
+- `API_BASE_URL`: The base URL of your API (optional)
+- `OPENAPI_SPEC_PATH`: URL or path to your OpenAPI specification (optional)
+- `API_HEADERS`: Comma-separated key:value pairs for API authentication headers
 
 ### For Cursor
 1. Go to File -> Preferences -> Cursor Settings.
@@ -71,7 +71,7 @@ npx -y @noveum-ai/mcp-server --headers x-magicapi-key:your-api-key
 ## Getting an API Key from API.market
 
  To obtain an API key
- 1. Log in to https://api.market/
+ 1. Log in to [API.market](https://api.market/)
  2. Go to your profile and select 'My API Keys'
  3. Your API keys will be displayed here
 
