@@ -108,19 +108,22 @@ def update_method_summaries(paths_dict, file_name):
         if isinstance(methods, dict):
             for method, operation in methods.items():
                 # Only target keys that represent HTTP methods (case-insensitive)
-                if method.lower() in HTTP_METHODS and isinstance(operation, dict):
-                    if "summary" in operation and isinstance(operation["summary"], str) and len(operation["summary"]) >= 55:
-                        original_summary = operation["summary"]
-                        logging.info(
-                            f"path '{path}', method '{method}': updating summary from '{original_summary}'")
+                if (method.lower() in HTTP_METHODS and
+                isinstance(operation, dict) and
+                "summary" in operation and
+                isinstance(operation["summary"], str) and
+                len(operation["summary"]) >= 55):
+                    original_summary = operation["summary"]
+                    logging.info(
+                        f"path '{path}', method '{method}': updating summary from '{original_summary}'")
 
-                        new_summary = update_summary(
-                            current_summary=original_summary)
+                    new_summary = update_summary(
+                        current_summary=original_summary)
 
-                        logging.info(
-                            f"path '{path}', method '{method}': updating summary to '{new_summary}'")
+                    logging.info(
+                        f"path '{path}', method '{method}': updating summary to '{new_summary}'")
 
-                        operation["summary"] = new_summary
+                    operation["summary"] = new_summary
 
 
 # Gather all OpenAPI spec files with .yaml, .yml, or .json extensions from the current directory.
@@ -138,10 +141,7 @@ for file in files:
     logging.info(f"Opening file: {file}")
     try:
         with open(file, 'r') as f:
-            if file.endswith(".json"):
-                data = json.load(f)
-            else:
-                data = yaml.safe_load(f)
+            data = json.load(f) if file.endswith(".json") else yaml.safe_load(f)
         logging.info(f"Finished reading file: {file}")
     except Exception as e:
         logging.error(f"Error reading {file}: {e}")
