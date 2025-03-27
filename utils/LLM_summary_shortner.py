@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO,
                     format='%(levelname)s - %(message)s')
 
 def is_valid_string(s):
-    pattern =  r'^[a-zA-Z0-9 _-]+$' #spaces will be replaced later on...
+    pattern =  r'^[a-zA-Z0-9 _-]+$' 
     return bool(re.match(pattern, s))
 
 
@@ -111,13 +111,13 @@ def update_method_summaries(paths_dict, file_name):
                 if method.lower() in HTTP_METHODS and isinstance(operation, dict):
                     if "summary" in operation and isinstance(operation["summary"], str) and len(operation["summary"]) >= 55:
                         original_summary = operation["summary"]
-                        logging.error(
+                        logging.info(
                             f"path '{path}', method '{method}': updating summary from '{original_summary}'")
 
                         new_summary = update_summary(
                             current_summary=original_summary)
 
-                        logging.error(
+                        logging.info(
                             f"path '{path}', method '{method}': updating summary to '{new_summary}'")
 
                         operation["summary"] = new_summary
