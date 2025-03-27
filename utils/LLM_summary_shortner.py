@@ -74,7 +74,7 @@ Good example: 'Create high-quality images from text in 4 steps'
         "max_tokens": 1024,
         "top_p": 1,
         "stream": False,
-        "stop": "string"
+        "stop": "END"
     }
 
     # Make the POST request and wait for the API response
@@ -127,7 +127,8 @@ def update_method_summaries(paths_dict, file_name):
 
 file_patterns = ["*.yaml", "*.yml", "*.json"]
 files = []
-directory = r"../src/lib"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+directory = os.path.join(script_dir, "../src/lib")
 for pattern in file_patterns:
     search_pattern = os.path.join(directory, pattern)
     files.extend(glob.glob(search_pattern))
