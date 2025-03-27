@@ -74,7 +74,7 @@ Good example: 'Create high-quality images from text in 4 steps'
         "max_tokens": 1024,
         "top_p": 1,
         "stream": False,
-        "stop": "END"
+        "stop": "</Output>"
     }
 
     # Make the POST request and wait for the API response
