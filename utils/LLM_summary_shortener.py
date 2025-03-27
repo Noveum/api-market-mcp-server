@@ -89,7 +89,7 @@ Good example: 'Create high-quality images from text in 4 steps'
         if(depth ==10):
             logging.error('Please use manual summary shortener, the llm is unable to provide an appropriate summary, even after 10 retries')
             sys.exit()
-        return update_summary(new_summary), depth+1
+        return update_summary(new_summary, depth+1)
         
     return new_summary
 
