@@ -123,6 +123,65 @@ We can use the agent to look for available domains
 
 ![Example 3](./images/example3.png "Example 3")
 
+## Development
+
+### Adding a New API to the MCP Server
+
+The `utils` folder contains helper scripts for managing API configurations, parsing OpenAPI specifications, and registering new APIs into the MCP server.
+
+#### 1. Locate the OpenAPI Specification
+Find the OpenAPI JSON for the API you want to integrate. After that, create a folder `json_files` in the root directory of the project and add your OpenAPI JSON spec to the folder
+
+#### 2. Modify the OpenAPI Specification
+After obtaining the OpenAPI spec, use `modify_api.py` to update the path inside the spec to include the file name.
+
+```bash
+python modify_api.py
+```
+
+#### 3. Update API Summaries
+After modifying the paths, update the API summaries by choosing one of the following options:
+
+- **Automatically shorten summaries using an LLM:**
+
+```bash
+python shorten_summary_in_specs.py 
+```
+
+- **Manually update the summaries:**
+
+```bash
+python manual_summary_shortner.py 
+```
+
+#### 4. Build and Test
+
+Rebuild the project to apply the changes:
+
+```bash
+npm run build
+```
+
+Then, test the new API integration using:
+
+```bash
+npm run inspect
+```
+
+#### 5. Submit Your Changes
+If you want to contribute this new API to the repository:
+- Fork the repo.
+- Create a branch.
+- Submit a pull request (PR).
+
+#### 6. Publish the MCP server (Optional)
+If you want to publish your changes:
+- Update the `package.json` accordingly (e.g., update the version, name, etc.).
+- Publish the package:
+```bash
+npm publish --access public
+```
+
 ## Development Tools
 
 ### Building

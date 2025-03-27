@@ -57,7 +57,7 @@ def update_method_summaries(paths_dict):
 
 file_patterns = ["*.yaml", "*.yml", "*.json"]
 files = []
-directory = r"src/lib"
+directory = r"../src/lib"
 for pattern in file_patterns:
     search_pattern = os.path.join(directory, pattern)
     files.extend(glob.glob(search_pattern))
