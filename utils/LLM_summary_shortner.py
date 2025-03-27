@@ -5,7 +5,7 @@ import json
 import logging
 import requests
 import re
-
+import sys
 # Set up logging with time, level, and message
 logging.basicConfig(level=logging.ERROR,
                     format='%(levelname)s - %(message)s')
@@ -15,7 +15,7 @@ def is_valid_string(s):
     return bool(re.match(pattern, s))
 
 
-def update_summary(current_summary: str) -> str:
+def update_summary(current_summary: str, depth: int = 0) -> str:
     """
     Sends a request to the Magic API using the current_summary and returns the new_summary from the response.
 
@@ -37,7 +37,7 @@ def update_summary(current_summary: str) -> str:
     api_key = os.environ.get("x_magicapi_key")
     if not api_key:
         raise ValueError(
-            "API key not found. Please set the 'MAGICAPI_KEY' environment variable.")
+            "API key not found. Please set the 'x_magicapi_key' environment variable.")
 
     # API endpoint and headers
     url = "https://api.magicapi.dev/api/v2/bridgeml/llm/llm/chat/completions"
@@ -86,8 +86,11 @@ Good example: 'Create high-quality images from text in 4 steps'
     new_summary = data["choices"][0]["message"]["content"]
     if (len(new_summary) >= 55 or (not is_valid_string(new_summary))) : #i think this messed it up ... what happened was that it kept looping and i forgot to specify that spaces are prohibited too... also logging was not there
         print('new summary is ' , new_summary)
-        return(update_summary(new_summary))
-    
+        if(depth ==10):
+            print('Please use manual summary shortner, the llm is unable to provide an appropriate summary, even after 10 retries')
+            sys.exit()
+        return(update_summary(new_summary), depth+1)
+        
     return new_summary
 
 

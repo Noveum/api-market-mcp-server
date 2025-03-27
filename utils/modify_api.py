@@ -69,6 +69,10 @@ def resolve_references(data):
     return _resolve(data)
 
 def process_files(directory: str):
+    if not os.path.exists(directory):
+        print(f"Error: Directory '{directory}' does not exist.")
+        return
+    
     files = get_json_files(directory)
     modified_files = []
 
@@ -78,8 +82,15 @@ def process_files(directory: str):
 
     for file_name in files:
         file_path = os.path.join(directory, file_name)
-        with open(file_path, 'r') as file:
-            data = json.load(file)
+        try:
+            with open(file_path, 'r') as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            print(f"Error: File '{file_path}' not found.")
+            continue
+        except json.JSONDecodeError:
+            print(f"Error: File '{file_path}' contains invalid JSON.")
+            continue
 
         
         # Generate prefix from the filename, e.g., 'a-b-c.json' -> 'a/b_c/'
@@ -89,23 +100,28 @@ def process_files(directory: str):
         if '-' in file_name_no_ext:
             file_name_no_ext = file_name_no_ext.replace('-', '/', 1)
 
-        # Replace remaining hyphens with underscores
         prefix = file_name_no_ext.replace('-', '!')
-        modified_data = modify_paths(data, prefix)
-        modified_data = resolve_references(modified_data)
-        modified_data = replace_hyphens_in_paths(modified_data)
-        # Save modified data to modified_json_files directory
-        output_file = os.path.relpath(os.path.join(modified_dir, f"modified_{file_name}"))
-        with open(output_file, 'w') as file:
-            json.dump(modified_data, file, indent=4)
+        try:
+            modified_data = modify_paths(data, prefix)
+            modified_data = resolve_references(modified_data)
+            modified_data = replace_hyphens_in_paths(modified_data)
+            # Save modified data to modified_json_files directory
+            output_file = os.path.relpath(os.path.join(modified_dir, f"modified_{file_name}"))
+            with open(output_file, 'w') as file:
+                json.dump(modified_data, file, indent=4)
 
-        modified_files.append(output_file)
+            modified_files.append(output_file)
+        except Exception as e:
+            print(f"Error processing file '{file_name}': {str(e)}")
+            continue
 
     # Write all modified file names to a text file in the current directory
-    with open('./modified_files.txt', 'a') as file:
-        modified_files = ['../' + x for x in modified_files]
-        file.write('\n'.join(modified_files) + '\n')
-
+    try:
+        with open('./modified_files.txt', 'a') as file:
+            modified_files = ['../' + x for x in modified_files]
+            file.write('\n'.join(modified_files) + '\n')
+    except Exception as e:
+        print(f"Error writing to modified_files.txt: {str(e)}")
 
 if __name__ == "__main__":
     directory = "../json_files"  # Specify your directory containing the JSON files

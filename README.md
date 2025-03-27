@@ -136,7 +136,7 @@ Find the OpenAPI JSON for the API you want to integrate. After that, create a fo
 After obtaining the OpenAPI spec, use `modify_api.py` to update the path inside the spec to include the file name.
 
 ```bash
-python modify_api.py
+python utils/modify_api.py
 ```
 
 #### 3. Update API Summaries
@@ -145,13 +145,13 @@ After modifying the paths, update the API summaries by choosing one of the follo
 - **Automatically shorten summaries using an LLM:**
 
 ```bash
-python shorten_summary_in_specs.py 
+python utils/shorten_summary_in_specs.py 
 ```
 
 - **Manually update the summaries:**
 
 ```bash
-python manual_summary_shortner.py 
+python utitls/manual_summary_shortner.py 
 ```
 
 #### 4. Build and Test
