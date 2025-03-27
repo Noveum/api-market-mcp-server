@@ -85,9 +85,9 @@ Good example: 'Create high-quality images from text in 4 steps'
     data = response.json()
     new_summary = data["choices"][0]["message"]["content"]
     if (len(new_summary) >= 55 or (not is_valid_string(new_summary))) :
-        logging.info('new summary is ' , new_summary)
+        logging.info(f'New summary is {new_summary}')
         if(depth ==10):
-            logging.error('Please use manual summary shortner, the llm is unable to provide an appropriate summary, even after 10 retries')
+            logging.error('Please use manual summary shortener, the llm is unable to provide an appropriate summary, even after 10 retries')
             sys.exit()
         return update_summary(new_summary), depth+1
         

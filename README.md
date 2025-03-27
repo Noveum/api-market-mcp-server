@@ -145,13 +145,13 @@ After modifying the paths, update the API summaries by choosing one of the follo
 - **Automatically shorten summaries using an LLM:**
 
 ```bash
-python utils/shorten_summary_in_specs.py 
+python utils/LLM_summary_shortener.py 
 ```
 
 - **Manually update the summaries:**
 
 ```bash
-python utils/manual_summary_shortner.py 
+python utils/manual_summary_shortener.py 
 ```
 
 #### 4. Build and Test
