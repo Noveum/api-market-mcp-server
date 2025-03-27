@@ -151,7 +151,7 @@ python utils/shorten_summary_in_specs.py
 - **Manually update the summaries:**
 
 ```bash
-python utitls/manual_summary_shortner.py 
+python utils/manual_summary_shortner.py 
 ```
 
 #### 4. Build and Test

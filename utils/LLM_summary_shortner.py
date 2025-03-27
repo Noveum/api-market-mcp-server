@@ -7,7 +7,7 @@ import requests
 import re
 import sys
 # Set up logging with time, level, and message
-logging.basicConfig(level=logging.ERROR,
+logging.basicConfig(level=logging.INFO,
                     format='%(levelname)s - %(message)s')
 
 def is_valid_string(s):
@@ -46,7 +46,7 @@ def update_summary(current_summary: str, depth: int = 0) -> str:
         "x-magicapi-key": api_key,
         "Content-Type": "application/json"
     }
-    system_prompt = system_prompt = """
+    system_prompt = """
 You are a technical API documentation summarizer. 
 Given an API endpoint summary, create a shorter version that:
 1. Maintains the core functionality description
@@ -84,12 +84,12 @@ Good example: 'Create high-quality images from text in 4 steps'
     # Parse the API response and extract the new summary
     data = response.json()
     new_summary = data["choices"][0]["message"]["content"]
-    if (len(new_summary) >= 55 or (not is_valid_string(new_summary))) : #i think this messed it up ... what happened was that it kept looping and i forgot to specify that spaces are prohibited too... also logging was not there
+    if (len(new_summary) >= 55 or (not is_valid_string(new_summary))) :
         print('new summary is ' , new_summary)
         if(depth ==10):
             print('Please use manual summary shortner, the llm is unable to provide an appropriate summary, even after 10 retries')
             sys.exit()
-        return(update_summary(new_summary), depth+1)
+        return update_summary(new_summary), depth+1
         
     return new_summary
 

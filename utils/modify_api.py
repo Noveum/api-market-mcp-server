@@ -3,8 +3,6 @@ import os
 import re
 from typing import List
 
-#modifes api files
-
 def get_json_files(directory: str) -> List[str]:
     # Pattern to match filenames like a-b-c.json, a-b.json, etc.
     pattern = re.compile(r'^([\w\-]+)\.json$')
@@ -25,9 +23,6 @@ def replace_hyphens_in_paths(data):
 def modify_paths(data: dict, prefix: str) -> dict:
     modified_paths = {f"{prefix}{path}": details for path, details in data['paths'].items()}
     data['paths'] = modified_paths
-    modified_paths_keys = list(modified_paths.keys())
-    for x in modified_paths_keys:
-        print(x)
     return data
 
 def resolve_references(data):
