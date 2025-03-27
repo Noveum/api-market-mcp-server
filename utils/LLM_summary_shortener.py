@@ -117,8 +117,12 @@ def update_method_summaries(paths_dict, file_name):
                     logging.info(
                         f"path '{path}', method '{method}': updating summary from '{original_summary}'")
 
-                    new_summary = update_summary(
-                        current_summary=original_summary)
+                    try:
+                        new_summary = update_summary(
+                            current_summary=original_summary)
+                    except Exception as e:
+                        logging.error(f"Error updating summary for '{path}', method '{method}': {e}")
+                        continue
 
                     logging.info(
                         f"path '{path}', method '{method}': updating summary to '{new_summary}'")
