@@ -254,7 +254,11 @@ export class APIMarketMCPServer {
           throw new Error(`Invalid path generated from tool ID ${toolId}: ${error.message}`);
         }
         // Prepare request configuration
-        this.config.headers['Content-Type'] = this.headers.get(toolId)
+        this.config.headers = this.config.headers || {};
+        const contentType = this.headers.get(toolId);
+        if (contentType) {
+          this.config.headers['Content-Type'] = contentType;
+        }
         const config: any = {
           method: method.toLowerCase(),
           url: url,
