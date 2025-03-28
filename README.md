@@ -1,5 +1,7 @@
 # API-MARKET MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@Noveum/api-market-mcp)](https://smithery.ai/server/@Noveum/api-market-mcp)
+
 ## About
 A Model Context Protocol (MCP) server that exposes API-Market's endpoints as MCP resources. This server allows Large Language Models to discover and interact with APIs defined by OpenAPI specifications through the MCP protocol.  
 This repository provides access to the APIs available at [API.market](https://api.market/). The tool is free to use and allows agents to communicate freely with all available APIs, making it super powerful. With over **200+ APIs** available at [API.market](https://api.market/), you can leverage a wide range of functionalities.
@@ -7,6 +9,14 @@ This repository provides access to the APIs available at [API.market](https://ap
 ## Quick Start
 
 You do not need to clone this repository to use this MCP server. You can simply configure it in your client of choice.
+
+### Installing via Smithery
+
+To install API Market Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@Noveum/api-market-mcp):
+
+```bash
+npx -y @smithery/cli install @Noveum/api-market-mcp --client claude
+```
 
 ### For Claude Desktop
 1. Locate or create your Claude Desktop configuration file:
