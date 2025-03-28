@@ -1,14 +1,5 @@
 startCommand:
   type: stdio
-  configSchema:
-    # JSON Schema defining the configuration options for the MCP.
-    type: object
-    required:
-     - x-magicapi-key
-    properties:
-      x-magicapi-key:
-        type: string
-        description: The API key for the magicapi website
   commandFunction:
     # A function that produces the CLI command to start the MCP on stdio.
     |-
@@ -17,7 +8,4 @@ startCommand:
       "args": [
         "./bin/mcp-server.js"
       ],
-      "env": {
-        API_HEADERS:config.x-magicapi-key
-      }
     })
