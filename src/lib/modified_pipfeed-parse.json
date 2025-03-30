@@ -21,7 +21,7 @@
   "paths": {
     "pipfeed/parse/extract": {
       "post": {
-        "summary": "Extract information from a URL.",
+        "summary": "Extract information from a URL",
         "requestBody": {
           "content": {
             "application/json": {
