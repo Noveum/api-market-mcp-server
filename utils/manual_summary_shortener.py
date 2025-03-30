@@ -3,6 +3,7 @@ import glob
 import yaml
 import json
 import re
+from pathlib import Path
 
 
 def is_valid_string(s):
@@ -49,7 +50,7 @@ def update_method_summaries(paths_dict):
         if isinstance(methods, dict):
             for method, operation in methods.items():
                 if method.lower() in HTTP_METHODS and isinstance(operation, dict):
-                    if "summary" in operation and isinstance(operation["summary"], str) and len(operation["summary"]) >= 55:
+                    if "summary" in operation and isinstance(operation["summary"], str) and (len(operation["summary"]) >= 55 or not is_valid_string(operation["summary"])):
                         original_summary = operation["summary"]
                         new_summary = update_summary(current_summary=original_summary)
                         operation["summary"] = new_summary
@@ -57,13 +58,14 @@ def update_method_summaries(paths_dict):
 
 file_patterns = ["*.yaml", "*.yml", "*.json"]
 files = []
-directory = r"../src/lib"
+current_dir = (Path(__file__).parent)
+directory = os.path.join( current_dir, r"../src/lib")
 for pattern in file_patterns:
     search_pattern = os.path.join(directory, pattern)
     files.extend(glob.glob(search_pattern))
 
-
 for file in files:
+    print(f'Working on file {file}')
     try:
         with open(file, 'r') as f:
             if file.endswith(".json"):
