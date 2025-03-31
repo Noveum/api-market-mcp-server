@@ -8,7 +8,7 @@ startCommand:
     properties:
       x-magicapi-key:
         type: string
-        description: The API key for the magicapi website
+        description: The API key for the api.market website
   commandFunction:
     # A function that produces the CLI command to start the MCP on stdio.
     |-
