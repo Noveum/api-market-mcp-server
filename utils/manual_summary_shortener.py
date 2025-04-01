@@ -65,7 +65,6 @@ for pattern in file_patterns:
     files.extend(glob.glob(search_pattern))
 
 for file in files:
-    print(f'Working on file {file}')
     try:
         with open(file, 'r') as f:
             if file.endswith(".json"):
