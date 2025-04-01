@@ -86,7 +86,7 @@
     },
     "magicapi/coder/coder": {
       "post": {
-        "summary": "Coding Assistant.",
+        "summary": "Coding Assistant",
         "description": "Coding Assistant. \n Make sure you call get coder output URL MCP tool to get the URL for the request id received from this API ",
         "requestBody": {
           "required": true,
